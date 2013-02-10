@@ -25,6 +25,15 @@ class Node
   def to_s
     v.to_s
   end
+
+  def each2(&block)
+    inner_each(self.previous, &block)
+  end
+
+  def inner_each(last, &block)
+    block.call(self)
+    self.next.inner_each(last, &block) unless self.next == last
+  end
   
   def each
     node = self.next
@@ -35,9 +44,10 @@ class Node
   end
   
 end
-
-head = Node.new(10000)
-(1..10).each { |i|
-  head << Node.new(i)
-  puts head.map {|node| node.to_s}.join","
-}
+# 
+# head = Node.new(10000)
+# (1..10).each { |i|
+#   head << Node.new(i)
+#   #puts head.map {|node| node.to_s}.join","
+# }
+# head.each2 {|i| puts i.to_s}
