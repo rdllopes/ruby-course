@@ -1,5 +1,5 @@
- a = [[1,'a'], [2, 'b'], [3, 'c']]
- b = a.reduce({}){|acc, element|
+a = [[1,'a'], [2, 'b'], [3, 'c']]
+b = a.inject({}){|acc, element|
    acc.merge(element[0] => element[1])
 }
 b.map{|pair| pair[0]}

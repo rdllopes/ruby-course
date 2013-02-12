@@ -1,3 +1,4 @@
+# Como extrair os nomes das tabelas do texto bloco de texto abaixo?
 tabelas = <<END
 | BSC_TASK                 | 
 | BSC_SUGGEST_LIST         | 
@@ -25,4 +26,7 @@ tabelas = <<END
 | BSC_QUERY_LOG_TMP        | 
 | BSC_QUERY_LOG            |
 END
+#solução: quebrar em linhas
+#  eliminar o caracter "|" de cada elemento
+#  eliminar os espaços em branco no começo e final de cada palavra
 (tabelas.split "\n").map {|table| (table.delete"|").strip}.join " "
