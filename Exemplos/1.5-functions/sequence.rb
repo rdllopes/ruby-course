@@ -33,3 +33,5 @@ def max_seq(n, &block)
     max
   } 
 end
+
+max_seq(1000) {|i,j| puts "#{i}:#{j}"}
