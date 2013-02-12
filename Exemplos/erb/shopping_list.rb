@@ -1,10 +1,10 @@
 require 'erb'
 
-def get_items()
+def get_items
   ['bread', 'milk', 'eggs', 'spam']
 end
 
-def get_template()
+def get_template
   %{
         <DOCTYPE html  "-//W3C//DTD  1.0 //EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -37,7 +37,7 @@ class ShoppingList
     @template = template
   end
 
-  def render()
+  def render
     ERB.new(@template).result(binding)
   end
 

@@ -1,7 +1,8 @@
-
+# Exemplo de uso de módulo
 module Trig
   PI = 3.141592654
   
+  # calcula sin usando série de Taylor
   def Trig.sin(x)
     result = term = x
     signal = 1
