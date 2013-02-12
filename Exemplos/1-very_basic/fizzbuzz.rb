@@ -1,10 +1,10 @@
-# Write a program that prints the numbers from 1 to 100.
-# But for multiples of three print “Fizz” instead of the
-# number and for the multiples of five print “Buzz”. For
-# numbers which are multiples of both three and five
-# print “FizzBuzz”.
+# Escreva um programa que imprima o número de 1 a 100.
+# Mas, para múltiplos de três, imprima "Fizz" no lugar do
+# número e para múltiplos de cinco imprima "Buzz". Para
+# números que são múltiplos de ambos três e cinco
+# imprima "FizzBuzz"
 # http://www.rubyquiz.com/quiz126.html
-
+# Solução tosca
 1.upto(100) do |i|
   if i % 5 == 0 and i % 3 == 0
           puts "FizzBuzz"
