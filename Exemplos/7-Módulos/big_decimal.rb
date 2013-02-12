@@ -9,37 +9,38 @@ class Number
   end
 end
  
-# BigInteger extends Number
+# BigInteger estende Number
 class BigInteger < Number
  
  
-  # Add instance methods from Stringify
+  # Adiciona métodos de instância de Stringify
   include Stringify
  
-  # Add class methods from Math
+  # Adiciona métodos de classe de Math
   extend Math
  
-  # Add a constructor with one parameter
+  # Adiciona um constructor com um parâmetro
   def initialize(value)
     @value = value
   end
 end
 
 
-# Create a new object
+# Cria um novo objeto
 bigint1 = BigInteger.new(10)
-# Call a method inherited from the base class
+
+# Chama um método herdado da classe base
 puts bigint1.intValue   # --> 10
 
-# Call class method extended from Math
+# Chama um método de classe estendido de Math
 bigint2 = BigInteger.add(-2, 4)
 puts bigint2.intValue   # --> 2
 
-# Call a method included from Stringify
+# Chama um método incluído de Stringify
 puts bigint2.stringify   # --> 'Two'
 
-# Add the module methods to
-# this object instance, only!
+# Adiciona os métodos de módulo para 
+# a instância desse objeto somente
 bigint2.extend CurrencyFormatter
 puts bigint2.format   # --> '$2'
 
