@@ -1,0 +1,202 @@
+Lista de parametros
+def myNewMethod(arg1, arg2, arg3)     # 3 arguments
+  # Code for the method would go here
+def myOtherNewMethod                  # No arguments
+  # Code for the method would go here
+def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")
+  "#{arg1}, #{arg2}, #{arg3}."
+Lembrando que os parenteses sao opcionais
+
+\section
+
+Truques com parametros
+Aridade nao definida
+def varargs(arg1, *rest)
+  "Got #{arg1} and #{rest.join(', ')}"
+varargs("one")        #        "Got one and "
+varargs("one", "two")        #        "Got one and two"
+varargs "one", "two", "three"        #        "Got one and two, three
+def varargs(arg1, hash)
+   puts #{arg1} - #{hash}
+varargs (1, :a => 1)
+
+\section
+
+Expandindo Array para argumentos
+Expandindo Array  para parametros
+def five(a, b, c, d, e)
+  "I was passed #{a} #{b} #{c} #{d} #{e}"
+five(1, 2, 3, 4, 5 )               #        "I was passed 1 2 3 4 5"
+five(1, 2, 3, *['a', 'b'])        #        "I was passed 1 2 3 a b"
+five(*(10..14).to_a)               #        "I was passed 10 11 12 13 14"
+
+\section
+
+Proc para Bloco
+Convertendo proc para bloco
+print "(t)imes or (p)lus: "
+times = gets
+print "number: "
+number = gets.to_i
+if times =~ /^t/
+  calc = proc { |n| n*number }
+  calc = proc { |n| n+number }
+puts((1..10).collect(&calc).join(", "))
+
+\section
+
+Exceptions, Catch and Throw
+Everything goes well
+ opFile = File.open(opName, "w")
+while data = socket.read(512)
+  opFile.write(data)
+omg! Something is wrong.
+ opFile = File.open(opName, "w")
+  # Exceptions raised by this code will
+  # be caught by the following rescue clause
+  while data = socket.read(512)
+    opFile.write(data)
+  end
+rescue SystemCallError
+  $stderr.print "IO failed: " + $!
+  opFile.close
+  File.delete(opName)
+  raise
+Catching exception
+
+\section
+
+Nomeando a excecao
+ begin
+  eval string
+rescue SyntaxError, NameError => boom
+  #OLHA! sem usar o $!
+  print "String doesn't compile: " + boom
+rescue StandardError => bang
+  print "Error running script: " + bang
+Garante que um bloco e chamado
+f = File.open("testfile")
+  # .. process
+  # .. handle error
+  f.close unless f.nil?
+Equivalente ao finally do Java
+
+\section
+\section
+
+Rescuing a Method
+Begin Rescue
+Better code
+def some_method
+  begin
+    danger_danger
+    true # good return
+  rescue Error
+    false # error return
+  end
+def some_method
+  danger_danger
+  true # good response
+rescue Error
+  false # error response
+Raise Exceptions
+Formas tipicas de se lancar uma excecao
+# sem conversa
+# adicionando uma string...
+raise "Missing name" if name.nil?
+if i >= myNames.size
+  raise IndexError, "#{i} >= size (#{myNames.size})"
+# passando o stackTrace via Kernel::caller
+raise ArgumentError, "Name too big", caller
+
+\section
+
+Especializando Excecoes
+Como Lancar
+class RetryException < RuntimeError
+  attr :okToRetry
+  def initialize(okToRetry)
+    @okToRetry = okToRetry
+  end
+def readData(socket)
+  data = socket.read(512)
+  if data.nil?
+    raise RetryException.new(true), "transient read error"
+  end
+  # .. normal processing
+
+\section
+
+Especializando Excecoes II
+Tratando a excecao
+  stuff = readData(socket)
+  # .. process stuff
+rescue RetryException => detail
+  retry if detail.okToRetry
+  raise
+catch e throw
+Desvio incondicional com labels
+def promptAndGet(prompt)
+  print prompt
+  res = readline.chomp
+  throw :quitRequested if res == "!"
+  return res
+catch :quitRequested do
+  name = promptAndGet("Name: ")
+  age  = promptAndGet("Age:  ")
+  sex  = promptAndGet("Sex:  ")
+  # ..
+  # process information
+  * Uso: 
+  *     * criar namespace (evitar conflito de nomes) 
+    * mixin (permitir heranca de tracos  como se fosse uma copia do conteudo do modulo no local incluido) 
+
+\section
+
+Modulo II
+module Trig
+  PI = 3.141592654
+  def Trig.sin(x)
+   # ..
+  end
+  def Trig.cos(x)
+   # ..
+  end
+require "./trig"
+puts Trig.sin(Trig::PI / 3.0)
+
+\section
+
+Applying mixin
+# BigInteger estende Number
+class BigInteger < Number
+  # Adiciona metodos de instancia de Stringify
+  include Stringify
+  # Adiciona metodos de classe de Math
+  extend Math
+  # Adiciona um constructor com um parametro
+  def initialize(value)
+    @value = value
+  end
+
+\section
+
+Mixins (II)
+Applying mixin
+# Cria um novo objeto
+bigint1 = BigInteger.new(10)
+# Chama um metodo herdado da classe base
+puts bigint1.intValue   # --> 10
+# Chama um metodo de classe estendido de Math
+bigint2 = BigInteger.add(-2, 4)
+puts bigint2.intValue   # --> 2
+# Chama um metodo incluido de Stringify
+puts bigint2.stringify   # --> 'Two'
+# Adiciona os metodos de modulo para  a instancia desse objeto somente
+bigint2.extend CurrencyFormatter
+  *  Sistema de Template padrao do Ruby 
+  *  Uma classe como outra qualquer 
+  *  Via linha de comando e possivel parsear um arquivo erb 
+
+
+

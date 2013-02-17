@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/reset.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="css/favicon.png" />
+    <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+    <!-- Code Prettifier: -->
+<link href="css/highlight.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <link href="css/style.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>    
+
+
+  </head>
+
+  <body>
+  <div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+    <div id="impress">
+    <div class='step' >
+    </div>
+      <div class='step' >
+    
+<h2>Introducao: Ruby.new</h2>
+
+<ul>
+<li><p>Linguagem para humanos</p></li>
+<li><p>Compare:</p>
+<pre><code class='prettyprint '>5.times { print "Ola!" }
+
+for (int i=0; i <10; i++) { printf("Ola!");}
+</code></pre></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h2>Estruturas básicas</h2>
+
+<ul>
+<li><p>Variáveis</p>
+<pre><code class='prettyprint '>x, y, taxa_do_lixo2
+</code></pre></li>
+<li><p>Numeros</p>
+<pre><code class='prettyprint '>1, -1.2, 6.03e-23    
+</code></pre></li>
+<li><p>String</p>
+<pre><code class='prettyprint '>"alguma coisa assim"
+%q(veremos outras formas de declarar strings)
+</code></pre></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h2>Criando um Enumerable (II)</h2>
+<pre><code class='prettyprint '>def <<(node)
+ node.next = self.next
+ node.previous = self
+ self.next.previous = node unless self.next.nil?
+ self.next = node
+end
+def remove
+ node = self.previous
+ node.next = self.next
+ self.next.previous = node
+ self
+end
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Estruturas basicas</h2>
+<pre><code class='prettyprint '>:x, :y, :isso_parece_uma_string
+
+EmpireStateBuilding, NEA, PI
+
+True, False, Nil
+</code></pre>
+<p>Símbolos são alocados uma única vez: :a.object_id durante uma execução
+sempre retornara o mesmo valor. Isso nao acontece com string. O método
+equal? so devolve true se dois objetos são de fato o mesmo objeto (e
+instâncias da mesma classe com valores iguais).</p>
+</div>
+      <div class='step' >
+    
+<h2>Metodos (mensagens)</h2>
+<pre><code class='prettyprint '>i = 1        
+texto = "um texto"; puts texto
+a = b = c = 0
+1 == 2           # sugar syntax!!!
+# metodo de classe
+1.methods  # lista todos os metodos daquele objeto
+1.send(:even?) # outra forma de enviar mensagens
+def fibo(n = 1)
+    fibo(n-2) + fibo(n-1) if n >= 2
+end
+def self.log
+  puts "metodo de classe"
+end
+</code></pre>
+<p>Lembre-se ... voce pode redefinir um método Quase tudo e objeto</p>
+</div>
+      <div class='step' >
+    
+<h2>Estruturas de Controle</h2>
+
+<p>* If</p>
+
+<p>Exemplo Completo</p>
+<pre><code class='prettyprint '>if count > 10
+  puts "Try again"
+elsif tries == 3
+  puts "You lose"
+  puts  Number:"
+end
+</code></pre>
+<p>Exemplo Simples</p>
+<pre><code class='prettyprint '>if radiation > 3000
+  puts "Danger"
+end
+</code></pre>
+<p>Modificador de Sentenca</p>
+<pre><code class='prettyprint '>puts "Danger, Will Robinson" if radiation > 3000
+</code></pre>
+<p>Estruturas de Controle * case</p>
+<pre><code class='prettyprint '>print "Enter your grade: "
+grade = gets.chomp
+case grade
+when "A"
+  puts 'Well done!'
+when "B"
+  puts 'Try harder!'
+when "C", "D"
+  puts 'You need help!!!'
+  puts "You just making it up!"
+Estruturas de Controle
+  * while 
+while weight < 100 and numPallets <= 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+</code></pre>
+<p>Modificador de Sentenca</p>
+<pre><code class='prettyprint '>square = square*square  while square < 1000
+</code></pre>
+<p>Until tem a mesma estrutura que o while</p>
+</div>
+      <div class='step' >
+    
+<h2>Estrutura de Controle</h2>
+
+<p>* for</p>
+<pre><code class='prettyprint '>for i in 0..5
+   puts "Value is #{i}"
+Estrutura de Controle
+  * until 
+until weight >= 100 ||numPallets > 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+Modificador de Sentenca
+square = square*square  until square >= 1000
+</code></pre></div>
+      <div class='step' >
+    </div>
+      <div class='step' >
+    <pre><code class='prettyprint '>a = [ 3.14159, "pie", 99 ]
+a.type               #        Array
+a.length               #        3
+a[0]                  #        3.14159
+a << 1
+a[3]                  #        1
+a[-2]                 #        99
+b = Array.new
+b << a               #   [[3.14159, "pie", 99, 1]]
+b[0..3] = a        #   [3.14159, "pie", 99, 1]
+b[0, 2] = 1        #   [1, 1]
+c = %w{a b c d e }                #  =>  ["a", "b", "c", "d"]
+</code></pre></div>
+      <div class='step' >
+    </div>
+      <div class='step' >
+    <pre><code class='prettyprint '>h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
+h.length        #        3
+h['dog']        #        "canine"
+h['cow'] = 'bovine'
+h[12]    = 'dodecine'
+h['cat'] = 99
+h        # => {"cow"=>"bovine", "cat"=>99, 12=>"dodecine",
+"donkey"=>"asinine", "dog"=>"canine"}
+
+a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
+b = Hash[a]
+# => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Blocos e Iteradores</h2>
+
+<p>Passando blocos</p>
+<pre><code class='prettyprint '>(1..12).each { |i| puts i}
+[1, 2, 4].each do |i|
+    puts i
+end
+</code></pre>
+<p>Blocos de codigo</p>
+<pre><code class='prettyprint '>(1..20).each{|x| puts x}
+</code></pre>
+<p>Influencia do Smalltalk:</p>
+<pre><code class='prettyprint '>1 to: 20 do: [:x | x printN1]
+</code></pre>
+<p>* Metodos:</p>
+</div>
+      <div class='step' >
+    </div>
+      <div class='step' >
+    </div>
+      <div class='step' >
+    
+<h2>Exemplos com Enumeraveis</h2>
+<pre><code class='prettyprint '>names = %w{ Frye Leela Zoidberg }
+names.find {|name|  name.length>4}          # => "Leela"
+names.find_all { |name| name.length > 4}
+     #=> ["Leela", "Zoidberg"]
+names.grep /oidberg/
+# => ["Zoidberg"]
+names.group_by {|name|  name.length}
+   # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Mais exemplos com Enumeraveis</h2>
+<pre><code class='prettyprint '>names = %w{ Frye Leela Zoidberg }
+names.map {|name| name.downcase}
+# => ["frye", "leela", "zoidberg"]
+names.reduce {|acc, name| name.length <= 5 ? acc + name : acc }            #
+ => "FryeLeela"
+names.join ", "
+# => "Frye, Leela, Zoidberg"
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Invocando blocos</h2>
+<pre><code class='prettyprint '>def proxy_method
+  puts "Calling command at: #{Time.new}"
+  yield
+proxy_method { puts "hello world proxified! "}
+#ou com paremtros
+def proxy_method
+   yield(Time.new)
+proxy_method {|time| puts "hello world proxified  at #{time}"}
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Invocando blocos II</h2>
+<pre><code class='prettyprint '>def proxy_method(&method)
+  # argumento com & precisa ser o ultimo da lista
+  puts "Calling command at: #{Time.new}"
+  method.call
+proxy_method { puts "hello world proxified! "}
+#ou com paremtros
+def proxy_method (&method)
+   method.call(Time.new)
+proxy_method {|time| puts "hello world proxified  at #{time}"}
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Proc x Lambda</h2>
+<pre><code class='prettyprint '>fx = Proc.new {|x| x**2}
+fxy = proc {|x,y| x+y}
+# calling
+fx.call(2) # => 4
+fxy[2,3,4] #=> 5
+fx = lambda {|x| x**2}
+fxy = lambda {|x,y| x+y}
+# calling
+fx.call(2) # => 4
+fxy.call(2,3,4) #=> exception na cara!
+Proc.new e proc sao equivalentes
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Lambda Calculus =)</h2>
+
+<p>Derivada em Ruby</p>
+<pre><code class='prettyprint '>def d(f)
+   lambda {|a|
+     h = 0.0000000001 # um valor pequeno para h
+     h = h * a       if a < 1 && 0 < a
+     (f[a+h]-f[a])/h
+   }
+f = lambda {|x| x**2}
+puts d(f)[4]
+
+class BookInStock
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = Float(price)
+  end
+
+  def to_s
+    "ISBN:#{@isbn}, price: #{@price}"
+  end
+
+stock = BookInStock.new
+# ou
+stock = BookInStock.new (1234, 10.39)
+#invocando metodo
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Variaveis e Escopo</h2>
+</div>
+      <div class='step' >
+    </div>
+      <div class='step' >
+    
+<p>forma tradicional</p>
+<pre><code class='prettyprint '>class BookInStock  
+  def isbn
+    @isbn
+  end
+
+  def isbn=(value)
+    @isbn = value
+  end
+
+  def price
+    @price
+  end
+
+class BookInStock  
+  attr_accessor :isbn
+  attr_reader :price
+</code></pre>
+<p>Exemplo de Heranca</p>
+<pre><code class='prettyprint '>class SpecialStock < BookInStock
+</code></pre>
+<p>forma tradicional</p>
+<pre><code class='prettyprint '>class Logger
+  private_class_method :new
+  @@logger = nil
+  def Logger.create
+    @@logger = new unless @@logger
+    @@logger
+  end
+end
+
+require 'singleton'
+class Logger
+  include Singleton
+
+  def initialize
+    @log = File.open("log.txt", "a")
+  end
+  def log(msg)
+    @log.puts(msg)
+  end
+Logger.instance.log('message 2')
+
+stock =  BookInStock.new
+class << stock
+   def alter_price
+         price * 1.4
+   end
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Criando um Enumerable (I)</h2>
+
+<p>* Basta implementar o metodo each.</p>
+<pre><code class='prettyprint '>class Node
+  include Enumerable 
+  attr_accessor :next, :previous, :v
+ def initialize(v = {})
+    @v = v
+  end
+ def to_s
+    v.to_s
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Criando um Enumerable (II)</h2>
+<pre><code class='prettyprint '>linked_list.rb (continuacao)
+ def <<(node)
+    node.next = self.next
+    node.previous = self
+    self.next.previous = node unless self.next.nil?
+    self.next = node
+  end
+ def remove
+          node = self.previous
+          node.next = self.next
+          self.next.previous = node
+          self
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Criando um Enumerable (III)</h2>
+<pre><code class='prettyprint '>def each
+    node = self.next
+    until node == self || node.nil?
+      yield node
+      node = node.next
+    end
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h2>Mais sobre metodos</h2>
+
+      </div>
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
+    

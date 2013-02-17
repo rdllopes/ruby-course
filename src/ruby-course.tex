@@ -1,0 +1,497 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\documentclass[serif,mathserif]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{comment}
+\usepackage[portuges]{babel}
+\usepackage{listings}
+\usepackage{dcolumn}
+\lstloadlanguages{Ruby}
+\lstdefinelanguage{Smalltalk}{ 
+  morekeywords={true,false,self,super,nil}, 
+  sensitive=true, 
+  morecomment=[s]{"}{"}, 
+  morestring=[d]', 
+  style=SmalltalkStyle 
+} 
+\lstdefinestyle{SmalltalkStyle}{ 
+  literate={:=}{{$\gets$}}1{^}{{$\uparrow$}}1 
+}
+
+% template
+
+\author{
+    \\ Rodrigo di Lorenzo Lopes \\  \texttt{rodrigo.lorenzo@abril.com.br}
+	\and 
+    \\ Eduardo Nicola F. Zagari \\ \texttt{zagari@abril.com.br}
+}
+\title{Curso: Ruby Básico}
+
+\begin{document}
+\maketitle
+ 
+\tableofcontents
+
+\section{Introducao: Ruby.new}
+\begin{frame} 
+
+\begin{itemize}
+\item Linguagem para humanos
+\item Compare:
+\begin{lstlisting}[language=ruby]
+5.times { print "Ola!" }
+\end{lstlisting}
+
+\begin{lstlisting}[language=java]
+for (int i=0; i <10; i++) { printf("Ola!");}
+\end{lstlisting}
+
+\end{itemize}
+
+\end{frame}
+
+\subsection{\#\#Estruturas básicas}
+\begin{frame} 
+
+\begin{itemize}
+  \item Variáveis 
+\begin{lstlisting}[language=ruby]
+x, y, taxa_do_lixo2
+\end{lstlisting}
+   \item{Numeros}
+\begin{lstlisting}[language=ruby]
+1, -1.2, 6.03e-23    
+\end{lstlisting}
+	\item {String}
+\begin{lstlisting}[language=ruby]
+"alguma coisa assim"
+%q(veremos outras formas de declarar strings)
+\end{lstlisting}
+ 
+\end{itemize}
+
+\end{frame}
+
+\subsection{\#\#Estruturas basicas}
+\begin{itemize}
+  \item Symbols
+% * Symbols
+\begin{lstlisting}[language=ruby]
+:x, :y, :isso_parece_uma_string
+\end{lstlisting}
+
+  \item Constantes 
+\begin{lstlisting}[language=ruby]  
+EmpireStateBuilding, NEA, PI
+\end{lstlisting}
+
+  \item Objetos especiais 
+\begin{lstlisting}[language=ruby]
+true, false, nil
+\end{lstlisting}
+\end{itemize}
+
+Símbolos são alocados uma única vez: :a.object\_id durante uma execução sempre
+retornara o mesmo valor. Isso nao acontece com string. O método equal? so
+devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma
+classe com valores iguais).
+
+\subsection{\#\#Metodos (mensagens)}
+\begin{lstlisting}[language=ruby]
+i = 1        
+texto = "um texto"; puts texto
+a = b = c = 0
+1 == 2           # sugar syntax!!!
+# metodo de classe
+1.methods  # lista todos os metodos daquele objeto
+1.send(:even?) # outra forma de enviar mensagens
+def fibo(n = 1)
+    fibo(n-2) + fibo(n-1) if n >= 2
+end
+def self.log
+  puts "metodo de classe"
+end
+\end{lstlisting}
+
+Lembre-se ... voce pode redefinir um método
+Quase tudo e objeto
+
+\subsection{\#\#Estruturas de Controle - if}
+ 
+       
+\subsubsection {Exemplo Completo}
+\begin{lstlisting}[language=ruby]
+if count > 10
+  puts "Try again"
+elsif tries == 3
+  puts "You lose"
+  puts  Number:"
+end
+\end{lstlisting}
+
+\subsubsection {Exemplo Simples}
+\begin{lstlisting}[language=ruby]
+if radiation > 3000
+  puts "Danger"
+end
+\end{lstlisting}
+
+\subsubsection {Modificador de Sentenca}
+\begin{lstlisting}[language=ruby]
+puts "Danger, Will Robinson" if radiation > 3000
+\end{lstlisting}
+
+\subsection{\#\#Estruturas de Controle - case} 
+\begin{lstlisting}[language=ruby]
+print "Enter your grade: "
+grade = gets.chomp
+case grade
+when "A"
+  puts 'Well done!'
+when "B"
+  puts 'Try harder!'
+when "C", "D"
+  puts 'You need help!!!'
+  puts "You just making it up!"
+ end
+\end{lstlisting}
+
+
+\subsection{\#\#Estruturas de Controle - while}
+\begin{lstlisting}[language=ruby]
+while weight < 100 and numPallets <= 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+end
+\end{lstlisting}
+ 
+\subsubsection {Modificador de Sentenca}
+\begin{lstlisting}[language=ruby]
+square = square*square  while square < 1000
+\end{lstlisting}
+
+\subsection{\#\#Estrutura de Controle -  for}
+\begin{lstlisting}[language=ruby]
+for i in 0..5
+   puts "Value is #{i}"
+end
+\end{lstlisting}
+\subsection{\#\#Estrutura de Controle -  until} 
+\begin{lstlisting}[language=ruby]
+until weight >= 100 ||numPallets > 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+end
+\end{lstlisting}
+
+\subsubsection {Modificador de Sentenca}
+\begin{lstlisting}[language=ruby]
+square = square*square  until square >= 1000
+\end{lstlisting}
+
+\subsection{\#\#Containers - Array}
+\begin{lstlisting}[language=ruby]
+a = [ 3.14159, "pie", 99 ]
+a.type               #        Array
+a.length               #        3
+a[0]                  #        3.14159
+a << 1
+a[3]                  #        1
+a[-2]                 #        99
+b = Array.new
+b << a               #   [[3.14159, "pie", 99, 1]]
+b[0..3] = a        #   [3.14159, "pie", 99, 1]
+b[0, 2] = 1        #   [1, 1]
+c = %w{a b c d e }                #  =>  ["a", "b", "c", "d"]
+\end{lstlisting}
+
+
+\subsection{\#\#Containers - Hash}
+\begin{lstlisting}[language=ruby]
+h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
+h.length        #        3
+h['dog']        #        "canine"
+h['cow'] = 'bovine'
+h[12]    = 'dodecine'
+h['cat'] = 99
+h        # => {"cow"=>"bovine", "cat"=>99, 12=>"dodecine",
+"donkey"=>"asinine", "dog"=>"canine"}
+  
+a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
+b = Hash[a]
+# => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+\end{lstlisting}
+
+
+\subsection{\#\#Blocos e Iteradores}
+
+Passando blocos
+\begin{lstlisting}[language=ruby]
+(1..12).each { |i| puts i}
+[1, 2, 4].each do |i|
+    puts i
+end
+\end{lstlisting}
+
+Blocos de codigo
+\begin{lstlisting}[language=ruby]
+(1..20).each{|x| puts x}
+\end{lstlisting}
+
+Influencia do Smalltalk:
+\begin{lstlisting}[language=smalltalk]
+   1 to: 20 do: [:x | x printN1]
+\end{lstlisting}
+
+\subsection{\#\# Métodos de um Enumerable}
+\begin{lstlisting}  
+all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
+enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
+map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
+to_set, zip
+\end{lstlisting}
+ 
+\subsection{\#\#Exemplos com Enumeraveis}
+\begin{lstlisting}[language=ruby]
+names = %w{ Frye Leela Zoidberg }
+names.find {|name|  name.length>4}          # => "Leela"
+names.find_all { |name| name.length > 4}
+     #=> ["Leela", "Zoidberg"]
+names.grep /oidberg/
+# => ["Zoidberg"]
+names.group_by {|name|  name.length}
+   # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
+\end{lstlisting}
+
+\subsection{\#\#Mais exemplos com Enumeraveis}
+\begin{lstlisting}[language=ruby]
+names = %w{ Frye Leela Zoidberg }
+names.map {|name| name.downcase}
+# => ["frye", "leela", "zoidberg"]
+names.reduce {|acc, name| name.length <= 5 ? acc + name : acc }
+# => "FryeLeela"
+names.join ", "
+# => "Frye, Leela, Zoidberg"
+\end{lstlisting}
+
+
+\subsection{\#\#Invocando blocos}
+\begin{lstlisting}[language=ruby]
+def proxy_method
+  puts "Calling command at: #{Time.new}"
+  yield
+proxy_method { puts "hello world proxified! "}
+#ou com paremtros
+def proxy_method
+   yield(Time.new)
+proxy_method {|time| puts "hello world proxified  at #{time}"}
+\end{lstlisting}
+
+
+\subsection{\#\#Invocando blocos II}
+\begin{lstlisting}[language=ruby]
+def proxy_method(&method)
+  # argumento com & precisa ser o ultimo da lista
+  puts "Calling command at: #{Time.new}"
+  method.call
+proxy_method { puts "hello world proxified! "}
+#ou com paremtros
+def proxy_method (&method)
+   method.call(Time.new)
+proxy_method {|time| puts "hello world proxified  at #{time}"}
+\end{lstlisting}
+
+\subsection{\#\#Proc x Lambda}
+\begin{lstlisting}[language=ruby]
+fx = Proc.new {|x| x**2}
+fxy = proc {|x,y| x+y}
+# calling
+fx.call(2) # => 4
+fxy[2,3,4] #=> 5
+fx = lambda {|x| x**2}
+fxy = lambda {|x,y| x+y}
+# calling
+fx.call(2) # => 4
+fxy.call(2,3,4) #=> exception na cara!
+Proc.new e proc sao equivalentes
+\end{lstlisting}
+
+
+\subsection{\#\#Lambda ``Calculus''}
+
+\begin{lstlisting}[language=ruby, caption="Derivada em Ruby"]
+def d(f)
+   lambda {|a|
+     h = 0.0000000001 # um valor pequeno para h
+     h = h * a       if a < 1 && 0 < a
+     (f[a+h]-f[a])/h
+   }
+f = lambda {|x| x**2}
+puts d(f)[4]
+\end{lstlisting}
+
+\subsection{\#\#Objetos em Ruby}
+\begin{lstlisting}[language=ruby]
+class BookInStock
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = Float(price)
+  end
+ 
+  def to_s
+    "ISBN:#{@isbn}, price: #{@price}"
+  end 
+stock = BookInStock.new
+# ou
+stock = BookInStock.new (1234, 10.39)
+#invocando metodo
+puts stock.to_s
+\end{lstlisting}
+
+
+\subsection{\#\#Variaveis e Escopo}
+
+\begin{tabular}{ l | c | r }
+Variáveis Locais & \verb|x name thx1138 _x _26| \\
+Variáveis de Instancia & \verb|@name @X  @_ @plan9| \\
+Variáveis de Classe & \verb|@@total @@N @@x_pos| \\
+Variáveis Globais & \verb|$debug $CUSTOM $_ $plan9| \\
+Nomes de Classe & \verb|String BigDecimal| \\
+Constants & \verb|FEET_PER_MILE DEBUG|
+\end{tabular}
+
+\subsection{\#\#Atributos de instância}
+
+\subsubsection{forma tradicional}
+\begin{lstlisting}[language=ruby]
+class BookInStock  
+  def isbn
+    @isbn
+  end
+ 
+  def isbn=(value)
+    @isbn = value
+  end
+ 
+  def price
+    @price
+  end
+\end{lstlisting}
+
+\subsubsection{forma declarativa}
+\begin{lstlisting}[language=ruby]
+class BookInStock  
+  attr_accessor :isbn
+  attr_reader :price
+ end
+
+\end{lstlisting}
+
+\subsection{\#\#Herança}
+\subsubsection{Exemplo de Heranca}
+\begin{lstlisting}[language=ruby]
+class SpecialStock < BookInStock
+\end{lstlisting}
+
+\subsection{\#\#Herança - Singleton Pattern}
+
+\subsubsection{forma tradicional}
+\begin{lstlisting}[language=ruby]
+class Logger
+  private_class_method :new
+  @@logger = nil
+  def Logger.create
+    @@logger = new unless @@logger
+    @@logger
+  end
+end
+\end{lstlisting}
+
+\subsubsection{módulo Singleton}
+\begin{lstlisting}[language=ruby]
+require 'singleton'
+class Logger
+  include Singleton
+  
+  def initialize
+    @log = File.open("log.txt", "a")
+  end
+  def log(msg)
+    @log.puts(msg)
+  end
+Logger.instance.log('message 2')
+\end{lstlisting}
+
+\begin{lstlisting}[language=ruby]
+stock =  BookInStock.new
+class << stock
+   def alter_price
+         price * 1.4
+   end
+\end{lstlisting}
+
+\subsection{\#\#Criando um Enumerable (I)}
+  *  Basta implementar o metodo each. 
+\begin{lstlisting}[language=ruby]
+class Node
+  include Enumerable 
+  attr_accessor :next, :previous, :v
+ def initialize(v = {})
+    @v = v
+  end
+ def to_s
+    v.to_s
+  end
+\end{lstlisting}
+
+\subsection{\#\#Criando um Enumerable (II)}
+\begin{lstlisting}[language=ruby]
+linked_list.rb (continuacao)
+ def <<(node)
+    node.next = self.next
+    node.previous = self
+    self.next.previous = node unless self.next.nil?
+    self.next = node
+  end
+ def remove
+    node = self.previous
+    node.next = self.next
+    self.next.previous = node
+    self
+ end
+\end{lstlisting}
+
+\subsection{\#\#Criando um Enumerable (III)}
+\begin{lstlisting}[language=ruby]
+  def each
+    node = self.next
+    until node == self || node.nil?
+      yield node
+      node = node.next
+    end
+  end
+
+\end{lstlisting}
+
+\subsection{\#\#Criando um Enumerable (II)}
+
+% linked_list.rb (continuacao)
+
+\begin{lstlisting}[language=ruby]
+def <<(node)
+ node.next = self.next
+ node.previous = self
+ self.next.previous = node unless self.next.nil?
+ self.next = node
+end
+def remove
+ node = self.previous
+ node.next = self.next
+ self.next.previous = node
+ self
+end
+\end{lstlisting}
+
+\end{document}
