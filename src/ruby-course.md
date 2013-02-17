@@ -1,6 +1,5 @@
----
 Introducao: Ruby.new
-------------------------
+====================
 
 -   Linguagem para humanos
 
@@ -28,31 +27,20 @@ Estruturas básicas
         %q(veremos outras formas de declarar strings)
 
 ---
-Criando um Enumerable (II)
-------------------------------
-
-    def <<(node)
-     node.next = self.next
-     node.previous = self
-     self.next.previous = node unless self.next.nil?
-     self.next = node
-    end
-    def remove
-     node = self.previous
-     node.next = self.next
-     self.next.previous = node
-     self
-    end
-
----
 Estruturas basicas
 ----------------------
 
-    :x, :y, :isso_parece_uma_string
+-   Symbols
 
-    EmpireStateBuilding, NEA, PI
+        :x, :y, :isso_parece_uma_string
 
-    True, False, Nil
+-   Constantes
+
+        EmpireStateBuilding, NEA, PI
+
+-   Objetos especiais
+
+        true, false, nil
 
 Símbolos são alocados uma única vez: :a.object\_id durante uma execução
 sempre retornara o mesmo valor. Isso nao acontece com string. O método
@@ -80,12 +68,10 @@ Metodos (mensagens)
 Lembre-se ... voce pode redefinir um método Quase tudo e objeto
 
 ---
-Estruturas de Controle
---------------------------
+Estruturas de Controle - if
+-------------------------------
 
-\* If
-
-Exemplo Completo
+### Exemplo Completo
 
     if count > 10
       puts "Try again"
@@ -94,17 +80,19 @@ Exemplo Completo
       puts  Number:"
     end
 
-Exemplo Simples
+### Exemplo Simples
 
     if radiation > 3000
       puts "Danger"
     end
 
-Modificador de Sentenca
+### Modificador de Sentenca
 
     puts "Danger, Will Robinson" if radiation > 3000
 
-Estruturas de Controle \* case
+---
+Estruturas de Controle - case
+---------------------------------
 
     print "Enter your grade: "
     grade = gets.chomp
@@ -116,39 +104,47 @@ Estruturas de Controle \* case
     when "C", "D"
       puts 'You need help!!!'
       puts "You just making it up!"
-    Estruturas de Controle
-      * while 
+     end
+
+---
+Estruturas de Controle - while
+----------------------------------
+
     while weight < 100 and numPallets <= 30
       pallet = nextPallet()
       weight += pallet.weight
       numPallets += 1
+    end
 
-Modificador de Sentenca
+### Modificador de Sentenca
 
     square = square*square  while square < 1000
 
-Until tem a mesma estrutura que o while
-
 ---
-Estrutura de Controle
--------------------------
-
-\* for
+Estrutura de Controle - for
+-------------------------------
 
     for i in 0..5
        puts "Value is #{i}"
-    Estrutura de Controle
-      * until 
+    end
+
+---
+Estrutura de Controle - until
+---------------------------------
+
     until weight >= 100 ||numPallets > 30
       pallet = nextPallet()
       weight += pallet.weight
       numPallets += 1
-    Modificador de Sentenca
+    end
+
+### Modificador de Sentenca
+
     square = square*square  until square >= 1000
 
 ---
-
-----
+Containers - Array
+----------------------
 
     a = [ 3.14159, "pie", 99 ]
     a.type               #        Array
@@ -164,8 +160,8 @@ Estrutura de Controle
     c = %w{a b c d e }                #  =>  ["a", "b", "c", "d"]
 
 ---
-
-----
+Containers - Hash
+---------------------
 
     h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
     h.length        #        3
@@ -199,11 +195,14 @@ Influencia do Smalltalk:
 
     1 to: 20 do: [:x | x printN1]
 
-\* Metodos:
-
 ---
+ Métodos de um Enumerable
+-----------------------------
 
-----
+    all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
+    enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
+    map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
+    to_set, zip
 
 ---
 Exemplos com Enumeraveis
@@ -225,8 +224,8 @@ Mais exemplos com Enumeraveis
     names = %w{ Frye Leela Zoidberg }
     names.map {|name| name.downcase}
     # => ["frye", "leela", "zoidberg"]
-    names.reduce {|acc, name| name.length <= 5 ? acc + name : acc }            #
-     => "FryeLeela"
+    names.reduce {|acc, name| name.length <= 5 ? acc + name : acc }
+    # => "FryeLeela"
     names.join ", "
     # => "Frye, Leela, Zoidberg"
 
@@ -274,10 +273,8 @@ Proc x Lambda
     Proc.new e proc sao equivalentes
 
 ---
-Lambda Calculus =)
-----------------------
-
-Derivada em Ruby
+Lambda “Calculus”
+---------------------
 
     def d(f)
        lambda {|a|
@@ -288,6 +285,10 @@ Derivada em Ruby
     f = lambda {|x| x**2}
     puts d(f)[4]
 
+---
+Objetos em Ruby
+-------------------
+
     class BookInStock
       def initialize(isbn, price)
         @isbn = isbn
@@ -296,22 +297,31 @@ Derivada em Ruby
      
       def to_s
         "ISBN:#{@isbn}, price: #{@price}"
-      end
-     
+      end 
     stock = BookInStock.new
     # ou
     stock = BookInStock.new (1234, 10.39)
     #invocando metodo
+    puts stock.to_s
 
 ---
 Variaveis e Escopo
 ----------------------
 
+l | c | r
+
+Variáveis Locais & `x name thx1138 _x _26`\
+Variáveis de Instancia & `@name @X  @_ @plan9`\
+Variáveis de Classe & `@@total @@N @@x_pos`\
+Variáveis Globais & `$debug $CUSTOM $_ $plan9`\
+Nomes de Classe & `String BigDecimal`\
+Constants & `FEET_PER_MILE DEBUG`
+
 ---
+Atributos de instância
+--------------------------
 
-----
-
-forma tradicional
+### forma tradicional
 
     class BookInStock  
       def isbn
@@ -326,15 +336,26 @@ forma tradicional
         @price
       end
 
+### forma declarativa
+
     class BookInStock  
       attr_accessor :isbn
       attr_reader :price
+     end
 
-Exemplo de Heranca
+---
+Herança
+-----------
+
+### Exemplo de Heranca
 
     class SpecialStock < BookInStock
 
-forma tradicional
+---
+Herança - Singleton Pattern
+-------------------------------
+
+### forma tradicional
 
     class Logger
       private_class_method :new
@@ -344,6 +365,8 @@ forma tradicional
         @@logger
       end
     end
+
+### módulo Singleton
 
     require 'singleton'
     class Logger
@@ -391,11 +414,11 @@ Criando um Enumerable (II)
         self.next = node
       end
      def remove
-              node = self.previous
-              node.next = self.next
-              self.next.previous = node
-              self
-      end
+        node = self.previous
+        node.next = self.next
+        self.next.previous = node
+        self
+     end
 
 ---
 Criando um Enumerable (III)
@@ -410,5 +433,18 @@ Criando um Enumerable (III)
       end
 
 ---
-Mais sobre metodos
-----------------------
+Criando um Enumerable (II)
+------------------------------
+
+    def <<(node)
+     node.next = self.next
+     node.previous = self
+     self.next.previous = node unless self.next.nil?
+     self.next = node
+    end
+    def remove
+     node = self.previous
+     node.next = self.next
+     self.next.previous = node
+     self
+    end
