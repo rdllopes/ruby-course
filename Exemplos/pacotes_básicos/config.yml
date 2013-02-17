@@ -1,0 +1,8 @@
+simple symbol: !ruby/symbol Simple 
+shortcut syntax: !ruby/sym Simple 
+symbols in seqs: 
+  - !ruby/symbol ValOne 
+  - !ruby/symbol ValTwo 
+  - !ruby/symbol ValThree 
+symbols in maps: 
+  - !ruby/symbol MapKey: !ruby/symbol MapValue 

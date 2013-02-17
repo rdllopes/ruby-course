@@ -1,6 +1,8 @@
-require "./math"
-require "./stringify"
-require "./currency_formatter"
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
+require "math"
+require "stringify"
+require "currency_formatter"
 
 # Base Number class
 class Number
@@ -15,7 +17,7 @@ class BigInteger < Number
  
   # Adiciona métodos de instância de Stringify
   include Stringify
- 
+  
   # Adiciona métodos de classe de Math
   extend Math
  

@@ -40,6 +40,10 @@ class ShoppingList
   def render
     ERB.new(@template).result(binding)
   end
+  
+  def get_binding
+    binding
+  end
 
   def save(file)
     File.open(file, "w+") do |f|
