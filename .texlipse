@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Tue Feb 12 21:35:08 BRST 2013
+markTmpDer=true
+builderNum=2
+outputDir=output
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=ruby-course.tex
+outputFile=ruby-course.pdf
+langSpell=pt
+markDer=true
+srcDir=src
