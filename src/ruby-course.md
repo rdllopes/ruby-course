@@ -147,17 +147,17 @@ Containers - Array
 ----------------------
 
     a = [ 3.14159, "pie", 99 ]
-    a.type               #        Array
-    a.length               #        3
-    a[0]                  #        3.14159
+    a.type   #        Array
+    a.length #        3
+    a[0]     #        3.14159
     a << 1
-    a[3]                  #        1
-    a[-2]                 #        99
+    a[3]     #        1
+    a[-2]    #        99
     b = Array.new
-    b << a               #   [[3.14159, "pie", 99, 1]]
-    b[0..3] = a        #   [3.14159, "pie", 99, 1]
-    b[0, 2] = 1        #   [1, 1]
-    c = %w{a b c d e }                #  =>  ["a", "b", "c", "d"]
+    b << a   #   [[3.14159, "pie", 99, 1]]
+    b[0..3] = a    #   [3.14159, "pie", 99, 1]
+    b[0, 2] = 1    #   [1, 1]
+    c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 
 ---
 Containers - Hash
@@ -297,7 +297,8 @@ Objetos em Ruby
      
       def to_s
         "ISBN:#{@isbn}, price: #{@price}"
-      end 
+      end
+    end
     stock = BookInStock.new
     # ou
     stock = BookInStock.new (1234, 10.39)
@@ -318,10 +319,8 @@ Nomes de Classe & `String BigDecimal`\
 Constants & `FEET_PER_MILE DEBUG`
 
 ---
-Atributos de instância
---------------------------
-
-### forma tradicional
+Atributos de instância - forma tradicional
+----------------------------------------------
 
     class BookInStock  
       def isbn
@@ -336,7 +335,9 @@ Atributos de instância
         @price
       end
 
-### forma declarativa
+---
+Atributos de instância - forma declarativa
+----------------------------------------------
 
     class BookInStock  
       attr_accessor :isbn
