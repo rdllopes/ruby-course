@@ -37,7 +37,7 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 </div>
       <div class='step' >
     
-<h2>Estruturas básicas</h2>
+<h1>Estruturas básicas</h1>
 
 <ul>
 <li><p>Variáveis</p>
@@ -54,7 +54,7 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 </div>
       <div class='step' >
     
-<h2>Estruturas basicas</h2>
+<h1>Estruturas basicas</h1>
 
 <ul>
 <li><p>Symbols</p>
@@ -75,7 +75,7 @@ instâncias da mesma classe com valores iguais).</p>
 </div>
       <div class='step' >
     
-<h2>Metodos (mensagens)</h2>
+<h1>Metodos (mensagens)</h1>
 <pre><code class='prettyprint '>i = 1        
 texto = "um texto"; puts texto
 a = b = c = 0
@@ -94,9 +94,9 @@ end
 </div>
       <div class='step' >
     
-<h2>Estruturas de Controle - if</h2>
+<h1>Estruturas de Controle - if</h1>
 
-<h3>Exemplo Completo</h3>
+<h2>Exemplo Completo</h2>
 <pre><code class='prettyprint '>if count > 10
   puts "Try again"
 elsif tries == 3
@@ -104,17 +104,17 @@ elsif tries == 3
   puts  Number:"
 end
 </code></pre>
-<h3>Exemplo Simples</h3>
+<h2>Exemplo Simples</h2>
 <pre><code class='prettyprint '>if radiation > 3000
   puts "Danger"
 end
 </code></pre>
-<h3>Modificador de Sentenca</h3>
+<h2>Modificador de Sentenca</h2>
 <pre><code class='prettyprint '>puts "Danger, Will Robinson" if radiation > 3000
 </code></pre></div>
       <div class='step' >
     
-<h2>Estruturas de Controle - case</h2>
+<h1>Estruturas de Controle - case</h1>
 <pre><code class='prettyprint '>print "Enter your grade: "
 grade = gets.chomp
 case grade
@@ -129,38 +129,38 @@ when "C", "D"
 </code></pre></div>
       <div class='step' >
     
-<h2>Estruturas de Controle - while</h2>
+<h1>Estruturas de Controle - while</h1>
 <pre><code class='prettyprint '>while weight < 100 and numPallets <= 30
   pallet = nextPallet()
   weight += pallet.weight
   numPallets += 1
 end
 </code></pre>
-<h3>Modificador de Sentenca</h3>
+<h2>Modificador de Sentenca</h2>
 <pre><code class='prettyprint '>square = square*square  while square < 1000
 </code></pre></div>
       <div class='step' >
     
-<h2>Estrutura de Controle - for</h2>
+<h1>Estrutura de Controle - for</h1>
 <pre><code class='prettyprint '>for i in 0..5
    puts "Value is #{i}"
 end
 </code></pre></div>
       <div class='step' >
     
-<h2>Estrutura de Controle - until</h2>
+<h1>Estrutura de Controle - until</h1>
 <pre><code class='prettyprint '>until weight >= 100 ||numPallets > 30
   pallet = nextPallet()
   weight += pallet.weight
   numPallets += 1
 end
 </code></pre>
-<h3>Modificador de Sentenca</h3>
+<h2>Modificador de Sentenca</h2>
 <pre><code class='prettyprint '>square = square*square  until square >= 1000
 </code></pre></div>
       <div class='step' >
     
-<h2>Containers - Array</h2>
+<h1>Containers - Array</h1>
 <pre><code class='prettyprint '>a = [ 3.14159, "pie", 99 ]
 a.type   #        Array
 a.length #        3
@@ -176,7 +176,7 @@ c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 </code></pre></div>
       <div class='step' >
     
-<h2>Containers - Hash</h2>
+<h1>Containers - Hash</h1>
 <pre><code class='prettyprint '>h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
 h.length        #        3
 h['dog']        #        "canine"
@@ -192,7 +192,7 @@ b = Hash[a]
 </code></pre></div>
       <div class='step' >
     
-<h2>Blocos e Iteradores</h2>
+<h1>Blocos e Iteradores</h1>
 
 <p>Passando blocos</p>
 <pre><code class='prettyprint '>(1..12).each { |i| puts i}
@@ -208,7 +208,7 @@ end
 </code></pre></div>
       <div class='step' >
     
-<h2> Métodos de um Enumerable</h2>
+<h1> Métodos de um Enumerable</h1>
 <pre><code class='prettyprint '>all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
 map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
@@ -216,7 +216,7 @@ to_set, zip
 </code></pre></div>
       <div class='step' >
     
-<h2>Exemplos com Enumeraveis</h2>
+<h1>Exemplos com Enumeraveis</h1>
 <pre><code class='prettyprint '>names = %w{ Frye Leela Zoidberg }
 names.find {|name|  name.length>4}          # => "Leela"
 names.find_all { |name| name.length > 4}
@@ -228,7 +228,7 @@ names.group_by {|name|  name.length}
 </code></pre></div>
       <div class='step' >
     
-<h2>Mais exemplos com Enumeraveis</h2>
+<h1>Mais exemplos com Enumeraveis</h1>
 <pre><code class='prettyprint '>names = %w{ Frye Leela Zoidberg }
 names.map {|name| name.downcase}
 # => ["frye", "leela", "zoidberg"]
@@ -239,7 +239,7 @@ names.join ", "
 </code></pre></div>
       <div class='step' >
     
-<h2>Invocando blocos</h2>
+<h1>Invocando blocos</h1>
 <pre><code class='prettyprint '>def proxy_method
   puts "Calling command at: #{Time.new}"
   yield
@@ -251,7 +251,7 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
 </code></pre></div>
       <div class='step' >
     
-<h2>Invocando blocos II</h2>
+<h1>Invocando blocos II</h1>
 <pre><code class='prettyprint '>def proxy_method(&method)
   # argumento com & precisa ser o ultimo da lista
   puts "Calling command at: #{Time.new}"
@@ -264,7 +264,7 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
 </code></pre></div>
       <div class='step' >
     
-<h2>Proc x Lambda</h2>
+<h1>Proc x Lambda</h1>
 <pre><code class='prettyprint '>fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
 # calling
@@ -279,7 +279,7 @@ Proc.new e proc sao equivalentes
 </code></pre></div>
       <div class='step' >
     
-<h2>Lambda “Calculus”</h2>
+<h1>Lambda “Calculus”</h1>
 <pre><code class='prettyprint '>def d(f)
    lambda {|a|
      h = 0.0000000001 # um valor pequeno para h
@@ -291,7 +291,7 @@ puts d(f)[4]
 </code></pre></div>
       <div class='step' >
     
-<h2>Objetos em Ruby</h2>
+<h1>Objetos em Ruby</h1>
 <pre><code class='prettyprint '>class BookInStock
   def initialize(isbn, price)
     @isbn = isbn
@@ -310,7 +310,7 @@ puts stock.to_s
 </code></pre></div>
       <div class='step' >
     
-<h2>Variaveis e Escopo</h2>
+<h1>Variaveis e Escopo</h1>
 
 <p>l | c | r</p>
 
@@ -323,7 +323,7 @@ Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
 </div>
       <div class='step' >
     
-<h2>Atributos de instância - forma tradicional</h2>
+<h1>Atributos de instância - forma tradicional</h1>
 <pre><code class='prettyprint '>class BookInStock  
   def isbn
     @isbn
@@ -339,7 +339,7 @@ Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
 </code></pre></div>
       <div class='step' >
     
-<h2>Atributos de instância - forma declarativa</h2>
+<h1>Atributos de instância - forma declarativa</h1>
 <pre><code class='prettyprint '>class BookInStock  
   attr_accessor :isbn
   attr_reader :price
@@ -347,16 +347,16 @@ Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
 </code></pre></div>
       <div class='step' >
     
-<h2>Herança</h2>
+<h1>Herança</h1>
 
-<h3>Exemplo de Heranca</h3>
+<h2>Exemplo de Heranca</h2>
 <pre><code class='prettyprint '>class SpecialStock < BookInStock
 </code></pre></div>
       <div class='step' >
     
-<h2>Herança - Singleton Pattern</h2>
+<h1>Herança - Singleton Pattern</h1>
 
-<h3>forma tradicional</h3>
+<h2>forma tradicional</h2>
 <pre><code class='prettyprint '>class Logger
   private_class_method :new
   @@logger = nil
@@ -366,7 +366,7 @@ Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
   end
 end
 </code></pre>
-<h3>módulo Singleton</h3>
+<h2>módulo Singleton</h2>
 <pre><code class='prettyprint '>require 'singleton'
 class Logger
   include Singleton
@@ -387,7 +387,7 @@ class << stock
 </code></pre></div>
       <div class='step' >
     
-<h2>Criando um Enumerable (I)</h2>
+<h1>Criando um Enumerable (I)</h1>
 
 <p>* Basta implementar o metodo each.</p>
 <pre><code class='prettyprint '>class Node
@@ -402,7 +402,7 @@ class << stock
 </code></pre></div>
       <div class='step' >
     
-<h2>Criando um Enumerable (II)</h2>
+<h1>Criando um Enumerable (II)</h1>
 <pre><code class='prettyprint '>linked_list.rb (continuacao)
  def <<(node)
     node.next = self.next
@@ -419,7 +419,7 @@ class << stock
 </code></pre></div>
       <div class='step' >
     
-<h2>Criando um Enumerable (III)</h2>
+<h1>Criando um Enumerable (III)</h1>
 <pre><code class='prettyprint '>def each
     node = self.next
     until node == self || node.nil?
@@ -427,22 +427,6 @@ class << stock
       node = node.next
     end
   end
-</code></pre></div>
-      <div class='step' >
-    
-<h2>Criando um Enumerable (II)</h2>
-<pre><code class='prettyprint '>def <<(node)
- node.next = self.next
- node.previous = self
- self.next.previous = node unless self.next.nil?
- self.next = node
-end
-def remove
- node = self.previous
- node.next = self.next
- self.next.previous = node
- self
-end
 </code></pre>
       </div>
     <script src="js/impress.js"></script>

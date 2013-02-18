@@ -11,7 +11,7 @@ Introducao: Ruby.new
 
 ---
 Estruturas básicas
-----------------------
+======================
 
 -   Variáveis
 
@@ -28,7 +28,7 @@ Estruturas básicas
 
 ---
 Estruturas basicas
-----------------------
+======================
 
 -   Symbols
 
@@ -49,7 +49,7 @@ instâncias da mesma classe com valores iguais).
 
 ---
 Metodos (mensagens)
------------------------
+=======================
 
     i = 1        
     texto = "um texto"; puts texto
@@ -69,9 +69,10 @@ Lembre-se ... voce pode redefinir um método Quase tudo e objeto
 
 ---
 Estruturas de Controle - if
--------------------------------
+===============================
 
-### Exemplo Completo
+Exemplo Completo
+----------------
 
     if count > 10
       puts "Try again"
@@ -80,19 +81,21 @@ Estruturas de Controle - if
       puts  Number:"
     end
 
-### Exemplo Simples
+Exemplo Simples
+---------------
 
     if radiation > 3000
       puts "Danger"
     end
 
-### Modificador de Sentenca
+Modificador de Sentenca
+-----------------------
 
     puts "Danger, Will Robinson" if radiation > 3000
 
 ---
 Estruturas de Controle - case
----------------------------------
+=================================
 
     print "Enter your grade: "
     grade = gets.chomp
@@ -108,7 +111,7 @@ Estruturas de Controle - case
 
 ---
 Estruturas de Controle - while
-----------------------------------
+==================================
 
     while weight < 100 and numPallets <= 30
       pallet = nextPallet()
@@ -116,13 +119,14 @@ Estruturas de Controle - while
       numPallets += 1
     end
 
-### Modificador de Sentenca
+Modificador de Sentenca
+-----------------------
 
     square = square*square  while square < 1000
 
 ---
 Estrutura de Controle - for
--------------------------------
+===============================
 
     for i in 0..5
        puts "Value is #{i}"
@@ -130,7 +134,7 @@ Estrutura de Controle - for
 
 ---
 Estrutura de Controle - until
----------------------------------
+=================================
 
     until weight >= 100 ||numPallets > 30
       pallet = nextPallet()
@@ -138,13 +142,14 @@ Estrutura de Controle - until
       numPallets += 1
     end
 
-### Modificador de Sentenca
+Modificador de Sentenca
+-----------------------
 
     square = square*square  until square >= 1000
 
 ---
 Containers - Array
-----------------------
+======================
 
     a = [ 3.14159, "pie", 99 ]
     a.type   #        Array
@@ -161,7 +166,7 @@ Containers - Array
 
 ---
 Containers - Hash
----------------------
+=====================
 
     h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
     h.length        #        3
@@ -178,7 +183,7 @@ Containers - Hash
 
 ---
 Blocos e Iteradores
------------------------
+=======================
 
 Passando blocos
 
@@ -197,7 +202,7 @@ Influencia do Smalltalk:
 
 ---
  Métodos de um Enumerable
------------------------------
+=============================
 
     all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
     enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
@@ -206,7 +211,7 @@ Influencia do Smalltalk:
 
 ---
 Exemplos com Enumeraveis
-----------------------------
+============================
 
     names = %w{ Frye Leela Zoidberg }
     names.find {|name|  name.length>4}          # => "Leela"
@@ -219,7 +224,7 @@ Exemplos com Enumeraveis
 
 ---
 Mais exemplos com Enumeraveis
----------------------------------
+=================================
 
     names = %w{ Frye Leela Zoidberg }
     names.map {|name| name.downcase}
@@ -231,7 +236,7 @@ Mais exemplos com Enumeraveis
 
 ---
 Invocando blocos
---------------------
+====================
 
     def proxy_method
       puts "Calling command at: #{Time.new}"
@@ -244,7 +249,7 @@ Invocando blocos
 
 ---
 Invocando blocos II
------------------------
+=======================
 
     def proxy_method(&method)
       # argumento com & precisa ser o ultimo da lista
@@ -258,7 +263,7 @@ Invocando blocos II
 
 ---
 Proc x Lambda
------------------
+=================
 
     fx = Proc.new {|x| x**2}
     fxy = proc {|x,y| x+y}
@@ -274,7 +279,7 @@ Proc x Lambda
 
 ---
 Lambda “Calculus”
----------------------
+=====================
 
     def d(f)
        lambda {|a|
@@ -287,7 +292,7 @@ Lambda “Calculus”
 
 ---
 Objetos em Ruby
--------------------
+===================
 
     class BookInStock
       def initialize(isbn, price)
@@ -307,7 +312,7 @@ Objetos em Ruby
 
 ---
 Variaveis e Escopo
-----------------------
+======================
 
 l | c | r
 
@@ -320,7 +325,7 @@ Constants & `FEET_PER_MILE DEBUG`
 
 ---
 Atributos de instância - forma tradicional
-----------------------------------------------
+==============================================
 
     class BookInStock  
       def isbn
@@ -337,7 +342,7 @@ Atributos de instância - forma tradicional
 
 ---
 Atributos de instância - forma declarativa
-----------------------------------------------
+==============================================
 
     class BookInStock  
       attr_accessor :isbn
@@ -346,17 +351,19 @@ Atributos de instância - forma declarativa
 
 ---
 Herança
------------
+===========
 
-### Exemplo de Heranca
+Exemplo de Heranca
+------------------
 
     class SpecialStock < BookInStock
 
 ---
 Herança - Singleton Pattern
--------------------------------
+===============================
 
-### forma tradicional
+forma tradicional
+-----------------
 
     class Logger
       private_class_method :new
@@ -367,7 +374,8 @@ Herança - Singleton Pattern
       end
     end
 
-### módulo Singleton
+módulo Singleton
+----------------
 
     require 'singleton'
     class Logger
@@ -389,7 +397,7 @@ Herança - Singleton Pattern
 
 ---
 Criando um Enumerable (I)
------------------------------
+=============================
 
 \* Basta implementar o metodo each.
 
@@ -405,7 +413,7 @@ Criando um Enumerable (I)
 
 ---
 Criando um Enumerable (II)
-------------------------------
+==============================
 
     linked_list.rb (continuacao)
      def <<(node)
@@ -423,7 +431,7 @@ Criando um Enumerable (II)
 
 ---
 Criando um Enumerable (III)
--------------------------------
+===============================
 
     def each
         node = self.next
@@ -432,20 +440,3 @@ Criando um Enumerable (III)
           node = node.next
         end
       end
-
----
-Criando um Enumerable (II)
-------------------------------
-
-    def <<(node)
-     node.next = self.next
-     node.previous = self
-     self.next.previous = node unless self.next.nil?
-     self.next = node
-    end
-    def remove
-     node = self.previous
-     node.next = self.next
-     self.next.previous = node
-     self
-    end

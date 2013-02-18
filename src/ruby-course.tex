@@ -1,5 +1,5 @@
 %%This is a very basic article template.
-%%There is just one section and two subsections.
+%%There is just one section and two sections.
 \documentclass[serif,mathserif]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{comment}
@@ -51,7 +51,7 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 
 \end{frame}
 
-\subsection{\#\#Estruturas básicas}
+\section{\#\#Estruturas básicas}
 \begin{frame} 
 
 \begin{itemize}
@@ -73,7 +73,7 @@ x, y, taxa_do_lixo2
 
 \end{frame}
 
-\subsection{\#\#Estruturas basicas}
+\section{\#\#Estruturas basicas}
 \begin{itemize}
   \item Symbols
 % * Symbols
@@ -97,7 +97,7 @@ retornara o mesmo valor. Isso nao acontece com string. O método equal? so
 devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma
 classe com valores iguais).
 
-\subsection{\#\#Metodos (mensagens)}
+\section{\#\#Metodos (mensagens)}
 \begin{lstlisting}[language=ruby]
 i = 1        
 texto = "um texto"; puts texto
@@ -117,10 +117,10 @@ end
 Lembre-se ... voce pode redefinir um método
 Quase tudo e objeto
 
-\subsection{\#\#Estruturas de Controle - if}
+\section{\#\#Estruturas de Controle - if}
  
        
-\subsubsection {Exemplo Completo}
+\subsection {Exemplo Completo}
 \begin{lstlisting}[language=ruby]
 if count > 10
   puts "Try again"
@@ -130,19 +130,19 @@ elsif tries == 3
 end
 \end{lstlisting}
 
-\subsubsection {Exemplo Simples}
+\subsection {Exemplo Simples}
 \begin{lstlisting}[language=ruby]
 if radiation > 3000
   puts "Danger"
 end
 \end{lstlisting}
 
-\subsubsection {Modificador de Sentenca}
+\subsection {Modificador de Sentenca}
 \begin{lstlisting}[language=ruby]
 puts "Danger, Will Robinson" if radiation > 3000
 \end{lstlisting}
 
-\subsection{\#\#Estruturas de Controle - case} 
+\section{\#\#Estruturas de Controle - case} 
 \begin{lstlisting}[language=ruby]
 print "Enter your grade: "
 grade = gets.chomp
@@ -158,7 +158,7 @@ when "C", "D"
 \end{lstlisting}
 
 
-\subsection{\#\#Estruturas de Controle - while}
+\section{\#\#Estruturas de Controle - while}
 \begin{lstlisting}[language=ruby]
 while weight < 100 and numPallets <= 30
   pallet = nextPallet()
@@ -167,18 +167,18 @@ while weight < 100 and numPallets <= 30
 end
 \end{lstlisting}
  
-\subsubsection {Modificador de Sentenca}
+\subsection {Modificador de Sentenca}
 \begin{lstlisting}[language=ruby]
 square = square*square  while square < 1000
 \end{lstlisting}
 
-\subsection{\#\#Estrutura de Controle -  for}
+\section{\#\#Estrutura de Controle -  for}
 \begin{lstlisting}[language=ruby]
 for i in 0..5
    puts "Value is #{i}"
 end
 \end{lstlisting}
-\subsection{\#\#Estrutura de Controle -  until} 
+\section{\#\#Estrutura de Controle -  until} 
 \begin{lstlisting}[language=ruby]
 until weight >= 100 ||numPallets > 30
   pallet = nextPallet()
@@ -187,12 +187,12 @@ until weight >= 100 ||numPallets > 30
 end
 \end{lstlisting}
 
-\subsubsection {Modificador de Sentenca}
+\subsection {Modificador de Sentenca}
 \begin{lstlisting}[language=ruby]
 square = square*square  until square >= 1000
 \end{lstlisting}
 
-\subsection{\#\#Containers - Array}
+\section{\#\#Containers - Array}
 \begin{lstlisting}[language=ruby]
 a = [ 3.14159, "pie", 99 ]
 a.type   #        Array
@@ -209,7 +209,7 @@ c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 \end{lstlisting}
 
 
-\subsection{\#\#Containers - Hash}
+\section{\#\#Containers - Hash}
 \begin{lstlisting}[language=ruby]
 h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
 h.length        #        3
@@ -226,7 +226,7 @@ b = Hash[a]
 \end{lstlisting}
 
 
-\subsection{\#\#Blocos e Iteradores}
+\section{\#\#Blocos e Iteradores}
 
 Passando blocos
 \begin{lstlisting}[language=ruby]
@@ -246,7 +246,7 @@ Influencia do Smalltalk:
    1 to: 20 do: [:x | x printN1]
 \end{lstlisting}
 
-\subsection{\#\# Métodos de um Enumerable}
+\section{\#\# Métodos de um Enumerable}
 \begin{lstlisting}  
 all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
@@ -254,7 +254,7 @@ map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
 to_set, zip
 \end{lstlisting}
  
-\subsection{\#\#Exemplos com Enumeraveis}
+\section{\#\#Exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.find {|name|  name.length>4}          # => "Leela"
@@ -266,7 +266,7 @@ names.group_by {|name|  name.length}
    # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
 \end{lstlisting}
 
-\subsection{\#\#Mais exemplos com Enumeraveis}
+\section{\#\#Mais exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.map {|name| name.downcase}
@@ -278,7 +278,7 @@ names.join ", "
 \end{lstlisting}
 
 
-\subsection{\#\#Invocando blocos}
+\section{\#\#Invocando blocos}
 \begin{lstlisting}[language=ruby]
 def proxy_method
   puts "Calling command at: #{Time.new}"
@@ -291,7 +291,7 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
 
-\subsection{\#\#Invocando blocos II}
+\section{\#\#Invocando blocos II}
 \begin{lstlisting}[language=ruby]
 def proxy_method(&method)
   # argumento com & precisa ser o ultimo da lista
@@ -304,7 +304,7 @@ def proxy_method (&method)
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
-\subsection{\#\#Proc x Lambda}
+\section{\#\#Proc x Lambda}
 \begin{lstlisting}[language=ruby]
 fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
@@ -320,7 +320,7 @@ Proc.new e proc sao equivalentes
 \end{lstlisting}
 
 
-\subsection{\#\#Lambda ``Calculus''}
+\section{\#\#Lambda ``Calculus''}
 
 \begin{lstlisting}[language=ruby, caption="Derivada em Ruby"]
 def d(f)
@@ -333,7 +333,7 @@ f = lambda {|x| x**2}
 puts d(f)[4]
 \end{lstlisting}
 
-\subsection{\#\#Objetos em Ruby}
+\section{\#\#Objetos em Ruby}
 \begin{lstlisting}[language=ruby]
 class BookInStock
   def initialize(isbn, price)
@@ -353,7 +353,7 @@ puts stock.to_s
 \end{lstlisting}
 
 
-\subsection{\#\#Variaveis e Escopo}
+\section{\#\#Variaveis e Escopo}
 
 \begin{tabular}{ l | c | r }
 Variáveis Locais & \verb|x name thx1138 _x _26| \\
@@ -364,7 +364,7 @@ Nomes de Classe & \verb|String BigDecimal| \\
 Constants & \verb|FEET_PER_MILE DEBUG|
 \end{tabular}
 
-\subsection{\#\#Atributos de instância - forma tradicional}
+\section{\#\#Atributos de instância - forma tradicional}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   def isbn
@@ -380,7 +380,7 @@ class BookInStock
   end
 \end{lstlisting}
 
-\subsection{\#\#Atributos de instância - forma declarativa}
+\section{\#\#Atributos de instância - forma declarativa}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   attr_accessor :isbn
@@ -388,15 +388,15 @@ class BookInStock
  end
 \end{lstlisting}
 
-\subsection{\#\#Herança}
-\subsubsection{Exemplo de Heranca}
+\section{\#\#Herança}
+\subsection{Exemplo de Heranca}
 \begin{lstlisting}[language=ruby]
 class SpecialStock < BookInStock
 \end{lstlisting}
 
-\subsection{\#\#Herança - Singleton Pattern}
+\section{\#\#Herança - Singleton Pattern}
 
-\subsubsection{forma tradicional}
+\subsection{forma tradicional}
 \begin{lstlisting}[language=ruby]
 class Logger
   private_class_method :new
@@ -408,7 +408,7 @@ class Logger
 end
 \end{lstlisting}
 
-\subsubsection{módulo Singleton}
+\subsection{módulo Singleton}
 \begin{lstlisting}[language=ruby]
 require 'singleton'
 class Logger
@@ -431,7 +431,7 @@ class << stock
    end
 \end{lstlisting}
 
-\subsection{\#\#Criando um Enumerable (I)}
+\section{\#\#Criando um Enumerable (I)}
   *  Basta implementar o metodo each. 
 \begin{lstlisting}[language=ruby]
 class Node
@@ -445,7 +445,7 @@ class Node
   end
 \end{lstlisting}
 
-\subsection{\#\#Criando um Enumerable (II)}
+\section{\#\#Criando um Enumerable (II)}
 \begin{lstlisting}[language=ruby]
 linked_list.rb (continuacao)
  def <<(node)
@@ -462,7 +462,7 @@ linked_list.rb (continuacao)
  end
 \end{lstlisting}
 
-\subsection{\#\#Criando um Enumerable (III)}
+\section{\#\#Criando um Enumerable (III)}
 \begin{lstlisting}[language=ruby]
   def each
     node = self.next
@@ -472,25 +472,6 @@ linked_list.rb (continuacao)
     end
   end
 
-\end{lstlisting}
-
-\subsection{\#\#Criando um Enumerable (II)}
-
-% linked_list.rb (continuacao)
-
-\begin{lstlisting}[language=ruby]
-def <<(node)
- node.next = self.next
- node.previous = self
- self.next.previous = node unless self.next.nil?
- self.next = node
-end
-def remove
- node = self.previous
- node.next = self.next
- self.next.previous = node
- self
-end
 \end{lstlisting}
 
 \end{document}
