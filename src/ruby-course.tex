@@ -4,6 +4,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{comment}
 \usepackage[portuges]{babel}
+\usepackage{booktabs}
 \usepackage{listings}
 \usepackage{dcolumn}
 \lstloadlanguages{Ruby}
@@ -20,7 +21,7 @@
 
 % template
 
-\author{
+\author{ 
     \\ Rodrigo di Lorenzo Lopes \\  \texttt{rodrigo.lorenzo@abril.com.br}
 	\and 
     \\ Eduardo Nicola F. Zagari \\ \texttt{zagari@abril.com.br}
@@ -57,7 +58,7 @@ for (int i=0; i <10; i++) { printf("Ola!");}
   \item Variáveis 
 \begin{lstlisting}[language=ruby]
 x, y, taxa_do_lixo2
-\end{lstlisting}
+\end{lstlisting} 
    \item{Numeros}
 \begin{lstlisting}[language=ruby]
 1, -1.2, 6.03e-23    
@@ -194,17 +195,17 @@ square = square*square  until square >= 1000
 \subsection{\#\#Containers - Array}
 \begin{lstlisting}[language=ruby]
 a = [ 3.14159, "pie", 99 ]
-a.type               #        Array
-a.length               #        3
-a[0]                  #        3.14159
+a.type   #        Array
+a.length #        3
+a[0]     #        3.14159
 a << 1
-a[3]                  #        1
-a[-2]                 #        99
+a[3]     #        1
+a[-2]    #        99
 b = Array.new
-b << a               #   [[3.14159, "pie", 99, 1]]
-b[0..3] = a        #   [3.14159, "pie", 99, 1]
-b[0, 2] = 1        #   [1, 1]
-c = %w{a b c d e }                #  =>  ["a", "b", "c", "d"]
+b << a   #   [[3.14159, "pie", 99, 1]]
+b[0..3] = a    #   [3.14159, "pie", 99, 1]
+b[0, 2] = 1    #   [1, 1]
+c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 \end{lstlisting}
 
 
@@ -342,7 +343,8 @@ class BookInStock
  
   def to_s
     "ISBN:#{@isbn}, price: #{@price}"
-  end 
+  end
+end
 stock = BookInStock.new
 # ou
 stock = BookInStock.new (1234, 10.39)
@@ -362,9 +364,7 @@ Nomes de Classe & \verb|String BigDecimal| \\
 Constants & \verb|FEET_PER_MILE DEBUG|
 \end{tabular}
 
-\subsection{\#\#Atributos de instância}
-
-\subsubsection{forma tradicional}
+\subsection{\#\#Atributos de instância - forma tradicional}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   def isbn
@@ -380,13 +380,12 @@ class BookInStock
   end
 \end{lstlisting}
 
-\subsubsection{forma declarativa}
+\subsection{\#\#Atributos de instância - forma declarativa}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   attr_accessor :isbn
   attr_reader :price
  end
-
 \end{lstlisting}
 
 \subsection{\#\#Herança}
