@@ -16,7 +16,7 @@ class LRU
 	end
 	
 	def []=(k, v)
-	  return unless [k].nil?
+    return unless [k].nil?
 		node = Node.new(:k => k, :v => v)
 		map[k]= node
 		head << node
