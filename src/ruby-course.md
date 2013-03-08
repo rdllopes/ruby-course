@@ -1,5 +1,37 @@
-Introducao: Ruby.new
+Sumário
 ====================
+-   Estruturas Básicas
+-   Estruturas de Controle
+-   Containers, Blocos e Iterators
+-   Classe, Objetos e Variáveis
+-   Mais sobre Métodos
+-   Tratamento de Exceções
+-   Módulos
+-   Pacotes básicos
+-   ERB (templates em ruby)
+-   Dojo
+
+---
+= data-x="1000" data-scale="2"
+Introducao:Ruby.new
+========================
+-   Instalação
+
+        apt-get install ruby
+
+-   Editores
+
+        TextMate Vim Sublime Emacs Aptana
+
+-   Executando
+
+        ruby nome_do_programa
+
+        irb  ou >> ruby interativo
+
+---
+Introducao: Ruby.new
+========================
 
 -   Linguagem para humanos
 
@@ -8,6 +40,17 @@ Introducao: Ruby.new
         5.times { print "Ola!" }
 
         for (int i=0; i <10; i++) { printf("Ola!");}
+
+---
+Introducao: Ruby.new
+========================
+
+-   O que faz o código a seguir?
+
+        exit unless "restaurante".include? "aura"
+
+        [‘toasty', ’cheese', ’wine'].each 
+        { |food| print food.capitalize }
 
 ---
 = data-x="1000" data-scale="2"
@@ -80,7 +123,8 @@ Exemplo Completo
       puts "Try again"
     elsif tries == 3
       puts "You lose"
-      puts  Number:"
+    else
+      puts  "Number:"
     end
 
 Exemplo Simples
@@ -109,6 +153,8 @@ Estruturas de Controle - case
     when "C", "D"
       puts 'You need help!!!'
       puts "You just making it up!"
+    else
+    puts "You just making it up!"
      end
 
 ---
@@ -189,7 +235,7 @@ Blocos e Iteradores
 
 Passando blocos
 
-    (1..12).each { |i| puts i}
+    (1..12).each { |i| puts i}  #or
     [1, 2, 4].each do |i|
         puts i
     end
@@ -218,7 +264,7 @@ Exemplos com Enumeraveis
     names = %w{ Frye Leela Zoidberg }
     names.find {|name|  name.length>4}          # => "Leela"
     names.find_all { |name| name.length > 4}
-         #=> ["Leela", "Zoidberg"]
+                                     #=> ["Leela", "Zoidberg"]
     names.grep /oidberg/
     # => ["Zoidberg"]
     names.group_by {|name|  name.length}
@@ -257,10 +303,12 @@ Invocando blocos II
       # argumento com & precisa ser o ultimo da lista
       puts "Calling command at: #{Time.new}"
       method.call
+    end
     proxy_method { puts "hello world proxified! "}
     #ou com paremtros
     def proxy_method (&method)
        method.call(Time.new)
+    end
     proxy_method {|time| puts "hello world proxified  at #{time}"}
 
 ---
@@ -398,6 +446,17 @@ módulo Singleton
        end
 
 ---
+Eigenclass
+=============================
+
+    stock =  BookInStock.new
+    class << stock
+       def alter_price
+             price * 1.4
+       end
+    end
+
+---
 Criando um Enumerable (I)
 =============================
 
@@ -417,7 +476,6 @@ Criando um Enumerable (I)
 Criando um Enumerable (II)
 ==============================
 
-    linked_list.rb (continuacao)
      def <<(node)
         node.next = self.next
         node.previous = self
@@ -442,3 +500,301 @@ Criando um Enumerable (III)
           node = node.next
         end
       end
+---
+Mais sobre metodos
+===============================
+- Lista de parâmetros:
+
+      def myNewMethod(arg1, arg2, arg3)  # 3 arguments
+        # Code for the method would go here
+      end
+
+      def myOtherNewMethod                  # No arguments
+        # Code for the method would go here
+      end
+
+      #defaults
+      def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")
+        "#{arg1}, #{arg2}, #{arg3}."
+      end
+---
+Truques com parâmetros
+===============================
+- Aridade não definida
+
+def varargs(arg1, *rest)
+  "Got #{arg1} and #{rest.join(', ')}"
+end
+
+varargs("one")  # "Got one and "
+varargs("one", "two") # "Got one and two"
+varargs "one", "two", "three" # "Got one and two, three”
+
+def varargs(arg1, hash)
+   puts “#{arg1} - #{hash}”
+end
+
+varargs (1, :a => 1)
+---
+Array para argumentos
+===============================
+
+- Expandindo array para parâmetros
+
+      def five(a, b, c, d, e) 
+        "I was passed #{a} #{b} #{c} #{d} #{e}"
+      end
+      five(1, 2, 3, 4, 5 )         #  "I was passed 1 2 3 4 5"
+      five(1, 2, 3, *['a', 'b'])  # "I was passed 1 2 3 a b"
+      five(*(10..14).to_a)         #  "I was passed 10 11 12 13 14"
+
+---
+Proc para bloco
+===============================
+- Convertendo proc para bloco
+
+      print "(t)imes or (p)lus: "
+      times = gets
+      print "number: "
+      number = gets.to_i
+
+      if times =~ /^t/
+        calc = proc { |n| n*number }
+      else
+        calc = proc { |n| n+number }
+      end
+      puts((1..10).collect(&calc).join(", "))
+
+---
+Exceptions, Catch and Throw
+===============================
+
+      opFile = File.open(opName, "w")
+      while data = socket.read(512)
+        opFile.write(data)
+      end
+
+---
+Exceptions
+===============================
+
+      opFile = File.open(opName, "w")
+      begin
+        # Exceptions raised by this code will
+        # be caught by the following rescue clause
+        while data = socket.read(512)
+          opFile.write(data)
+        end
+
+      rescue SystemCallError
+        $stderr.print "IO failed: " + $!
+        opFile.close
+        File.delete(opName)
+        raise
+      end
+---
+Catching exception
+===============================
+
+- Nomeando a exceção
+
+       begin
+        eval string
+      rescue SyntaxError, NameError => boom
+        #OLHA! sem usar o $!
+        print "String doesn't compile: " + boom
+      rescue StandardError => bang
+        print "Error running script: " + bang
+      end
+
+---
+Ensure
+===============================
+- Garante que um bloco é chamado
+
+      f = File.open("testfile")
+      begin
+        # .. process
+      rescue
+        # .. handle error
+      ensure
+        f.close unless f.nil?
+      end
+      
+---
+Rescuing a Method
+===============================
+- Begin Rescue
+      def some_method
+        begin
+          danger_danger
+          true # good return
+        rescue Error
+          false # error return
+        end
+      end
+- Better code
+      def some_method
+        danger_danger
+        true # good response
+      rescue Error
+        false # error response
+      end
+      
+---
+Raise Exceptions
+===============================
+- Formas típicas de se lançar uma exceção
+
+      # sem conversa
+      raise
+
+      # adicionando uma string…
+      raise "Missing name" if name.nil?
+
+      if i >= myNames.size
+        raise IndexError, "#{i} >= size (#{myNames.size})"
+      end
+
+      # passando o stackTrace via Kernel::caller
+      raise ArgumentError, "Name too big", caller
+      
+---
+Especializando Exceções
+===============================
+- Declaração
+
+      class RetryException < RuntimeError
+        attr :okToRetry
+        def initialize(okToRetry)
+          @okToRetry = okToRetry
+        end
+      end
+
+- Como lançar
+
+      def readData(socket)
+        data = socket.read(512)
+        if data.nil?
+          raise RetryException.new(true), "transient read error"
+        end
+        # .. normal processing
+      end
+      
+---
+Especializando Exceções II
+===============================
+- Tratanto a exceção
+
+      begin
+        stuff = readData(socket)
+        # .. process stuff
+      rescue RetryException => detail
+        retry if detail.okToRetry
+        raise
+      end
+      
+---
+Catch e Throw
+===============================
+- Desvio incondicional com labels
+
+      def promptAndGet(prompt)
+        print prompt
+        res = readline.chomp
+        throw :quitRequested if res == "!"
+        return res
+      end
+
+      catch :quitRequested do
+        name = promptAndGet("Name: ")
+        age  = promptAndGet("Age:  ")
+        sex  = promptAndGet("Sex:  ")
+        # ..
+        # process information
+      end
+      
+---
+Módulos
+===============================
+- Uso
+
+    * Criar namespace (evitar conflito de nomes)
+    * Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
+    
+---
+Módulos II
+===============================
+- Declaração
+
+      module Trig
+        PI = 3.141592654
+        def Trig.sin(x)
+         # ..
+        end
+        def Trig.cos(x)
+         # ..
+        end
+      end
+
+- Uso
+
+    require "./trig"
+    puts Trig.sin(Trig::PI / 3.0)
+    
+---
+Mixins
+===============================
+- Applying mixin
+
+      # BigInteger estende Number
+      class BigInteger < Number
+       
+        # Adiciona métodos de instância de Stringify
+        include Stringify
+       
+        # Adiciona métodos de classe de Math
+        extend Math
+       
+        # Adiciona um constructor com um parâmetro
+        def initialize(value)
+          @value = value
+        end
+      end
+      
+---
+Mixins II
+===============================
+- Applying mixin
+
+      # Cria um novo objeto
+      bigint1 = BigInteger.new(10)
+
+      # Chama um método herdado da classe base
+      puts bigint1.intValue   # --> 10
+
+      # Chama um método de classe estendido de Math
+      bigint2 = BigInteger.add(-2, 4)
+      puts bigint2.intValue   # --> 2
+
+      # Chama um método incluído de Stringify
+      puts bigint2.stringify   # --> 'Two'
+
+      # Adiciona os métodos de módulo para a instância desse objeto somente
+      bigint2.extend CurrencyFormatter
+      
+---
+ERB
+===============================
+
+- Sistema de Template padrão do Ruby
+- Uma classe como outra qualquer
+- Via linha de comando é possível parsear um arquivo erb
+
+
+---
+Dojo
+===============================
+  - Escrever em Ruby um programa que:
+  1) Calcule os valores da sequência abaixo
+  2) Calcule os valores que maximizam o tamanho da sequência
