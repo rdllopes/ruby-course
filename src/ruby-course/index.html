@@ -13,9 +13,7 @@
 <script>hljs.initHighlightingOnLoad();</script>
 
     <link href="css/style.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>    
-
-
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
   </head>
 
   <body>
@@ -26,6 +24,41 @@
     <div id="impress">
     <div class='step' >
     
+<h1>Sumário</h1>
+
+<ul>
+<li>  Estruturas Básicas</li>
+<li>  Estruturas de Controle</li>
+<li>  Containers, Blocos e Iterators</li>
+<li>  Classe, Objetos e Variáveis</li>
+<li>  Mais sobre Métodos</li>
+<li>  Tratamento de Exceções</li>
+<li>  Módulos</li>
+<li>  Pacotes básicos</li>
+<li>  ERB (templates em ruby)</li>
+<li>  Dojo</li>
+</ul>
+</div>
+      <div class='step'  data-x="1000" data-scale="2">
+    
+<h1>Introducao:Ruby.new</h1>
+
+<ul>
+<li><p>Instalação</p>
+<pre><code class='prettyprint '>apt-get install ruby
+</code></pre></li>
+<li><p>Editores</p>
+<pre><code class='prettyprint '>TextMate Vim Sublime Emacs Aptana
+</code></pre></li>
+<li><p>Executando</p>
+<pre><code class='prettyprint '>ruby nome_do_programa
+
+irb  ou >> ruby interativo
+</code></pre></li>
+</ul>
+</div>
+      <div class='step' >
+    
 <h1>Introducao: Ruby.new</h1>
 
 <ul>
@@ -34,6 +67,19 @@
 <pre><code class='prettyprint '>5.times { print "Ola!" }
 
 for (int i=0; i <10; i++) { printf("Ola!");}
+</code></pre></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Introducao: Ruby.new</h1>
+
+<ul>
+<li><p>O que faz o código a seguir?</p>
+<pre><code class='prettyprint '>exit unless "restaurante".include? "aura"
+
+[‘toasty', ’cheese', ’wine'].each 
+{ |food| print food.capitalize }
 </code></pre></li>
 </ul>
 </div>
@@ -103,7 +149,8 @@ end
   puts "Try again"
 elsif tries == 3
   puts "You lose"
-  puts  Number:"
+else
+  puts  "Number:"
 end
 </code></pre>
 <h2>Exemplo Simples</h2>
@@ -127,6 +174,8 @@ when "B"
 when "C", "D"
   puts 'You need help!!!'
   puts "You just making it up!"
+else
+puts "You just making it up!"
  end
 </code></pre></div>
       <div class='step' >
@@ -197,7 +246,7 @@ b = Hash[a]
 <h1>Blocos e Iteradores</h1>
 
 <p>Passando blocos</p>
-<pre><code class='prettyprint '>(1..12).each { |i| puts i}
+<pre><code class='prettyprint '>(1..12).each { |i| puts i}  #or
 [1, 2, 4].each do |i|
     puts i
 end
@@ -222,7 +271,7 @@ to_set, zip
 <pre><code class='prettyprint '>names = %w{ Frye Leela Zoidberg }
 names.find {|name|  name.length>4}          # => "Leela"
 names.find_all { |name| name.length > 4}
-     #=> ["Leela", "Zoidberg"]
+                                 #=> ["Leela", "Zoidberg"]
 names.grep /oidberg/
 # => ["Zoidberg"]
 names.group_by {|name|  name.length}
@@ -258,10 +307,12 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
   # argumento com & precisa ser o ultimo da lista
   puts "Calling command at: #{Time.new}"
   method.call
+end
 proxy_method { puts "hello world proxified! "}
 #ou com paremtros
 def proxy_method (&method)
    method.call(Time.new)
+end
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 </code></pre></div>
       <div class='step' >
@@ -389,6 +440,16 @@ class << stock
 </code></pre></div>
       <div class='step' >
     
+<h1>Eigenclass</h1>
+<pre><code class='prettyprint '>stock =  BookInStock.new
+class << stock
+   def alter_price
+         price * 1.4
+   end
+end
+</code></pre></div>
+      <div class='step' >
+    
 <h1>Criando um Enumerable (I)</h1>
 
 <p>* Basta implementar o metodo each.</p>
@@ -405,8 +466,7 @@ class << stock
       <div class='step' >
     
 <h1>Criando um Enumerable (II)</h1>
-<pre><code class='prettyprint '>linked_list.rb (continuacao)
- def <<(node)
+<pre><code class='prettyprint '> def <<(node)
     node.next = self.next
     node.previous = self
     self.next.previous = node unless self.next.nil?
@@ -429,7 +489,348 @@ class << stock
       node = node.next
     end
   end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Mais sobre metodos</h1>
+
+<ul>
+<li><p>Lista de parâmetros:</p>
+
+<p>def myNewMethod(arg1, arg2, arg3)  # 3 arguments
+    # Code for the method would go here
+  end</p>
+
+<p>def myOtherNewMethod                  # No arguments
+    # Code for the method would go here
+  end</p>
+
+<p>#defaults
+  def coolDude(arg1=&quot;Miles&quot;, arg2=&quot;Coltrane&quot;, arg3=&quot;Roach&quot;)
+    &quot;#{arg1}, #{arg2}, #{arg3}.&quot;</p>
+
+<h2>  end</h2>
+
+<h1>Truques com parâmetros</h1></li>
+<li><p>Aridade não definida</p></li>
+</ul>
+
+<p>def varargs(arg1, *rest)
+  &quot;Got #{arg1} and #{rest.join(&#39;, &#39;)}&quot;
+end</p>
+
+<p>varargs(&quot;one&quot;)  # &quot;Got one and &quot;
+varargs(&quot;one&quot;, &quot;two&quot;) # &quot;Got one and two&quot;
+varargs &quot;one&quot;, &quot;two&quot;, &quot;three&quot; # &quot;Got one and two, three”</p>
+
+<p>def varargs(arg1, hash)
+   puts “#{arg1} - #{hash}”
+end</p>
+
+<h2>varargs (1, :a =&gt; 1)</h2>
+
+<h1>Array para argumentos</h1>
+
+<ul>
+<li><p>Expandindo array para parâmetros</p>
+
+<p>def five(a, b, c, d, e) 
+    &quot;I was passed #{a} #{b} #{c} #{d} #{e}&quot;
+  end
+  five(1, 2, 3, 4, 5 )         #  &quot;I was passed 1 2 3 4 5&quot;
+  five(1, 2, 3, <em>[&#39;a&#39;, &#39;b&#39;])  # &quot;I was passed 1 2 3 a b&quot;
+  five(</em>(10..14).to_a)         #  &quot;I was passed 10 11 12 13 14&quot;</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Proc para bloco</h1>
+
+<ul>
+<li><p>Convertendo proc para bloco</p>
+
+<p>print &quot;(t)imes or (p)lus: &quot;
+  times = gets
+  print &quot;number: &quot;
+  number = gets.to_i</p>
+
+<p>if times =~ /^t/
+    calc = proc { |n| n*number }
+  else
+    calc = proc { |n| n+number }
+  end
+  puts((1..10).collect(&amp;calc).join(&quot;, &quot;))</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Exceptions, Catch and Throw</h1>
+<pre><code class='prettyprint '>  opFile = File.open(opName, "w")
+  while data = socket.read(512)
+    opFile.write(data)
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Exceptions</h1>
+<pre><code class='prettyprint '>  opFile = File.open(opName, "w")
+  begin
+    # Exceptions raised by this code will
+    # be caught by the following rescue clause
+    while data = socket.read(512)
+      opFile.write(data)
+    end
+
+  rescue SystemCallError
+    $stderr.print "IO failed: " + $!
+    opFile.close
+    File.delete(opName)
+    raise
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Catching exception</h1>
+
+<ul>
+<li><p>Nomeando a exceção</p>
+
+<p>begin
+    eval string
+  rescue SyntaxError, NameError =&gt; boom
+    #OLHA! sem usar o $!
+    print &quot;String doesn&#39;t compile: &quot; + boom
+  rescue StandardError =&gt; bang
+    print &quot;Error running script: &quot; + bang
+  end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Ensure</h1>
+
+<ul>
+<li><p>Garante que um bloco é chamado</p>
+
+<p>f = File.open(&quot;testfile&quot;)
+  begin
+    # .. process
+  rescue
+    # .. handle error
+  ensure
+    f.close unless f.nil?
+  end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Rescuing a Method</h1>
+
+<ul>
+<li>Begin Rescue
+  def some<em>method
+    begin
+      danger</em>danger
+      true # good return
+    rescue Error
+      false # error return
+    end
+  end</li>
+<li>Better code
+  def some<em>method
+    danger</em>danger
+    true # good response
+  rescue Error
+    false # error response
+  end</li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Raise Exceptions</h1>
+
+<ul>
+<li><p>Formas típicas de se lançar uma exceção</p>
+
+<p># sem conversa
+  raise</p>
+
+<p># adicionando uma string…
+  raise &quot;Missing name&quot; if name.nil?</p>
+
+<p>if i &gt;= myNames.size
+    raise IndexError, &quot;#{i} &gt;= size (#{myNames.size})&quot;
+  end</p>
+
+<p># passando o stackTrace via Kernel::caller
+  raise ArgumentError, &quot;Name too big&quot;, caller</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Especializando Exceções</h1>
+
+<ul>
+<li><p>Declaração</p>
+
+<p>class RetryException &lt; RuntimeError
+    attr :okToRetry
+    def initialize(okToRetry)
+      @okToRetry = okToRetry
+    end
+  end</p></li>
+<li><p>Como lançar</p>
+
+<p>def readData(socket)
+    data = socket.read(512)
+    if data.nil?
+      raise RetryException.new(true), &quot;transient read error&quot;
+    end
+    # .. normal processing
+  end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Especializando Exceções II</h1>
+
+<ul>
+<li><p>Tratanto a exceção</p>
+
+<p>begin
+    stuff = readData(socket)
+    # .. process stuff
+  rescue RetryException =&gt; detail
+    retry if detail.okToRetry
+    raise
+  end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Catch e Throw</h1>
+
+<ul>
+<li><p>Desvio incondicional com labels</p>
+
+<p>def promptAndGet(prompt)
+    print prompt
+    res = readline.chomp
+    throw :quitRequested if res == &quot;!&quot;
+    return res
+  end</p>
+
+<p>catch :quitRequested do
+    name = promptAndGet(&quot;Name: &quot;)
+    age  = promptAndGet(&quot;Age:  &quot;)
+    sex  = promptAndGet(&quot;Sex:  &quot;)
+    # ..
+    # process information
+  end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Módulos</h1>
+
+<ul>
+<li><p>Uso</p>
+
+<ul>
+<li>Criar namespace (evitar conflito de nomes)</li>
+<li>Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)</li>
+</ul></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Módulos II</h1>
+
+<ul>
+<li><p>Declaração</p>
+
+<p>module Trig
+    PI = 3.141592654
+    def Trig.sin(x)
+     # ..
+    end
+    def Trig.cos(x)
+     # ..
+    end
+  end</p></li>
+<li><p>Uso</p>
+
+<p>require &quot;./trig&quot;
+puts Trig.sin(Trig::PI / 3.0)</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Mixins</h1>
+
+<ul>
+<li><p>Applying mixin</p>
+
+<p># BigInteger estende Number
+  class BigInteger &lt; Number</p>
+<pre><code class='prettyprint '># Adiciona métodos de instância de Stringify
+include Stringify
+
+# Adiciona métodos de classe de Math
+extend Math
+
+# Adiciona um constructor com um parâmetro
+def initialize(value)
+  @value = value
+end
 </code></pre>
+<p>end</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Mixins II</h1>
+
+<ul>
+<li><p>Applying mixin</p>
+
+<p># Cria um novo objeto
+  bigint1 = BigInteger.new(10)</p>
+
+<p># Chama um método herdado da classe base
+  puts bigint1.intValue   # --&gt; 10</p>
+
+<p># Chama um método de classe estendido de Math
+  bigint2 = BigInteger.add(-2, 4)
+  puts bigint2.intValue   # --&gt; 2</p>
+
+<p># Chama um método incluído de Stringify
+  puts bigint2.stringify   # --&gt; &#39;Two&#39;</p>
+
+<p># Adiciona os métodos de módulo para a instância desse objeto somente
+  bigint2.extend CurrencyFormatter</p></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>ERB</h1>
+
+<ul>
+<li>Sistema de Template padrão do Ruby</li>
+<li>Uma classe como outra qualquer</li>
+<li>Via linha de comando é possível parsear um arquivo erb</li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Dojo</h1>
+
+<ul>
+<li>Escrever em Ruby um programa que:
+1) Calcule os valores da sequência abaixo
+2) Calcule os valores que maximizam o tamanho da sequência</li>
+</ul>
+
       </div>
     <script src="js/impress.js"></script>
     <script>impress().init();</script>
