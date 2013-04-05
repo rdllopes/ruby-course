@@ -4,8 +4,8 @@ html {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	line-height: .8;
-	font-size: 45px;
+	line-height: 1.3;
+	font-size: 20px;
 }
 
 body {
@@ -31,6 +31,12 @@ body {
 	-ms-transition: opacity 1s;
 	-o-transition: opacity 1s;
 	transition: opacity 1s;
+}
+
+code {
+  font-size: 19px;
+  line-height: 20px;
+  font-family: "Courier New", monospace;
 }
 
 .impress-enabled .step {

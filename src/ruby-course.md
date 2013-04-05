@@ -424,6 +424,7 @@ forma tradicional
       end
     end
 
+---
 módulo Singleton
 ----------------
 
@@ -500,46 +501,47 @@ Criando um Enumerable (III)
           node = node.next
         end
       end
+
 ---
 Mais sobre metodos
 ===============================
-- Lista de parâmetros:
+Lista de parâmetros:
 
       def myNewMethod(arg1, arg2, arg3)  # 3 arguments
         # Code for the method would go here
       end
 
-      def myOtherNewMethod                  # No arguments
+      def myOtherNewMethod               # No arguments
         # Code for the method would go here
       end
 
-      #defaults
-      def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")
+      def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  #defaults
         "#{arg1}, #{arg2}, #{arg3}."
       end
+
 ---
 Truques com parâmetros
 ===============================
-- Aridade não definida
+Aridade não definida
 
-def varargs(arg1, *rest)
-  "Got #{arg1} and #{rest.join(', ')}"
-end
+      def varargs(arg1, *rest)
+        "Got #{arg1} and #{rest.join(', ')}"
+      end
 
-varargs("one")  # "Got one and "
-varargs("one", "two") # "Got one and two"
-varargs "one", "two", "three" # "Got one and two, three”
+      varargs("one")  # "Got one and "
+      varargs("one", "two") # "Got one and two"
+      varargs "one", "two", "three" # "Got one and two, three”
 
-def varargs(arg1, hash)
-   puts “#{arg1} - #{hash}”
-end
+      def varargs(arg1, hash)
+       puts “#{arg1} - #{hash}”
+      end
 
-varargs (1, :a => 1)
+      varargs (1, :a => 1)
+
 ---
 Array para argumentos
 ===============================
-
-- Expandindo array para parâmetros
+Expandindo array para parâmetros
 
       def five(a, b, c, d, e) 
         "I was passed #{a} #{b} #{c} #{d} #{e}"
@@ -551,7 +553,7 @@ Array para argumentos
 ---
 Proc para bloco
 ===============================
-- Convertendo proc para bloco
+Convertendo proc para bloco
 
       print "(t)imes or (p)lus: "
       times = gets
@@ -595,8 +597,7 @@ Exceptions
 ---
 Catching exception
 ===============================
-
-- Nomeando a exceção
+Nomeando a exceção
 
        begin
         eval string
@@ -610,7 +611,7 @@ Catching exception
 ---
 Ensure
 ===============================
-- Garante que um bloco é chamado
+Garante que um bloco é chamado
 
       f = File.open("testfile")
       begin
@@ -624,7 +625,8 @@ Ensure
 ---
 Rescuing a Method
 ===============================
-- Begin Rescue
+Begin Rescue
+      
       def some_method
         begin
           danger_danger
@@ -633,7 +635,9 @@ Rescuing a Method
           false # error return
         end
       end
-- Better code
+
+Better code
+      
       def some_method
         danger_danger
         true # good response
@@ -644,7 +648,7 @@ Rescuing a Method
 ---
 Raise Exceptions
 ===============================
-- Formas típicas de se lançar uma exceção
+Formas típicas de se lançar uma exceção
 
       # sem conversa
       raise
@@ -662,7 +666,7 @@ Raise Exceptions
 ---
 Especializando Exceções
 ===============================
-- Declaração
+Declaração
 
       class RetryException < RuntimeError
         attr :okToRetry
@@ -671,7 +675,7 @@ Especializando Exceções
         end
       end
 
-- Como lançar
+Como lançar
 
       def readData(socket)
         data = socket.read(512)
@@ -684,7 +688,7 @@ Especializando Exceções
 ---
 Especializando Exceções II
 ===============================
-- Tratanto a exceção
+Tratanto a exceção
 
       begin
         stuff = readData(socket)
@@ -697,7 +701,7 @@ Especializando Exceções II
 ---
 Catch e Throw
 ===============================
-- Desvio incondicional com labels
+Desvio incondicional com labels
 
       def promptAndGet(prompt)
         print prompt
@@ -717,15 +721,15 @@ Catch e Throw
 ---
 Módulos
 ===============================
-- Uso
+Uso
 
-    * Criar namespace (evitar conflito de nomes)
-    * Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
+###Criar namespace (evitar conflito de nomes)
+###Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
     
 ---
 Módulos II
 ===============================
-- Declaração
+##Declaração
 
       module Trig
         PI = 3.141592654
@@ -737,15 +741,15 @@ Módulos II
         end
       end
 
-- Uso
-
-    require "./trig"
-    puts Trig.sin(Trig::PI / 3.0)
+##Uso
+      
+      require "./trig"
+      puts Trig.sin(Trig::PI / 3.0)
     
 ---
 Mixins
 ===============================
-- Applying mixin
+Applying mixin
 
       # BigInteger estende Number
       class BigInteger < Number
@@ -765,7 +769,7 @@ Mixins
 ---
 Mixins II
 ===============================
-- Applying mixin
+Applying mixin
 
       # Cria um novo objeto
       bigint1 = BigInteger.new(10)
@@ -795,6 +799,7 @@ ERB
 ---
 Dojo
 ===============================
-  - Escrever em Ruby um programa que:
-  1) Calcule os valores da sequência abaixo
-  2) Calcule os valores que maximizam o tamanho da sequência
+##Escrever um programa em Ruby que:
+  
+- 1 - Calcule os valores da sequência abaixo
+- 2 - Calcule os valores que maximizam o tamanho da sequência

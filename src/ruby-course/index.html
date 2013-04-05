@@ -418,7 +418,9 @@ Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
     @@logger
   end
 end
-</code></pre>
+</code></pre></div>
+      <div class='step' >
+    
 <h2>módulo Singleton</h2>
 <pre><code class='prettyprint '>require 'singleton'
 class Logger
@@ -494,74 +496,67 @@ end
     
 <h1>Mais sobre metodos</h1>
 
-<ul>
-<li><p>Lista de parâmetros:</p>
-
-<p>def myNewMethod(arg1, arg2, arg3)  # 3 arguments
+<p>Lista de parâmetros:</p>
+<pre><code class='prettyprint '>  def myNewMethod(arg1, arg2, arg3)  # 3 arguments
     # Code for the method would go here
-  end</p>
+  end
 
-<p>def myOtherNewMethod                  # No arguments
+  def myOtherNewMethod               # No arguments
     # Code for the method would go here
-  end</p>
+  end
 
-<p>#defaults
-  def coolDude(arg1=&quot;Miles&quot;, arg2=&quot;Coltrane&quot;, arg3=&quot;Roach&quot;)
-    &quot;#{arg1}, #{arg2}, #{arg3}.&quot;</p>
+  def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  #defaults
+    "#{arg1}, #{arg2}, #{arg3}."
+  end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Truques com parâmetros</h1>
 
-<h2>  end</h2>
+<p>Aridade não definida</p>
+<pre><code class='prettyprint '>  def varargs(arg1, *rest)
+    "Got #{arg1} and #{rest.join(', ')}"
+  end
 
-<h1>Truques com parâmetros</h1></li>
-<li><p>Aridade não definida</p></li>
-</ul>
+  varargs("one")  # "Got one and "
+  varargs("one", "two") # "Got one and two"
+  varargs "one", "two", "three" # "Got one and two, three”
 
-<p>def varargs(arg1, *rest)
-  &quot;Got #{arg1} and #{rest.join(&#39;, &#39;)}&quot;
-end</p>
-
-<p>varargs(&quot;one&quot;)  # &quot;Got one and &quot;
-varargs(&quot;one&quot;, &quot;two&quot;) # &quot;Got one and two&quot;
-varargs &quot;one&quot;, &quot;two&quot;, &quot;three&quot; # &quot;Got one and two, three”</p>
-
-<p>def varargs(arg1, hash)
+  def varargs(arg1, hash)
    puts “#{arg1} - #{hash}”
-end</p>
+  end
 
-<h2>varargs (1, :a =&gt; 1)</h2>
-
+  varargs (1, :a => 1)
+</code></pre></div>
+      <div class='step' >
+    
 <h1>Array para argumentos</h1>
 
-<ul>
-<li><p>Expandindo array para parâmetros</p>
-
-<p>def five(a, b, c, d, e) 
-    &quot;I was passed #{a} #{b} #{c} #{d} #{e}&quot;
+<p>Expandindo array para parâmetros</p>
+<pre><code class='prettyprint '>  def five(a, b, c, d, e) 
+    "I was passed #{a} #{b} #{c} #{d} #{e}"
   end
-  five(1, 2, 3, 4, 5 )         #  &quot;I was passed 1 2 3 4 5&quot;
-  five(1, 2, 3, <em>[&#39;a&#39;, &#39;b&#39;])  # &quot;I was passed 1 2 3 a b&quot;
-  five(</em>(10..14).to_a)         #  &quot;I was passed 10 11 12 13 14&quot;</p></li>
-</ul>
-</div>
+  five(1, 2, 3, 4, 5 )         #  "I was passed 1 2 3 4 5"
+  five(1, 2, 3, *['a', 'b'])  # "I was passed 1 2 3 a b"
+  five(*(10..14).to_a)         #  "I was passed 10 11 12 13 14"
+</code></pre></div>
       <div class='step' >
     
 <h1>Proc para bloco</h1>
 
-<ul>
-<li><p>Convertendo proc para bloco</p>
-
-<p>print &quot;(t)imes or (p)lus: &quot;
+<p>Convertendo proc para bloco</p>
+<pre><code class='prettyprint '>  print "(t)imes or (p)lus: "
   times = gets
-  print &quot;number: &quot;
-  number = gets.to_i</p>
+  print "number: "
+  number = gets.to_i
 
-<p>if times =~ /^t/
+  if times =~ /^t/
     calc = proc { |n| n*number }
   else
     calc = proc { |n| n+number }
   end
-  puts((1..10).collect(&amp;calc).join(&quot;, &quot;))</p></li>
-</ul>
-</div>
+  puts((1..10).collect(&calc).join(", "))
+</code></pre></div>
       <div class='step' >
     
 <h1>Exceptions, Catch and Throw</h1>
@@ -592,164 +587,140 @@ end</p>
     
 <h1>Catching exception</h1>
 
-<ul>
-<li><p>Nomeando a exceção</p>
-
-<p>begin
+<p>Nomeando a exceção</p>
+<pre><code class='prettyprint '>   begin
     eval string
-  rescue SyntaxError, NameError =&gt; boom
+  rescue SyntaxError, NameError => boom
     #OLHA! sem usar o $!
-    print &quot;String doesn&#39;t compile: &quot; + boom
-  rescue StandardError =&gt; bang
-    print &quot;Error running script: &quot; + bang
-  end</p></li>
-</ul>
-</div>
+    print "String doesn't compile: " + boom
+  rescue StandardError => bang
+    print "Error running script: " + bang
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Ensure</h1>
 
-<ul>
-<li><p>Garante que um bloco é chamado</p>
-
-<p>f = File.open(&quot;testfile&quot;)
+<p>Garante que um bloco é chamado</p>
+<pre><code class='prettyprint '>  f = File.open("testfile")
   begin
     # .. process
   rescue
     # .. handle error
   ensure
     f.close unless f.nil?
-  end</p></li>
-</ul>
-</div>
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Rescuing a Method</h1>
 
-<ul>
-<li>Begin Rescue
-  def some<em>method
+<p>Begin Rescue</p>
+<pre><code class='prettyprint '>  def some_method
     begin
-      danger</em>danger
+      danger_danger
       true # good return
     rescue Error
       false # error return
     end
-  end</li>
-<li>Better code
-  def some<em>method
-    danger</em>danger
+  end
+</code></pre>
+<p>Better code</p>
+<pre><code class='prettyprint '>  def some_method
+    danger_danger
     true # good response
   rescue Error
     false # error response
-  end</li>
-</ul>
-</div>
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Raise Exceptions</h1>
 
-<ul>
-<li><p>Formas típicas de se lançar uma exceção</p>
+<p>Formas típicas de se lançar uma exceção</p>
+<pre><code class='prettyprint '>  # sem conversa
+  raise
 
-<p># sem conversa
-  raise</p>
+  # adicionando uma string…
+  raise "Missing name" if name.nil?
 
-<p># adicionando uma string…
-  raise &quot;Missing name&quot; if name.nil?</p>
+  if i >= myNames.size
+    raise IndexError, "#{i} >= size (#{myNames.size})"
+  end
 
-<p>if i &gt;= myNames.size
-    raise IndexError, &quot;#{i} &gt;= size (#{myNames.size})&quot;
-  end</p>
-
-<p># passando o stackTrace via Kernel::caller
-  raise ArgumentError, &quot;Name too big&quot;, caller</p></li>
-</ul>
-</div>
+  # passando o stackTrace via Kernel::caller
+  raise ArgumentError, "Name too big", caller
+</code></pre></div>
       <div class='step' >
     
 <h1>Especializando Exceções</h1>
 
-<ul>
-<li><p>Declaração</p>
-
-<p>class RetryException &lt; RuntimeError
+<p>Declaração</p>
+<pre><code class='prettyprint '>  class RetryException < RuntimeError
     attr :okToRetry
     def initialize(okToRetry)
       @okToRetry = okToRetry
     end
-  end</p></li>
-<li><p>Como lançar</p>
-
-<p>def readData(socket)
+  end
+</code></pre>
+<p>Como lançar</p>
+<pre><code class='prettyprint '>  def readData(socket)
     data = socket.read(512)
     if data.nil?
-      raise RetryException.new(true), &quot;transient read error&quot;
+      raise RetryException.new(true), "transient read error"
     end
     # .. normal processing
-  end</p></li>
-</ul>
-</div>
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Especializando Exceções II</h1>
 
-<ul>
-<li><p>Tratanto a exceção</p>
-
-<p>begin
+<p>Tratanto a exceção</p>
+<pre><code class='prettyprint '>  begin
     stuff = readData(socket)
     # .. process stuff
-  rescue RetryException =&gt; detail
+  rescue RetryException => detail
     retry if detail.okToRetry
     raise
-  end</p></li>
-</ul>
-</div>
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Catch e Throw</h1>
 
-<ul>
-<li><p>Desvio incondicional com labels</p>
-
-<p>def promptAndGet(prompt)
+<p>Desvio incondicional com labels</p>
+<pre><code class='prettyprint '>  def promptAndGet(prompt)
     print prompt
     res = readline.chomp
-    throw :quitRequested if res == &quot;!&quot;
+    throw :quitRequested if res == "!"
     return res
-  end</p>
+  end
 
-<p>catch :quitRequested do
-    name = promptAndGet(&quot;Name: &quot;)
-    age  = promptAndGet(&quot;Age:  &quot;)
-    sex  = promptAndGet(&quot;Sex:  &quot;)
+  catch :quitRequested do
+    name = promptAndGet("Name: ")
+    age  = promptAndGet("Age:  ")
+    sex  = promptAndGet("Sex:  ")
     # ..
     # process information
-  end</p></li>
-</ul>
-</div>
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Módulos</h1>
 
-<ul>
-<li><p>Uso</p>
+<p>Uso</p>
 
-<ul>
-<li>Criar namespace (evitar conflito de nomes)</li>
-<li>Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)</li>
-</ul></li>
-</ul>
+<h3>Criar namespace (evitar conflito de nomes)</h3>
+
+<h3>Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)</h3>
 </div>
       <div class='step' >
     
 <h1>Módulos II</h1>
 
-<ul>
-<li><p>Declaração</p>
-
-<p>module Trig
+<h2>Declaração</h2>
+<pre><code class='prettyprint '>  module Trig
     PI = 3.141592654
     def Trig.sin(x)
      # ..
@@ -757,60 +728,53 @@ end</p>
     def Trig.cos(x)
      # ..
     end
-  end</p></li>
-<li><p>Uso</p>
-
-<p>require &quot;./trig&quot;
-puts Trig.sin(Trig::PI / 3.0)</p></li>
-</ul>
-</div>
+  end
+</code></pre>
+<h2>Uso</h2>
+<pre><code class='prettyprint '>  require "./trig"
+  puts Trig.sin(Trig::PI / 3.0)
+</code></pre></div>
       <div class='step' >
     
 <h1>Mixins</h1>
 
-<ul>
-<li><p>Applying mixin</p>
+<p>Applying mixin</p>
+<pre><code class='prettyprint '>  # BigInteger estende Number
+  class BigInteger < Number
 
-<p># BigInteger estende Number
-  class BigInteger &lt; Number</p>
-<pre><code class='prettyprint '># Adiciona métodos de instância de Stringify
-include Stringify
+    # Adiciona métodos de instância de Stringify
+    include Stringify
 
-# Adiciona métodos de classe de Math
-extend Math
+    # Adiciona métodos de classe de Math
+    extend Math
 
-# Adiciona um constructor com um parâmetro
-def initialize(value)
-  @value = value
-end
-</code></pre>
-<p>end</p></li>
-</ul>
-</div>
+    # Adiciona um constructor com um parâmetro
+    def initialize(value)
+      @value = value
+    end
+  end
+</code></pre></div>
       <div class='step' >
     
 <h1>Mixins II</h1>
 
-<ul>
-<li><p>Applying mixin</p>
+<p>Applying mixin</p>
+<pre><code class='prettyprint '>  # Cria um novo objeto
+  bigint1 = BigInteger.new(10)
 
-<p># Cria um novo objeto
-  bigint1 = BigInteger.new(10)</p>
+  # Chama um método herdado da classe base
+  puts bigint1.intValue   # --> 10
 
-<p># Chama um método herdado da classe base
-  puts bigint1.intValue   # --&gt; 10</p>
-
-<p># Chama um método de classe estendido de Math
+  # Chama um método de classe estendido de Math
   bigint2 = BigInteger.add(-2, 4)
-  puts bigint2.intValue   # --&gt; 2</p>
+  puts bigint2.intValue   # --> 2
 
-<p># Chama um método incluído de Stringify
-  puts bigint2.stringify   # --&gt; &#39;Two&#39;</p>
+  # Chama um método incluído de Stringify
+  puts bigint2.stringify   # --> 'Two'
 
-<p># Adiciona os métodos de módulo para a instância desse objeto somente
-  bigint2.extend CurrencyFormatter</p></li>
-</ul>
-</div>
+  # Adiciona os métodos de módulo para a instância desse objeto somente
+  bigint2.extend CurrencyFormatter
+</code></pre></div>
       <div class='step' >
     
 <h1>ERB</h1>
@@ -825,10 +789,11 @@ end
     
 <h1>Dojo</h1>
 
+<h2>Escrever um programa em Ruby que:</h2>
+
 <ul>
-<li>Escrever em Ruby um programa que:
-1) Calcule os valores da sequência abaixo
-2) Calcule os valores que maximizam o tamanho da sequência</li>
+<li>1 - Calcule os valores da sequência abaixo</li>
+<li>2 - Calcule os valores que maximizam o tamanho da sequência</li>
 </ul>
 
       </div>
