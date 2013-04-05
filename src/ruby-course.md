@@ -15,15 +15,13 @@ Sumário
 = data-x="1000" data-scale="2"
 Introducao:Ruby.new
 ========================
--   Instalação
-
+###Instalação
         apt-get install ruby
-
--   Editores
-
+<br/>
+###Editores
         TextMate Vim Sublime Emacs Aptana
-
--   Executando
+<br/>
+###Executando
 
         ruby nome_do_programa
 
@@ -33,19 +31,20 @@ Introducao:Ruby.new
 Introducao: Ruby.new
 ========================
 
--   Linguagem para humanos
+Linguagem para humanos
 
--   Compare:
+###Compare:
 
+##Este laço em Ruby:
         5.times { print "Ola!" }
-
+##Com este:
         for (int i=0; i <10; i++) { printf("Ola!");}
 
 ---
 Introducao: Ruby.new
 ========================
 
--   O que faz o código a seguir?
+##O que faz o código a seguir?
 
         exit unless "restaurante".include? "aura"
 
@@ -58,15 +57,15 @@ Introducao: Ruby.new
 Estruturas básicas
 ======================
 
--   Variáveis
+##Variáveis
 
         x, y, taxa_do_lixo2
 
--   Numeros
+##Números
 
         1, -1.2, 6.03e-23    
 
--   String
+##String
 
         "alguma coisa assim"
         %q(veremos outras formas de declarar strings)
@@ -75,22 +74,22 @@ Estruturas básicas
 Estruturas basicas
 ======================
 
--   Symbols
+Symbols
+----------------
 
         :x, :y, :isso_parece_uma_string
 
--   Constantes
-
+Constantes
+----------------
         EmpireStateBuilding, NEA, PI
 
--   Objetos especiais
-
+Objetos especiais
+----------------
         true, false, nil
 
-Símbolos são alocados uma única vez: :a.object\_id durante uma execução
-sempre retornara o mesmo valor. Isso nao acontece com string. O método
-equal? so devolve true se dois objetos são de fato o mesmo objeto (e
-instâncias da mesma classe com valores iguais).
+<br/>
+###Símbolos são alocados uma única vez: :a.object\_id durante uma execução sempre retornara o mesmo valor. Isso nao acontece com string.
+###O método equal? só devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).
 
 ---
 Metodos (mensagens)
@@ -234,18 +233,18 @@ Blocos e Iteradores
 =======================
 
 Passando blocos
-
+----------------
     (1..12).each { |i| puts i}  #or
     [1, 2, 4].each do |i|
         puts i
     end
 
 Blocos de codigo
-
+----------------
     (1..20).each{|x| puts x}
 
-Influencia do Smalltalk:
-
+Influencia do Smalltalk
+----------------
     1 to: 20 do: [:x | x printN1]
 
 ---
@@ -361,17 +360,39 @@ Objetos em Ruby
     puts stock.to_s
 
 ---
-Variaveis e Escopo
+Variáveis e Escopo
 ======================
 
-l | c | r
 
-Variáveis Locais & `x name thx1138 _x _26`\
-Variáveis de Instancia & `@name @X  @_ @plan9`\
-Variáveis de Classe & `@@total @@N @@x_pos`\
-Variáveis Globais & `$debug $CUSTOM $_ $plan9`\
-Nomes de Classe & `String BigDecimal`\
-Constants & `FEET_PER_MILE DEBUG`
+Variáveis Locais
+---------------- 
+      x name thx1138 _x _26
+
+Variáveis de Instancia
+----------------
+      @name @X  @_ @plan9
+
+Variáveis de Classe
+----------------
+      @@total @@N @@x_pos
+
+
+---
+Variáveis e Escopo
+======================
+
+Variáveis Globais 
+----------------
+      $debug $CUSTOM $_ $plan9
+
+Nomes de Classe
+----------------
+      String BigDecimal
+      
+
+Constants
+----------------
+      FEET_PER_MILE DEBUG`
 
 ---
 Atributos de instância - forma tradicional

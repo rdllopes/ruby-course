@@ -43,83 +43,77 @@
     
 <h1>Introducao:Ruby.new</h1>
 
-<ul>
-<li><p>Instalação</p>
-<pre><code class='prettyprint '>apt-get install ruby
-</code></pre></li>
-<li><p>Editores</p>
-<pre><code class='prettyprint '>TextMate Vim Sublime Emacs Aptana
-</code></pre></li>
-<li><p>Executando</p>
-<pre><code class='prettyprint '>ruby nome_do_programa
+<h3>Instalação</h3>
+<pre><code class='prettyprint '>    apt-get install ruby
+</code></pre>
+<p><br/></p>
 
-irb  ou >> ruby interativo
-</code></pre></li>
-</ul>
-</div>
+<h3>Editores</h3>
+<pre><code class='prettyprint '>    TextMate Vim Sublime Emacs Aptana
+</code></pre>
+<p><br/></p>
+
+<h3>Executando</h3>
+<pre><code class='prettyprint '>    ruby nome_do_programa
+
+    irb  ou >> ruby interativo
+</code></pre></div>
       <div class='step' >
     
 <h1>Introducao: Ruby.new</h1>
 
-<ul>
-<li><p>Linguagem para humanos</p></li>
-<li><p>Compare:</p>
-<pre><code class='prettyprint '>5.times { print "Ola!" }
+<p>Linguagem para humanos</p>
 
-for (int i=0; i <10; i++) { printf("Ola!");}
-</code></pre></li>
-</ul>
-</div>
+<h3>Compare:</h3>
+
+<h2>Este laço em Ruby:</h2>
+<pre><code class='prettyprint '>    5.times { print "Ola!" }
+</code></pre>
+<h2>Com este:</h2>
+<pre><code class='prettyprint '>    for (int i=0; i <10; i++) { printf("Ola!");}
+</code></pre></div>
       <div class='step' >
     
 <h1>Introducao: Ruby.new</h1>
 
-<ul>
-<li><p>O que faz o código a seguir?</p>
-<pre><code class='prettyprint '>exit unless "restaurante".include? "aura"
+<h2>O que faz o código a seguir?</h2>
+<pre><code class='prettyprint '>    exit unless "restaurante".include? "aura"
 
-[‘toasty', ’cheese', ’wine'].each 
-{ |food| print food.capitalize }
-</code></pre></li>
-</ul>
-</div>
+    [‘toasty', ’cheese', ’wine'].each 
+    { |food| print food.capitalize }
+</code></pre></div>
       <div class='step'  data-x="1000" data-scale="2">
     
 <h1>Estruturas básicas</h1>
 
-<ul>
-<li><p>Variáveis</p>
-<pre><code class='prettyprint '>x, y, taxa_do_lixo2
-</code></pre></li>
-<li><p>Numeros</p>
-<pre><code class='prettyprint '>1, -1.2, 6.03e-23    
-</code></pre></li>
-<li><p>String</p>
-<pre><code class='prettyprint '>"alguma coisa assim"
-%q(veremos outras formas de declarar strings)
-</code></pre></li>
-</ul>
-</div>
+<h2>Variáveis</h2>
+<pre><code class='prettyprint '>    x, y, taxa_do_lixo2
+</code></pre>
+<h2>Números</h2>
+<pre><code class='prettyprint '>    1, -1.2, 6.03e-23    
+</code></pre>
+<h2>String</h2>
+<pre><code class='prettyprint '>    "alguma coisa assim"
+    %q(veremos outras formas de declarar strings)
+</code></pre></div>
       <div class='step' >
     
 <h1>Estruturas basicas</h1>
 
-<ul>
-<li><p>Symbols</p>
-<pre><code class='prettyprint '>:x, :y, :isso_parece_uma_string
-</code></pre></li>
-<li><p>Constantes</p>
-<pre><code class='prettyprint '>EmpireStateBuilding, NEA, PI
-</code></pre></li>
-<li><p>Objetos especiais</p>
-<pre><code class='prettyprint '>true, false, nil
-</code></pre></li>
-</ul>
+<h2>Symbols</h2>
+<pre><code class='prettyprint '>    :x, :y, :isso_parece_uma_string
+</code></pre>
+<h2>Constantes</h2>
+<pre><code class='prettyprint '>    EmpireStateBuilding, NEA, PI
+</code></pre>
+<h2>Objetos especiais</h2>
+<pre><code class='prettyprint '>    true, false, nil
+</code></pre>
+<p><br/></p>
 
-<p>Símbolos são alocados uma única vez: :a.object_id durante uma execução
-sempre retornara o mesmo valor. Isso nao acontece com string. O método
-equal? so devolve true se dois objetos são de fato o mesmo objeto (e
-instâncias da mesma classe com valores iguais).</p>
+<h3>Símbolos são alocados uma única vez: :a.object_id durante uma execução sempre retornara o mesmo valor. Isso nao acontece com string.</h3>
+
+<h3>O método equal? só devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).</h3>
 </div>
       <div class='step' >
     
@@ -245,16 +239,16 @@ b = Hash[a]
     
 <h1>Blocos e Iteradores</h1>
 
-<p>Passando blocos</p>
+<h2>Passando blocos</h2>
 <pre><code class='prettyprint '>(1..12).each { |i| puts i}  #or
 [1, 2, 4].each do |i|
     puts i
 end
 </code></pre>
-<p>Blocos de codigo</p>
+<h2>Blocos de codigo</h2>
 <pre><code class='prettyprint '>(1..20).each{|x| puts x}
 </code></pre>
-<p>Influencia do Smalltalk:</p>
+<h2>Influencia do Smalltalk</h2>
 <pre><code class='prettyprint '>1 to: 20 do: [:x | x printN1]
 </code></pre></div>
       <div class='step' >
@@ -363,17 +357,30 @@ puts stock.to_s
 </code></pre></div>
       <div class='step' >
     
-<h1>Variaveis e Escopo</h1>
+<h1>Variáveis e Escopo</h1>
 
-<p>l | c | r</p>
+<h2>Variáveis Locais</h2>
+<pre><code class='prettyprint '>  x name thx1138 _x _26
+</code></pre>
+<h2>Variáveis de Instancia</h2>
+<pre><code class='prettyprint '>  @name @X  @_ @plan9
+</code></pre>
+<h2>Variáveis de Classe</h2>
+<pre><code class='prettyprint '>  @@total @@N @@x_pos
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Variáveis e Escopo</h1>
 
-<p>Variáveis Locais &amp; <code class='inline prettyprint'>x name thx1138 _x _26</code>\
-Variáveis de Instancia &amp; <code class='inline prettyprint'>@name @X  @_ @plan9</code>\
-Variáveis de Classe &amp; <code class='inline prettyprint'>@@total @@N @@x_pos</code>\
-Variáveis Globais &amp; <code class='inline prettyprint'>$debug $CUSTOM $_ $plan9</code>\
-Nomes de Classe &amp; <code class='inline prettyprint'>String BigDecimal</code>\
-Constants &amp; <code class='inline prettyprint'>FEET_PER_MILE DEBUG</code></p>
-</div>
+<h2>Variáveis Globais </h2>
+<pre><code class='prettyprint '>  $debug $CUSTOM $_ $plan9
+</code></pre>
+<h2>Nomes de Classe</h2>
+<pre><code class='prettyprint '>  String BigDecimal
+</code></pre>
+<h2>Constants</h2>
+<pre><code class='prettyprint '>  FEET_PER_MILE DEBUG`
+</code></pre></div>
       <div class='step' >
     
 <h1>Atributos de instância - forma tradicional</h1>
