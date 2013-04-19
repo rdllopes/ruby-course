@@ -1,6 +1,6 @@
-#!//Users/rlopes/.rvm/rubies/ruby-1.9.3-p194/bin/ruby
+#!/usr/bin/env ruby
+
 regexp = "(.*)(\\\\#\\\\#)(.*)"
-replace = "---\n"
 pattern = Regexp.new(regexp)
 
 ARGF.each do |line|
