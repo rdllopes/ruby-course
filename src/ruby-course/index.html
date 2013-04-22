@@ -35,8 +35,9 @@
 <ul>
 <li>  Introdução: Ruby.new</li>
 <li>  Estruturas Básicas</li>
+<li>  Bloco de código</li>
 <li>  Estruturas de Controle</li>
-<li>  Containers, Blocos e Iterators</li>
+<li>  Containers e Iterators</li>
 <li>  Classe, Objetos e Variáveis</li>
 <li>  Mais sobre Métodos</li>
 <li>  Tratamento de Exceções</li>
@@ -45,6 +46,8 @@
 <li>  ERB (templates em ruby)</li>
 <li>  Dojo</li>
 </ul>
+
+<p>* Não necessariamente nessa ordem.</p>
 </div>
       <div class='step'  data-x="1000" data-scale="2">
     
@@ -105,6 +108,21 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
     
 <h1>Introdução:Ruby.new</h1>
 
+<p>Sobre a sintaxe:</p>
+
+<ul>
+<li>Espaços, tabulações e blocos de comentários serão ignorados pelo interpretador.</li>
+<li>Ponto-e-vírgula e nova linha é considerado um novo comando. Porém, se for encontrado um operador, como <code class='inline prettyprint'>+</code>, <code class='inline prettyprint'>-</code>, ou o sinal de <code class='inline prettyprint'>\</code>, indica que a próxima linha é continuação do comando atual.</li>
+<li>Os identificadores são nomes de variáveis, constantes e métodos e é <em>case-sensitive</em>, ou seja, <code class='inline prettyprint'>DNS</code> e <code class='inline prettyprint'>Dns</code> são duas constantes diferentes.</li>
+<li>Deve-se usar letras_minúsculas para nomes de variáveis e métodos. <code class='inline prettyprint'>nome_completo</code></li>
+<li>Deve-se usar LETRAS_MAIÚSCULAS para nome de CONSTANTES. <code class='inline prettyprint'>MAX_ATTENDEES = 100</code></li>
+<li>Deve-se usar <em>CamelCase</em> para nome de Classes. <code class='inline prettyprint'>NotificationMailer</code></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Introdução:Ruby.new</h1>
+
 <h2>Hello World!</h2>
 
 <h3>via arquivo</h3>
@@ -135,18 +153,9 @@ hello world
 </code></pre></div>
       <div class='step' >
     
-<h1>Introdução: Ruby.new</h1>
-
-<h2>O que faz o código a seguir?</h2>
-<pre><code class='prettyprint ruby'>exit unless 'restaurante'.include? 'aura'
-
-['toasty', 'cheese', 'wine'].each { |food| print food.capitalize }
-</code></pre></div>
-      <div class='step' >
-    
 <h1>Estruturas básicas</h1>
 
-<p>Tudo em Ruby é um objeto.</p>
+<p>Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um objeto.</p>
 <pre><code class='prettyprint javascript'>>> 1.class
 => Fixnum
 >> "texto".class
@@ -200,6 +209,25 @@ Mas para isto funcionar, o =begin e =end devem estar
 na exterma esquerda do seu código, ou seja, na coluna
 0 (zero).
 =end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>Números</h2>
+
+<h3>Inteiros</h3>
+<pre><code class='prettyprint ruby'>123                       # Inteiro (Fixnum)
+-123                      # Inteiro negatico (Fixnum)
+1_123                     # Inteiro (Fixnum)
+123_456_789_123_456_789   # Inteiro (Bignum)
+0xAB                      # Número Hexadecimal (170)
+0377                      # Número Octal (255)
+0b001001                  # Número binário (9)
+</code></pre>
+<h3>Flutuantes</h3>
+<pre><code class='prettyprint ruby'>123.45                    # Número com ponto flutuante (Float)
+1.2e-3                    # Número com ponto flutuante (0.0012)
 </code></pre></div>
       <div class='step' >
     
@@ -300,22 +328,9 @@ Esta é uma string em múltiplas linhas.
     * item
     * item
 </code></pre>
-</div>
-      <div class='step' >
-    
-<h1>Estruturas básicas</h1>
 
-<h2>Números</h2>
-<pre><code class='prettyprint '>123                       # Inteiro (Fixnum)
--123                      # Inteiro negatico (Fixnum)
-1_123                     # Inteiro (Fixnum)
-123_456_789_123_456_789   # Inteiro (Bignum)
-123.45                    # Número com ponto flutuante (Float)
-1.2e-3                    # Número com ponto flutuante (0.0012)
-0xAB                      # Número Hexadecimal (170)
-0377                      # Número Octal (255)
-0b001001                  # Número binário (9)
-</code></pre></div>
+<p>* aceita interpolação.</p>
+</div>
       <div class='step' >
     
 <h1>Estruturas básicas</h1>
@@ -334,93 +349,10 @@ Esta é uma string em múltiplas linhas.
 </code></pre></div>
       <div class='step' >
     
-<h1>Estruturas básicas</h1>
+<h1>Containers</h1>
 
-<h2>Boleano e nulo</h2>
-<pre><code class='prettyprint ruby'>true
-false
-nil
-</code></pre>
-<p>Se não me engano, já falei que em Ruby, TUDO É UM OBJETO.</p>
-<pre><code class='prettyprint ruby'>nil.nil?     # => true
-true.to_s    # => 'true'
-false.nil?   # => false
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Estruturas de Controle - if</h1>
-
-<h2>Exemplo Completo</h2>
-<pre><code class='prettyprint ruby'>count = gets.chomp.to_i
-
-if count > 10
-  puts "Try again"
-elsif tries == 3
-  puts "You lose"
-else
-  puts  "Number: #{count}"
-end
-</code></pre>
-<h2>Exemplo Simples</h2>
-<pre><code class='prettyprint ruby'>if radiation > 3000
-  puts "Danger"
-end
-</code></pre>
-<h2>Modificador de Sentenca</h2>
-<pre><code class='prettyprint ruby'>puts "Danger, Will Robinson" if radiation > 3000
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Estruturas de Controle - case</h1>
-<pre><code class='prettyprint '>print "Enter your grade: "
-grade = gets.chomp
-case grade
-when "A"
-  puts 'Well done!'
-when "B"
-  puts 'Try harder!'
-when "C", "D"
-  puts 'You need help!!!'
-  puts "You just making it up!"
-else
-puts "You just making it up!"
- end
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Estruturas de Controle - while</h1>
-<pre><code class='prettyprint '>while weight < 100 and numPallets <= 30
-  pallet = nextPallet()
-  weight += pallet.weight
-  numPallets += 1
-end
-</code></pre>
-<h2>Modificador de Sentenca</h2>
-<pre><code class='prettyprint '>square = square*square  while square < 1000
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Estrutura de Controle - for</h1>
-<pre><code class='prettyprint '>for i in 0..5
-   puts "Value is #{i}"
-end
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Estrutura de Controle - until</h1>
-<pre><code class='prettyprint '>until weight >= 100 ||numPallets > 30
-  pallet = nextPallet()
-  weight += pallet.weight
-  numPallets += 1
-end
-</code></pre>
-<h2>Modificador de Sentenca</h2>
-<pre><code class='prettyprint '>square = square*square  until square >= 1000
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Containers - Array</h1>
-<pre><code class='prettyprint '>a = [ 3.14159, "pie", 99 ]
+<h2>Array (Lista)</h2>
+<pre><code class='prettyprint ruby'>a = [ 3.14159, "pie", 99 ]
 a.type   #        Array
 a.length #        3
 a[0]     #        3.14159
@@ -432,43 +364,221 @@ b << a   #   [[3.14159, "pie", 99, 1]]
 b[0..3] = a    #   [3.14159, "pie", 99, 1]
 b[0, 2] = 1    #   [1, 1]
 c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
-</code></pre></div>
+</code></pre>
+<p>* Os valores em um <code class='inline prettyprint'>Array</code> é apenas uma referência para a instância do objeto em memória</p>
+</div>
       <div class='step' >
     
-<h1>Containers - Hash</h1>
-<pre><code class='prettyprint '>h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
-h.length        #        3
-h['dog']        #        "canine"
-h['cow'] = 'bovine'
-h[12]    = 'dodecine'
-h['cat'] = 99
-h        # => {"cow"=>"bovine", "cat"=>99, 12=>"dodecine",
-"donkey"=>"asinine", "dog"=>"canine"}
+<h1>Containers</h1>
+
+<h2>Hash (Dicionário) - é uma lista não ordenada, mas com chave e valor</h2>
+<pre><code class='prettyprint ruby'>h = {:dog => 'canine', :cat => 'feline', :donkey => 'asinine'}
+h.length            #        3
+h[:dog]             #        "canine"
+h[:cow] = 'bovine'
+h[12]   = 'dodecine'
+h[:cat] = 99
+h
+=> {:cow=>"bovine", :cat=>99, 12=>"dodecine", :donkey=>"asinine", :dog=>"canine"}
 
 a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
 b = Hash[a]
 # => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+</code></pre>
+<h2>Ranger (Intervalos)</h2>
+<pre><code class='prettyprint ruby'>puts (4..9).include? 7  # => true
 </code></pre></div>
       <div class='step' >
     
-<h1>Blocos e Iteradores</h1>
+<h1>Variáveis e Escopo</h1>
+<pre><code class='prettyprint ruby'>$variavel_global
 
-<h2>Passando blocos</h2>
-<pre><code class='prettyprint '>(1..12).each { |i| puts i}  # or
-[1, 2, 4].each do |i|
-    puts i
+@@variavel_de_classe
+
+@variavel_de_instancia
+
+[Classe::]CONSTANTE
+
+variavel_local
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Pseudo variáveis</h1>
+<pre><code class='prettyprint ruby'>self     # é o contexto atual que será usado para enviar mensagem
+true
+false
+nil
+__FILE__ # nome do arquivo de script atual em execução
+__LINE__ # número da linha atual do script em execução
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Variáveis pré definidas</h1>
+<pre><code class='prettyprint ruby'>$0        # nome do processo atual em execução
+$$        # PID do processo atual no SO
+$stdin    # entrada padrão de dados (STDIN)
+$stdout   # saída padrão de dados (STDOUT)
+$VERBOSE  # retorna true se script carregado com -v, --verbose ou -w
+$[numero] # retorna o grupo referente a ùltima expressão regular executada
+</code></pre>
+<p>* Esta é uma lista reduzida.</p>
+</div>
+      <div class='step' >
+    
+<h1>Constantes pré definitas</h1>
+<pre><code class='prettyprint ruby'>TRUE    # == true
+FALSE   # == false
+NIL     # == nil
+ARGV    # Array com a lista de parametros passados no momento de execução do script.
+ENV     # Um hash com todas as variáveis de ambiente do seu sistema.
+</code></pre>
+<p>* Esta é uma lista reduzida.</p>
+</div>
+      <div class='step' >
+    
+<h1>Expressão regular</h1>
+
+<p>Expressão regular pode ser declarada entre <code class='inline prettyprint'>/</code> ou usando o operador <code class='inline prettyprint'>%r</code></p>
+<pre><code class='prettyprint ruby'>/pattern/
+%r[pattern]
+</code></pre>
+<p>Após a declaração do padrão, pode-se aplicar modificadores, após <code class='inline prettyprint'>/</code>, e são eles: <code class='inline prettyprint'>i</code> ignorar case, <code class='inline prettyprint'>o</code> permitir interpolação, <code class='inline prettyprint'>x</code> ignorar espaços e permitir comentários e <code class='inline prettyprint'>m</code> fazer busca em múltiplas linhas, reconhecendo o caracter de nova linha <code class='inline prettyprint'>\n</code></p>
+<pre><code class='prettyprint ruby'>/pattern/i
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas de Controle</h1>
+
+<h2>Condicional <code class='inline prettyprint'>if</code></h2>
+
+<h3>Exemplo Completo</h3>
+<pre><code class='prettyprint ruby'>count = gets.chomp.to_i
+
+if count > 10
+  puts "Try again"
+elsif tries == 3
+  puts "You lose"
+else
+  puts  "Number: #{count}"
 end
 </code></pre>
-<h2>Blocos de codigo</h2>
-<pre><code class='prettyprint '>(1..20).each{|x| puts x}
+<h3>Exemplo Simples</h3>
+<pre><code class='prettyprint ruby'>if radiation > 3000
+  puts "Danger"
+end
 </code></pre>
-<h2>Influencia do Smalltalk</h2>
-<pre><code class='prettyprint '>1 to: 20 do: [:x | x printN1]
+<h3>Modificador de Sentenca</h3>
+<pre><code class='prettyprint ruby'>puts "Danger, Will Robinson" if radiation > 3000
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas de Controle</h1>
+
+<h2>Condicional <code class='inline prettyprint'>unless</code></h2>
+
+<p>É o inverso do condicional <code class='inline prettyprint'>if</code>. Então, ao invés de usar:</p>
+<pre><code class='prettyprint ruby'>if not 'abc'.include? grau
+  puts 'você está de recuperação'
+end
+</code></pre>
+<p>use...</p>
+<pre><code class='prettyprint ruby'>unless 'abc'.include? grau
+  puts 'você está de recuperação'
+end
+</code></pre>
+<h3>Modificador de Sentenca</h3>
+<pre><code class='prettyprint ruby'>puts 'você está de recuperação' unless 'abc'.include? grau
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas de Controle</h1>
+
+<h3>Condicional <code class='inline prettyprint'>case</code></h3>
+<pre><code class='prettyprint ruby'>print "Enter your grade: "
+grade = gets.chomp
+case grade
+  when "A"
+    puts 'Well done!'
+  when "B"
+    puts 'Try harder!'
+  when "C", "D"
+    puts 'You need help!!!'
+    puts "You just making it up!"
+  else
+    puts "You just making it up!"
+end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas de Controle</h1>
+
+<p>Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. <code class='inline prettyprint'>break</code> interrompe o fluxo para fora do bloco, <code class='inline prettyprint'>next</code> pula para a próxima iteração e <code class='inline prettyprint'>redo</code> para reiniciar o loop.</p>
+
+<h2>Loop <code class='inline prettyprint'>while</code></h2>
+<pre><code class='prettyprint ruby'>weight = num_pallets = 0
+while weight < 100 and num_pallets <= 30
+  weight += rand(10)
+
+  # Sai do loop se o peso for um múltiplo de 5
+  break if (weight % 5 == 0)
+
+  num_pallets += 1
+end
+
+puts weight, num_pallets
+</code></pre>
+<h4>Modificador de Sentenca</h4>
+<pre><code class='prettyprint ruby'>square = square*square  while square < 1000
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estrutura de Controle</h1>
+
+<h2>Loop <code class='inline prettyprint'>for</code></h2>
+<pre><code class='prettyprint ruby'>for i in 0..5
+  puts "Value is #{i}"
+end
+</code></pre>
+<p>Apesar de existir o loop <code class='inline prettyprint'>for</code>, em Ruby é comum fazer iteração através do método <code class='inline prettyprint'>each</code> do objeto. Veremos mais a frente.</p>
+<pre><code class='prettyprint ruby'>(0..5).each do |i|
+  puts "Value is #{i}"
+end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estrutura de Controle</h1>
+
+<h2>Loop <code class='inline prettyprint'>until</code></h2>
+<pre><code class='prettyprint ruby'>until weight >= 100 ||numPallets > 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+end
+</code></pre>
+<h3>Modificador de Sentenca</h3>
+<pre><code class='prettyprint ruby'>square = square*square  until square >= 1000
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Bloco de código</h1>
+
+<p>O bloco de código é um trecho de código que será passado para um método, a ser usado internamente pela mesmo.</p>
+
+<h2>Para blocos de uma única linha, deve-se usar as <code class='inline prettyprint'>{chaves}</code></h2>
+<pre><code class='prettyprint ruby'>metodo { puts "estou dentro do metodo" }
+</code></pre>
+<h2>Para blocos com mais de uma linha, usa-se o com os delimitadores <code class='inline prettyprint'>do</code> e <code class='inline prettyprint'>end</code></h2>
+<pre><code class='prettyprint ruby'>metodo do
+  puts "estou dentro do metodo"
+end
+</code></pre>
+<p>* Existe a possibilidade de receber parâmetros para seu bloco, no caso, basta envolver entre <code class='inline prettyprint'>|</code></p>
+<pre><code class='prettyprint ruby'>metodo {|valor| puts "#{valor} dentro do metodo" }
 </code></pre></div>
       <div class='step' >
     
 <h1>Métodos de um Enumerable</h1>
-<pre><code class='prettyprint '>all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
+<pre><code class='prettyprint ruby'>all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
 map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
 to_set, zip
@@ -568,32 +678,6 @@ stock = BookInStock.new
 stock = BookInStock.new (1234, 10.39)
 # invocando metodo
 puts stock.to_s
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Variáveis e Escopo</h1>
-
-<h2>Variáveis Locais</h2>
-<pre><code class='prettyprint '>  x name thx1138 _x _26
-</code></pre>
-<h2>Variáveis de Instancia</h2>
-<pre><code class='prettyprint '>  @name @X  @_ @plan9
-</code></pre>
-<h2>Variáveis de Classe</h2>
-<pre><code class='prettyprint '>  @@total @@N @@x_pos
-</code></pre></div>
-      <div class='step' >
-    
-<h1>Variáveis e Escopo</h1>
-
-<h2>Variáveis Globais</h2>
-<pre><code class='prettyprint '>  $debug $CUSTOM $_ $plan9
-</code></pre>
-<h2>Nomes de Classe</h2>
-<pre><code class='prettyprint '>  String BigDecimal
-</code></pre>
-<h2>Constants</h2>
-<pre><code class='prettyprint '>  FEET_PER_MILE DEBUG
 </code></pre></div>
       <div class='step' >
     

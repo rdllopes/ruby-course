@@ -6,8 +6,9 @@
 
 -   Introdução: Ruby.new
 -   Estruturas Básicas
+-   Bloco de código
 -   Estruturas de Controle
--   Containers, Blocos e Iterators
+-   Containers e Iterators
 -   Classe, Objetos e Variáveis
 -   Mais sobre Métodos
 -   Tratamento de Exceções
@@ -15,6 +16,8 @@
 -   Pacotes básicos
 -   ERB (templates em ruby)
 -   Dojo
+
+\* Não necessariamente nessa ordem.
 
 ---
 = data-x="1000" data-scale="2"
@@ -78,6 +81,19 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 ---
 # Introdução:Ruby.new
 
+Sobre a sintaxe:
+
+* Espaços, tabulações e blocos de comentários serão ignorados pelo interpretador.
+* Ponto-e-vírgula e nova linha é considerado um novo comando. Porém, se for encontrado um operador, como `+`, `-`, ou o sinal de `\`, indica que a próxima linha é continuação do comando atual.
+* Os identificadores são nomes de variáveis, constantes e métodos e é *case-sensitive*, ou seja, `DNS` e `Dns` são duas constantes diferentes.
+* Deve-se usar letras_minúsculas para nomes de variáveis e métodos. `nome_completo`
+* Deve-se usar LETRAS_MAIÚSCULAS para nome de CONSTANTES. `MAX_ATTENDEES = 100`
+* Deve-se usar *CamelCase* para nome de Classes. `NotificationMailer`
+
+
+---
+# Introdução:Ruby.new
+
 ## Hello World!
 
 ### via arquivo
@@ -121,20 +137,9 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 ```
 
 ---
-# Introdução: Ruby.new
-
-## O que faz o código a seguir?
-
-```ruby
-exit unless 'restaurante'.include? 'aura'
-
-['toasty', 'cheese', 'wine'].each { |food| print food.capitalize }
-```
-
----
 # Estruturas básicas
 
-Tudo em Ruby é um objeto.
+Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um objeto.
 
 ```javascript
 >> 1.class
@@ -154,6 +159,7 @@ Tudo em Ruby é um objeto.
 >> Class.class
 => Class
 ```
+
 
 ---
 # Estruturas básicas
@@ -196,6 +202,29 @@ Mas para isto funcionar, o =begin e =end devem estar
 na exterma esquerda do seu código, ou seja, na coluna
 0 (zero).
 =end
+```
+
+---
+# Estruturas básicas
+
+## Números
+
+### Inteiros
+
+```ruby
+123                       # Inteiro (Fixnum)
+-123                      # Inteiro negatico (Fixnum)
+1_123                     # Inteiro (Fixnum)
+123_456_789_123_456_789   # Inteiro (Bignum)
+0xAB                      # Número Hexadecimal (170)
+0377                      # Número Octal (255)
+0b001001                  # Número binário (9)
+```
+
+### Flutuantes
+```ruby
+123.45                    # Número com ponto flutuante (Float)
+1.2e-3                    # Número com ponto flutuante (0.0012)
 ```
 
 ---
@@ -302,22 +331,7 @@ Esta é uma string em múltiplas linhas.
     * item
 </code></pre>
 
----
-# Estruturas básicas
-
-## Números
-
-```
-123                       # Inteiro (Fixnum)
--123                      # Inteiro negatico (Fixnum)
-1_123                     # Inteiro (Fixnum)
-123_456_789_123_456_789   # Inteiro (Bignum)
-123.45                    # Número com ponto flutuante (Float)
-1.2e-3                    # Número com ponto flutuante (0.0012)
-0xAB                      # Número Hexadecimal (170)
-0377                      # Número Octal (255)
-0b001001                  # Número binário (9)
-```
+\* aceita interpolação.
 
 ---
 # Estruturas básicas
@@ -341,28 +355,129 @@ O método `equal?` só devolve `true` se dois objetos são de fato o mesmo objet
 ```
 
 ---
-# Estruturas básicas
+# Containers
 
-## Boleano e nulo
+## Array (Lista)
 
 ```ruby
-true
-false
-nil
+a = [ 3.14159, "pie", 99 ]
+a.type   #        Array
+a.length #        3
+a[0]     #        3.14159
+a << 1
+a[3]     #        1
+a[-2]    #        99
+b = Array.new
+b << a   #   [[3.14159, "pie", 99, 1]]
+b[0..3] = a    #   [3.14159, "pie", 99, 1]
+b[0, 2] = 1    #   [1, 1]
+c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 ```
 
-Se não me engano, já falei que em Ruby, TUDO É UM OBJETO.
+\* Os valores em um `Array` é apenas uma referência para a instância do objeto em memória
+
+---
+# Containers
+
+## Hash (Dicionário) - é uma lista não ordenada, mas com chave e valor
 
 ```ruby
-nil.nil?     # => true
-true.to_s    # => 'true'
-false.nil?   # => false
+h = {:dog => 'canine', :cat => 'feline', :donkey => 'asinine'}
+h.length            #        3
+h[:dog]             #        "canine"
+h[:cow] = 'bovine'
+h[12]   = 'dodecine'
+h[:cat] = 99
+h
+=> {:cow=>"bovine", :cat=>99, 12=>"dodecine", :donkey=>"asinine", :dog=>"canine"}
+
+a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
+b = Hash[a]
+# => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+```
+
+## Ranger (Intervalos)
+
+```ruby
+puts (4..9).include? 7  # => true
 ```
 
 ---
-# Estruturas de Controle - if
+# Variáveis e Escopo
 
-## Exemplo Completo
+```ruby
+$variavel_global
+
+@@variavel_de_classe
+
+@variavel_de_instancia
+
+[Classe::]CONSTANTE
+
+variavel_local
+```
+
+---
+# Pseudo variáveis
+
+```ruby
+self     # é o contexto atual que será usado para enviar mensagem
+true
+false
+nil
+__FILE__ # nome do arquivo de script atual em execução
+__LINE__ # número da linha atual do script em execução
+```
+
+---
+# Variáveis pré definidas
+
+```ruby
+$0        # nome do processo atual em execução
+$$        # PID do processo atual no SO
+$stdin    # entrada padrão de dados (STDIN)
+$stdout   # saída padrão de dados (STDOUT)
+$VERBOSE  # retorna true se script carregado com -v, --verbose ou -w
+$[numero] # retorna o grupo referente a ùltima expressão regular executada
+```
+
+\* Esta é uma lista reduzida.
+
+---
+# Constantes pré definitas
+
+```ruby
+TRUE    # == true
+FALSE   # == false
+NIL     # == nil
+ARGV    # Array com a lista de parametros passados no momento de execução do script.
+ENV     # Um hash com todas as variáveis de ambiente do seu sistema.
+```
+
+\* Esta é uma lista reduzida.
+
+---
+# Expressão regular
+
+Expressão regular pode ser declarada entre `/` ou usando o operador `%r`
+
+```ruby
+/pattern/
+%r[pattern]
+```
+
+Após a declaração do padrão, pode-se aplicar modificadores, após `/`, e são eles: `i` ignorar case, `o` permitir interpolação, `x` ignorar espaços e permitir comentários e `m` fazer busca em múltiplas linhas, reconhecendo o caracter de nova linha `\n`
+
+```ruby
+/pattern/i
+```
+
+---
+# Estruturas de Controle
+
+## Condicional `if`
+
+### Exemplo Completo
 
 ```ruby
 count = gets.chomp.to_i
@@ -376,7 +491,7 @@ else
 end
 ```
 
-## Exemplo Simples
+### Exemplo Simples
 
 ```ruby
 if radiation > 3000
@@ -384,119 +499,158 @@ if radiation > 3000
 end
 ```
 
-## Modificador de Sentenca
+### Modificador de Sentenca
 
 ```ruby
 puts "Danger, Will Robinson" if radiation > 3000
 ```
 
 ---
-# Estruturas de Controle - case
+# Estruturas de Controle
 
-    print "Enter your grade: "
-    grade = gets.chomp
-    case grade
-    when "A"
-      puts 'Well done!'
-    when "B"
-      puts 'Try harder!'
-    when "C", "D"
-      puts 'You need help!!!'
-      puts "You just making it up!"
-    else
+## Condicional `unless`
+
+É o inverso do condicional `if`. Então, ao invés de usar:
+
+```ruby
+if not 'abc'.include? grau
+  puts 'você está de recuperação'
+end
+```
+
+use...
+
+```ruby
+unless 'abc'.include? grau
+  puts 'você está de recuperação'
+end
+```
+
+### Modificador de Sentenca
+
+```ruby
+puts 'você está de recuperação' unless 'abc'.include? grau
+```
+
+---
+# Estruturas de Controle
+
+### Condicional `case`
+
+```ruby
+print "Enter your grade: "
+grade = gets.chomp
+case grade
+  when "A"
+    puts 'Well done!'
+  when "B"
+    puts 'Try harder!'
+  when "C", "D"
+    puts 'You need help!!!'
     puts "You just making it up!"
-     end
+  else
+    puts "You just making it up!"
+end
+```
+---
+# Estruturas de Controle
+
+Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. `break` interrompe o fluxo para fora do bloco, `next` pula para a próxima iteração e `redo` para reiniciar o loop.
+
+## Loop `while`
+
+```ruby
+weight = num_pallets = 0
+while weight < 100 and num_pallets <= 30
+  weight += rand(10)
+
+  # Sai do loop se o peso for um múltiplo de 5
+  break if (weight % 5 == 0)
+
+  num_pallets += 1
+end
+
+puts weight, num_pallets
+```
+
+#### Modificador de Sentenca
+
+```ruby
+square = square*square  while square < 1000
+```
 
 ---
-# Estruturas de Controle - while
+# Estrutura de Controle
 
-    while weight < 100 and numPallets <= 30
-      pallet = nextPallet()
-      weight += pallet.weight
-      numPallets += 1
-    end
+## Loop `for`
 
-## Modificador de Sentenca
+```ruby
+for i in 0..5
+  puts "Value is #{i}"
+end
+```
 
-    square = square*square  while square < 1000
+Apesar de existir o loop `for`, em Ruby é comum fazer iteração através do método `each` do objeto. Veremos mais a frente.
 
----
-# Estrutura de Controle - for
-
-    for i in 0..5
-       puts "Value is #{i}"
-    end
-
----
-# Estrutura de Controle - until
-
-    until weight >= 100 ||numPallets > 30
-      pallet = nextPallet()
-      weight += pallet.weight
-      numPallets += 1
-    end
-
-## Modificador de Sentenca
-
-    square = square*square  until square >= 1000
+```ruby
+(0..5).each do |i|
+  puts "Value is #{i}"
+end
+```
 
 ---
-# Containers - Array
+# Estrutura de Controle
 
-    a = [ 3.14159, "pie", 99 ]
-    a.type   #        Array
-    a.length #        3
-    a[0]     #        3.14159
-    a << 1
-    a[3]     #        1
-    a[-2]    #        99
-    b = Array.new
-    b << a   #   [[3.14159, "pie", 99, 1]]
-    b[0..3] = a    #   [3.14159, "pie", 99, 1]
-    b[0, 2] = 1    #   [1, 1]
-    c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
+## Loop `until`
 
----
-# Containers - Hash
+```ruby
+until weight >= 100 ||numPallets > 30
+  pallet = nextPallet()
+  weight += pallet.weight
+  numPallets += 1
+end
+```
 
-    h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
-    h.length        #        3
-    h['dog']        #        "canine"
-    h['cow'] = 'bovine'
-    h[12]    = 'dodecine'
-    h['cat'] = 99
-    h        # => {"cow"=>"bovine", "cat"=>99, 12=>"dodecine",
-    "donkey"=>"asinine", "dog"=>"canine"}
+### Modificador de Sentenca
 
-    a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
-    b = Hash[a]
-    # => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+```ruby
+square = square*square  until square >= 1000
+```
 
 ---
-# Blocos e Iteradores
+# Bloco de código
 
-## Passando blocos
+O bloco de código é um trecho de código que será passado para um método, a ser usado internamente pela mesmo.
 
-    (1..12).each { |i| puts i}  # or
-    [1, 2, 4].each do |i|
-        puts i
-    end
+## Para blocos de uma única linha, deve-se usar as `{chaves}`
 
-## Blocos de codigo
+```ruby
+metodo { puts "estou dentro do metodo" }
+```
 
-    (1..20).each{|x| puts x}
+## Para blocos com mais de uma linha, usa-se o com os delimitadores `do` e `end`
 
-## Influencia do Smalltalk
+```ruby
+metodo do
+  puts "estou dentro do metodo"
+end
+```
 
-    1 to: 20 do: [:x | x printN1]
+\* Existe a possibilidade de receber parâmetros para seu bloco, no caso, basta envolver entre `|`
+
+```ruby
+metodo {|valor| puts "#{valor} dentro do metodo" }
+```
 
 ---
 #  Métodos de um Enumerable
 
-    all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
-    enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
-    map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
-    to_set, zip
+```ruby
+all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
+enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
+map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
+to_set, zip
+```
 
 ---
 # Exemplos com Enumeraveis
@@ -593,37 +747,6 @@ puts "Danger, Will Robinson" if radiation > 3000
     stock = BookInStock.new (1234, 10.39)
     # invocando metodo
     puts stock.to_s
-
----
-# Variáveis e Escopo
-
-
-## Variáveis Locais
-
-      x name thx1138 _x _26
-
-## Variáveis de Instancia
-
-      @name @X  @_ @plan9
-
-## Variáveis de Classe
-
-      @@total @@N @@x_pos
-
----
-# Variáveis e Escopo
-
-## Variáveis Globais
-
-      $debug $CUSTOM $_ $plan9
-
-## Nomes de Classe
-
-      String BigDecimal
-
-## Constants
-
-      FEET_PER_MILE DEBUG
 
 ---
 # Atributos de instância - forma tradicional
