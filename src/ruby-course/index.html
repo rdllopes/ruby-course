@@ -24,9 +24,16 @@
     <div id="impress">
     <div class='step' >
     
+<h1 class='capa'>Curso de Introdução a programação com Ruby</h1>
+
+<p><a href="http://bit.ly/cursorubyabril">http://bit.ly/cursorubyabril</a> - <a href="https://github.com/abril/ruby-course">https://github.com/abril/ruby-course</a></p>
+</div>
+      <div class='step' >
+    
 <h1>Sumário</h1>
 
 <ul>
+<li>  Introdução: Ruby.new</li>
 <li>  Estruturas Básicas</li>
 <li>  Estruturas de Controle</li>
 <li>  Containers, Blocos e Iterators</li>
@@ -41,119 +48,326 @@
 </div>
       <div class='step'  data-x="1000" data-scale="2">
     
-<h1>Introducao:Ruby.new</h1>
+<h1>Introdução:Ruby.new</h1>
 
-<h3>Instalação</h3>
-<pre><code class='prettyprint '>    apt-get install ruby
+<p>Ruby é uma linguagem de programação <strong>interpretada</strong>, de <strong>tipagem dinâmica e forte</strong>, com <strong>gerenciamento de memória automático</strong>, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro &quot;Matz&quot; Matsumoto, para ser usada como linguagem de script.</p>
+
+<p>Matz queria uma linguagem de script que fosse mais poderosa do que Perl, e mais orientada a objetos do que Python. Ruby é primariamente, uma linguagem <strong>orientada a objetos</strong>, mas suporta outros paradigmas de programação, como <strong>funcional</strong>, <strong>imperativa</strong> e <strong>reflexiva</strong>.</p>
+
+<p>Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.</p>
+
+<p>fonte: <a href="http://bit.ly/wiki-ruby">Wikipedia - http://bit.ly/wiki-ruby</a></p>
+</div>
+      <div class='step' >
+    
+<h1>Introdução:Ruby.new</h1>
+
+<h2>Instalação</h2>
+
+<h3>Windows</h3>
+
+<p>Baixar o executável de instalação em <a href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a></p>
+
+<h3>Linux (Debian / Ubuntu)*</h3>
+<pre><code class='prettyprint bash'>$ [sudo] apt-get install ruby1.9.1
 </code></pre>
-<p><br/></p>
-
-<h3>Editores</h3>
-<pre><code class='prettyprint '>    TextMate Vim Sublime Emacs Aptana
+<h3>Mac (via Homebrew)*</h3>
+<pre><code class='prettyprint bash'>$ brew install ruby
 </code></pre>
-<p><br/></p>
+<p>* Linux e Max normalmente já vem com uma instalação de Ruby.</p>
+</div>
+      <div class='step' >
+    
+<h1>Introdução:Ruby.new</h1>
 
-<h3>Executando</h3>
-<pre><code class='prettyprint '>    ruby nome_do_programa
+<p>Verificar a versão de ruby instalada, digite <code class='inline prettyprint'>ruby --version</code></p>
+<pre><code class='prettyprint bash'>$ ruby --version
+ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
+</code></pre>
+<p>* <code class='inline prettyprint'>ruby -v</code> também imprime a versão do ruby, porém ativa o modo <em>verbose</em> e permite executar scripts.</p>
+</div>
+      <div class='step' >
+    
+<h1>Introdução:Ruby.new</h1>
 
-    irb  ou >> ruby interativo
+<h2>Editores</h2>
+
+<ul>
+<li><a href="http://www.sublimetext.com/2">Sublime Text 2 (Windows, Linux e Max)</a></li>
+<li><a href="http://www.vim.org/">Vim</a></li>
+<li><a href="http://www.gnu.org/software/emacs/">Emacs</a></li>
+<li><a href="https://github.com/textmate/textmate/">TextMate 2</a></li>
+<li><a href="https://netbeans.org/downloads/6.9.1/index.html">Netbeans 6.9.1</a></li>
+<li><a href="http://www.aptana.com/">Aptana</a></li>
+</ul>
+</div>
+      <div class='step' >
+    
+<h1>Introdução:Ruby.new</h1>
+
+<h2>Hello World!</h2>
+
+<h3>via arquivo</h3>
+<pre><code class='prettyprint bash'>$ echo 'puts "hello world"' > hello_word.rb
+$ ruby hello_word.rb
+hello world
+</code></pre>
+<h3><em>one-liner</em></h3>
+<pre><code class='prettyprint bash'>$ ruby -e 'puts "hello world"'
+hello world
+</code></pre>
+<h3><em>Interactive Ruby</em> (IRB)</h3>
+<pre><code class='prettyprint bash'>$ irb
+>> puts 'hello world'
+hello world
+=> nil
+>>
 </code></pre></div>
       <div class='step' >
     
-<h1>Introducao: Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
-<p>Linguagem para humanos</p>
-
-<h3>Compare:</h3>
-
-<h2>Este laço em Ruby:</h2>
-<pre><code class='prettyprint '>    5.times { print "Ola!" }
+<h3>Compare este laço:</h3>
+<pre><code class='prettyprint ruby'>5.times { print 'Ola!' }
 </code></pre>
-<h2>Com este:</h2>
-<pre><code class='prettyprint '>    for (int i=0; i <10; i++) { printf("Ola!");}
+<h3>com este em PHP:</h3>
+<pre><code class='prettyprint php'>for (int i=0; i <10; i++) { printf("Ola!");}
 </code></pre></div>
       <div class='step' >
     
-<h1>Introducao: Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <h2>O que faz o código a seguir?</h2>
-<pre><code class='prettyprint '>    exit unless "restaurante".include? "aura"
+<pre><code class='prettyprint ruby'>exit unless 'restaurante'.include? 'aura'
 
-    [‘toasty', ’cheese', ’wine'].each 
-    { |food| print food.capitalize }
+['toasty', 'cheese', 'wine'].each { |food| print food.capitalize }
 </code></pre></div>
-      <div class='step'  data-x="1000" data-scale="2">
+      <div class='step' >
     
 <h1>Estruturas básicas</h1>
 
-<h2>Variáveis</h2>
-<pre><code class='prettyprint '>    x, y, taxa_do_lixo2
-</code></pre>
-<h2>Números</h2>
-<pre><code class='prettyprint '>    1, -1.2, 6.03e-23    
-</code></pre>
-<h2>String</h2>
-<pre><code class='prettyprint '>    "alguma coisa assim"
-    %q(veremos outras formas de declarar strings)
+<p>Tudo em Ruby é um objeto.</p>
+<pre><code class='prettyprint javascript'>>> 1.class
+=> Fixnum
+>> "texto".class
+=> String
+>> :simbolo.class
+=> Symbol
+>> true.class
+=> TrueClass
+>> false.class
+=> FalseClass
+>> nil.class
+=> NilClass
+>> Object.class
+=> Class
+>> Class.class
+=> Class
 </code></pre></div>
       <div class='step' >
     
-<h1>Estruturas basicas</h1>
+<h1>Estruturas básicas</h1>
 
-<h2>Symbols</h2>
-<pre><code class='prettyprint '>    :x, :y, :isso_parece_uma_string
-</code></pre>
-<h2>Constantes</h2>
-<pre><code class='prettyprint '>    EmpireStateBuilding, NEA, PI
-</code></pre>
-<h2>Objetos especiais</h2>
-<pre><code class='prettyprint '>    true, false, nil
-</code></pre>
-<p><br/></p>
+<p>Já falei que em Ruby, TUDO é objeto?</p>
+<pre><code class='prettyprint ruby'>>> 1.methods.count
+=> 130
+> 1.methods.sort
+=> [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, :<<, :<=, :<=>, :==, :===,
+:=~, :>, :>=, :>>, :[], :^, :__id__, :__send__, :abs, :abs2, :angle, :arg, :between?,
+:ceil, :chr, :class, :clone, :coerce, :conj, :conjugate, ...]
+>> 'texto'.methods.count
+=> 162
+>> 'texto'.methods.sort
+=> [:!, :!=, :!~, :%, :*, :+, :<, :<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :[], :[]=,
+:__id__, :__send__, :ascii_only?, :between?, :bytes, :bytesize, :byteslice, ...]
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
 
-<h3>Símbolos são alocados uma única vez: :a.object_id durante uma execução sempre retornara o mesmo valor. Isso nao acontece com string.</h3>
+<h2>Comentários</h2>
 
-<h3>O método equal? só devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).</h3>
+<p>Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.</p>
+
+<h3>Uma linha</h3>
+<pre><code class='prettyprint ruby'># Esta linha é um comentário.
+1 + 1 # este texto a direita do sinal de # também é um comentário.
+</code></pre>
+<h3>Múltiplas linhas</h3>
+<pre><code class='prettyprint ruby'>=begin
+O texto envolvido por =begin e =end é comentário.
+Mas para isto funcionar, o =begin e =end devem estar
+na exterma esquerda do seu código, ou seja, na coluna
+0 (zero).
+=end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>String <code class='inline prettyprint'>'single quotes'</code></h2>
+<pre><code class='prettyprint ruby'>>> puts 'texto'
+texto
+>> puts 'texto'.length
+5
+>> puts 'texto'.upcase
+TEXTO
+>> puts 'tex'.+('to')
+texto
+>> puts 'tex' + 'to' # syntax sugar
+texto
+>> puts 'tex' << 'to'
+texto
+>> String.new << 'texto'
+texto
+>> 'tex%s' % 'to'
+texto
+</code></pre>
+<p>Para usar os caracteres <code class='inline prettyprint'>'</code> ou <code class='inline prettyprint'>\</code>, você pode usar sequência de <em>escape</em> <code class='inline prettyprint'>\'</code> e <code class='inline prettyprint'>\\</code>.</p>
+<pre><code class='prettyprint ruby'>>> puts 'texto \' \\'
+texto ' \
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>String <code class='inline prettyprint'>"double quotes"</code></h2>
+
+<p>Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.</p>
+<pre><code class='prettyprint ruby'>>> puts "o resultado de 1 + 1 é #{ 1 + 1 }."
+o resultado de 1 + 1 é 2.
+>> puts 'o resultado de 1 + 1 é #{ 1 + 1 }.'
+o resultado de 1 + 1 é #{ 1 + 1 }.
+</code></pre>
+<p>O valor da expressão a ser interpolada, será o resultado do método <code class='inline prettyprint'>to_s</code> do objeto.</p>
+
+<p>Sequências de <em>escape</em></p>
+
+<div style='float:right;width:60%'>
+<pre class='prettyprint'><code class='language-ruby'>>> puts "hello\nworld"
+hello
+world
+>> puts "      world\rhello"
+hello world
+>> puts "\thello \b\sworld"
+    hello world
+>> puts '\thello \b\sworld'
+\thello \b\sworld
+</code></pre>
+</div>
+
+<ul>
+<li><code class='inline prettyprint'>\"</code> – double quote</li>
+<li><code class='inline prettyprint'>\\</code> – single backslash</li>
+<li><code class='inline prettyprint'>\a</code> – bell/alert</li>
+<li><code class='inline prettyprint'>\b</code> – backspace</li>
+<li><code class='inline prettyprint'>\r</code> – carriage return</li>
+<li><code class='inline prettyprint'>\n</code> – newline</li>
+<li><code class='inline prettyprint'>\s</code> – space</li>
+<li><code class='inline prettyprint'>\t</code> – tab</li>
+</ul>
 </div>
       <div class='step' >
     
-<h1>Metodos (mensagens)</h1>
-<pre><code class='prettyprint '>i = 1        
-texto = "um texto"; puts texto
-a = b = c = 0
-1 == 2           # sugar syntax!!!
-# metodo de classe
-1.methods  # lista todos os metodos daquele objeto
-1.send(:even?) # outra forma de enviar mensagens
-def fibo(n = 1)
-    fibo(n-2) + fibo(n-1) if n >= 2
-end
-def self.log
-  puts "metodo de classe"
-end
+<h1>Estruturas básicas</h1>
+
+<h2>String multiplas linhas</h2>
+
+<pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+DOC
+# Resultado
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
 </code></pre>
-<p>Lembre-se ... voce pode redefinir um método Quase tudo e objeto</p>
+
+<p>Se quiser identar o finalizaror, para usar <code class='inline prettyprint'><<-</code>.</p>
+
+<pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+    DOC
+# Resultado
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+</code></pre>
 </div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>Números</h2>
+<pre><code class='prettyprint '>123                       # Inteiro (Fixnum)
+-123                      # Inteiro negatico (Fixnum)
+1_123                     # Inteiro (Fixnum)
+123_456_789_123_456_789   # Inteiro (Bignum)
+123.45                    # Número com ponto flutuante (Float)
+1.2e-3                    # Número com ponto flutuante (0.0012)
+0xAB                      # Número Hexadecimal (170)
+0377                      # Número Octal (255)
+0b001001                  # Número binário (9)
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>Símbolos</h2>
+
+<p>Os símbolos são ideais para serem usados como chave em <code class='inline prettyprint'>Hash</code>.</p>
+<pre><code class='prettyprint ruby'>:x, :y, :chave
+</code></pre>
+<p>Símbolos são alocados uma única vez: <code class='inline prettyprint'>:a.object_id</code> durante uma execução sempre retornara o mesmo valor. Isso não acontece com string.</p>
+
+<p>O método <code class='inline prettyprint'>equal?</code> só devolve <code class='inline prettyprint'>true</code> se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).</p>
+<pre><code class='prettyprint ruby'>1.equals?(1)             # => true
+:key.equals?(:key)       # => true
+"texto".equals?("texto") # => false
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas</h1>
+
+<h2>Boleano e nulo</h2>
+<pre><code class='prettyprint ruby'>true
+false
+nil
+</code></pre>
+<p>Se não me engano, já falei que em Ruby, TUDO É UM OBJETO.</p>
+<pre><code class='prettyprint ruby'>nil.nil?     # => true
+true.to_s    # => 'true'
+false.nil?   # => false
+</code></pre></div>
       <div class='step' >
     
 <h1>Estruturas de Controle - if</h1>
 
 <h2>Exemplo Completo</h2>
-<pre><code class='prettyprint '>if count > 10
+<pre><code class='prettyprint ruby'>count = gets.chomp.to_i
+
+if count > 10
   puts "Try again"
 elsif tries == 3
   puts "You lose"
 else
-  puts  "Number:"
+  puts  "Number: #{count}"
 end
 </code></pre>
 <h2>Exemplo Simples</h2>
-<pre><code class='prettyprint '>if radiation > 3000
+<pre><code class='prettyprint ruby'>if radiation > 3000
   puts "Danger"
 end
 </code></pre>
 <h2>Modificador de Sentenca</h2>
-<pre><code class='prettyprint '>puts "Danger, Will Robinson" if radiation > 3000
+<pre><code class='prettyprint ruby'>puts "Danger, Will Robinson" if radiation > 3000
 </code></pre></div>
       <div class='step' >
     
@@ -240,7 +454,7 @@ b = Hash[a]
 <h1>Blocos e Iteradores</h1>
 
 <h2>Passando blocos</h2>
-<pre><code class='prettyprint '>(1..12).each { |i| puts i}  #or
+<pre><code class='prettyprint '>(1..12).each { |i| puts i}  # or
 [1, 2, 4].each do |i|
     puts i
 end
@@ -253,7 +467,7 @@ end
 </code></pre></div>
       <div class='step' >
     
-<h1> Métodos de um Enumerable</h1>
+<h1>Métodos de um Enumerable</h1>
 <pre><code class='prettyprint '>all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
 map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
@@ -289,7 +503,7 @@ names.join ", "
   puts "Calling command at: #{Time.new}"
   yield
 proxy_method { puts "hello world proxified! "}
-#ou com paremtros
+# ou com paremtros
 def proxy_method
    yield(Time.new)
 proxy_method {|time| puts "hello world proxified  at #{time}"}
@@ -303,7 +517,7 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
   method.call
 end
 proxy_method { puts "hello world proxified! "}
-#ou com paremtros
+# ou com paremtros
 def proxy_method (&method)
    method.call(Time.new)
 end
@@ -352,7 +566,7 @@ end
 stock = BookInStock.new
 # ou
 stock = BookInStock.new (1234, 10.39)
-#invocando metodo
+# invocando metodo
 puts stock.to_s
 </code></pre></div>
       <div class='step' >
@@ -372,19 +586,19 @@ puts stock.to_s
     
 <h1>Variáveis e Escopo</h1>
 
-<h2>Variáveis Globais </h2>
+<h2>Variáveis Globais</h2>
 <pre><code class='prettyprint '>  $debug $CUSTOM $_ $plan9
 </code></pre>
 <h2>Nomes de Classe</h2>
 <pre><code class='prettyprint '>  String BigDecimal
 </code></pre>
 <h2>Constants</h2>
-<pre><code class='prettyprint '>  FEET_PER_MILE DEBUG`
+<pre><code class='prettyprint '>  FEET_PER_MILE DEBUG
 </code></pre></div>
       <div class='step' >
     
 <h1>Atributos de instância - forma tradicional</h1>
-<pre><code class='prettyprint '>class BookInStock  
+<pre><code class='prettyprint '>class BookInStock
   def isbn
     @isbn
   end
@@ -400,7 +614,7 @@ puts stock.to_s
       <div class='step' >
     
 <h1>Atributos de instância - forma declarativa</h1>
-<pre><code class='prettyprint '>class BookInStock  
+<pre><code class='prettyprint '>class BookInStock
   attr_accessor :isbn
   attr_reader :price
  end
@@ -463,7 +677,7 @@ end
 
 <p>* Basta implementar o metodo each.</p>
 <pre><code class='prettyprint '>class Node
-  include Enumerable 
+  include Enumerable
   attr_accessor :next, :previous, :v
  def initialize(v = {})
     @v = v
@@ -512,7 +726,7 @@ end
     # Code for the method would go here
   end
 
-  def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  #defaults
+  def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  # defaults
     "#{arg1}, #{arg2}, #{arg3}."
   end
 </code></pre></div>
@@ -540,7 +754,7 @@ end
 <h1>Array para argumentos</h1>
 
 <p>Expandindo array para parâmetros</p>
-<pre><code class='prettyprint '>  def five(a, b, c, d, e) 
+<pre><code class='prettyprint '>  def five(a, b, c, d, e)
     "I was passed #{a} #{b} #{c} #{d} #{e}"
   end
   five(1, 2, 3, 4, 5 )         #  "I was passed 1 2 3 4 5"
@@ -598,7 +812,7 @@ end
 <pre><code class='prettyprint '>   begin
     eval string
   rescue SyntaxError, NameError => boom
-    #OLHA! sem usar o $!
+    # OLHA! sem usar o $!
     print "String doesn't compile: " + boom
   rescue StandardError => bang
     print "Error running script: " + bang

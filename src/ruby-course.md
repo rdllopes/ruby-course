@@ -1,5 +1,10 @@
-Sumário
-====================
+<h1 class='capa'>Curso de Introdução a programação com Ruby</h1>
+<http://bit.ly/cursorubyabril> - <https://github.com/abril/ruby-course>
+
+---
+# Sumário
+
+-   Introdução: Ruby.new
 -   Estruturas Básicas
 -   Estruturas de Controle
 -   Containers, Blocos e Iterators
@@ -13,134 +18,380 @@ Sumário
 
 ---
 = data-x="1000" data-scale="2"
-Introducao:Ruby.new
-========================
-###Instalação
-        apt-get install ruby
-<br/>
-###Editores
-        TextMate Vim Sublime Emacs Aptana
-<br/>
-###Executando
+# Introdução:Ruby.new
 
-        ruby nome_do_programa
+Ruby é uma linguagem de programação **interpretada**, de **tipagem dinâmica e forte**, com **gerenciamento de memória automático**, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
 
-        irb  ou >> ruby interativo
+Matz queria uma linguagem de script que fosse mais poderosa do que Perl, e mais orientada a objetos do que Python. Ruby é primariamente, uma linguagem **orientada a objetos**, mas suporta outros paradigmas de programação, como **funcional**, **imperativa** e **reflexiva**.
+
+Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.
+
+fonte: [Wikipedia - http://bit.ly/wiki-ruby](http://bit.ly/wiki-ruby)
 
 ---
-Introducao: Ruby.new
-========================
+# Introdução:Ruby.new
 
-Linguagem para humanos
+## Instalação
 
-###Compare:
+### Windows
 
-##Este laço em Ruby:
-        5.times { print "Ola!" }
-##Com este:
-        for (int i=0; i <10; i++) { printf("Ola!");}
+Baixar o executável de instalação em <http://rubyinstaller.org/downloads/>
 
----
-Introducao: Ruby.new
-========================
+### Linux (Debian / Ubuntu)*
 
-##O que faz o código a seguir?
+```bash
+$ [sudo] apt-get install ruby1.9.1
+```
 
-        exit unless "restaurante".include? "aura"
+### Mac (via Homebrew)*
 
-        [‘toasty', ’cheese', ’wine'].each 
-        { |food| print food.capitalize }
+```bash
+$ brew install ruby
+```
 
----
-= data-x="1000" data-scale="2"
-
-Estruturas básicas
-======================
-
-##Variáveis
-
-        x, y, taxa_do_lixo2
-
-##Números
-
-        1, -1.2, 6.03e-23    
-
-##String
-
-        "alguma coisa assim"
-        %q(veremos outras formas de declarar strings)
+\* Linux e Max normalmente já vem com uma instalação de Ruby.
 
 ---
-Estruturas basicas
-======================
+# Introdução:Ruby.new
 
-Symbols
-----------------
+Verificar a versão de ruby instalada, digite `ruby --version`
 
-        :x, :y, :isso_parece_uma_string
+```bash
+$ ruby --version
+ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
+```
 
-Constantes
-----------------
-        EmpireStateBuilding, NEA, PI
-
-Objetos especiais
-----------------
-        true, false, nil
-
-<br/>
-###Símbolos são alocados uma única vez: :a.object\_id durante uma execução sempre retornara o mesmo valor. Isso nao acontece com string.
-###O método equal? só devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).
+\* `ruby -v` também imprime a versão do ruby, porém ativa o modo *verbose* e permite executar scripts.
 
 ---
-Metodos (mensagens)
-=======================
+# Introdução:Ruby.new
 
-    i = 1        
-    texto = "um texto"; puts texto
-    a = b = c = 0
-    1 == 2           # sugar syntax!!!
-    # metodo de classe
-    1.methods  # lista todos os metodos daquele objeto
-    1.send(:even?) # outra forma de enviar mensagens
-    def fibo(n = 1)
-        fibo(n-2) + fibo(n-1) if n >= 2
-    end
-    def self.log
-      puts "metodo de classe"
-    end
+## Editores
 
-Lembre-se ... voce pode redefinir um método Quase tudo e objeto
+* [Sublime Text 2 (Windows, Linux e Max)](http://www.sublimetext.com/2)
+* [Vim](http://www.vim.org/)
+* [Emacs](http://www.gnu.org/software/emacs/)
+* [TextMate 2](https://github.com/textmate/textmate/)
+* [Netbeans 6.9.1](https://netbeans.org/downloads/6.9.1/index.html)
+* [Aptana](http://www.aptana.com/)
 
 ---
-Estruturas de Controle - if
-===============================
+# Introdução:Ruby.new
 
-Exemplo Completo
-----------------
+## Hello World!
 
-    if count > 10
-      puts "Try again"
-    elsif tries == 3
-      puts "You lose"
-    else
-      puts  "Number:"
-    end
+### via arquivo
 
-Exemplo Simples
----------------
+```bash
+$ echo 'puts "hello world"' > hello_word.rb
+$ ruby hello_word.rb
+hello world
+```
 
-    if radiation > 3000
-      puts "Danger"
-    end
+### *one-liner*
 
-Modificador de Sentenca
------------------------
+```bash
+$ ruby -e 'puts "hello world"'
+hello world
+```
 
-    puts "Danger, Will Robinson" if radiation > 3000
+### *Interactive Ruby* (IRB)
+
+```bash
+$ irb
+>> puts 'hello world'
+hello world
+=> nil
+>>
+```
 
 ---
-Estruturas de Controle - case
-=================================
+# Introdução: Ruby.new
+
+### Compare este laço:
+
+```ruby
+5.times { print 'Ola!' }
+```
+
+### com este em PHP:
+
+```php
+for (int i=0; i <10; i++) { printf("Ola!");}
+```
+
+---
+# Introdução: Ruby.new
+
+## O que faz o código a seguir?
+
+```ruby
+exit unless 'restaurante'.include? 'aura'
+
+['toasty', 'cheese', 'wine'].each { |food| print food.capitalize }
+```
+
+---
+# Estruturas básicas
+
+Tudo em Ruby é um objeto.
+
+```javascript
+>> 1.class
+=> Fixnum
+>> "texto".class
+=> String
+>> :simbolo.class
+=> Symbol
+>> true.class
+=> TrueClass
+>> false.class
+=> FalseClass
+>> nil.class
+=> NilClass
+>> Object.class
+=> Class
+>> Class.class
+=> Class
+```
+
+---
+# Estruturas básicas
+
+Já falei que em Ruby, TUDO é objeto?
+
+```ruby
+>> 1.methods.count
+=> 130
+> 1.methods.sort
+=> [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, :<<, :<=, :<=>, :==, :===,
+:=~, :>, :>=, :>>, :[], :^, :__id__, :__send__, :abs, :abs2, :angle, :arg, :between?,
+:ceil, :chr, :class, :clone, :coerce, :conj, :conjugate, ...]
+>> 'texto'.methods.count
+=> 162
+>> 'texto'.methods.sort
+=> [:!, :!=, :!~, :%, :*, :+, :<, :<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :[], :[]=,
+:__id__, :__send__, :ascii_only?, :between?, :bytes, :bytesize, :byteslice, ...]
+```
+
+---
+# Estruturas básicas
+
+## Comentários
+
+Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.
+
+### Uma linha
+```ruby
+# Esta linha é um comentário.
+1 + 1 # este texto a direita do sinal de # também é um comentário.
+```
+
+### Múltiplas linhas
+
+```ruby
+=begin
+O texto envolvido por =begin e =end é comentário.
+Mas para isto funcionar, o =begin e =end devem estar
+na exterma esquerda do seu código, ou seja, na coluna
+0 (zero).
+=end
+```
+
+---
+# Estruturas básicas
+
+## String `'single quotes'`
+
+```ruby
+>> puts 'texto'
+texto
+>> puts 'texto'.length
+5
+>> puts 'texto'.upcase
+TEXTO
+>> puts 'tex'.+('to')
+texto
+>> puts 'tex' + 'to' # syntax sugar
+texto
+>> puts 'tex' << 'to'
+texto
+>> String.new << 'texto'
+texto
+>> 'tex%s' % 'to'
+texto
+```
+
+Para usar os caracteres `'` ou `\`, você pode usar sequência de *escape* `\'` e `\\`.
+
+```ruby
+>> puts 'texto \' \\'
+texto ' \
+```
+
+---
+# Estruturas básicas
+
+## String `"double quotes"`
+
+Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.
+
+```ruby
+>> puts "o resultado de 1 + 1 é #{ 1 + 1 }."
+o resultado de 1 + 1 é 2.
+>> puts 'o resultado de 1 + 1 é #{ 1 + 1 }.'
+o resultado de 1 + 1 é #{ 1 + 1 }.
+```
+
+O valor da expressão a ser interpolada, será o resultado do método `to_s` do objeto.
+
+Sequências de *escape*
+
+<div style='float:right;width:60%'>
+<pre class='prettyprint'><code class='language-ruby'>>> puts "hello\nworld"
+hello
+world
+>> puts "      world\rhello"
+hello world
+>> puts "\thello \b\sworld"
+    hello world
+>> puts '\thello \b\sworld'
+\thello \b\sworld
+</code></pre>
+</div>
+
+* `\"` – double quote
+* `\\` – single backslash
+* `\a` – bell/alert
+* `\b` – backspace
+* `\r` – carriage return
+* `\n` – newline
+* `\s` – space
+* `\t` – tab
+
+---
+# Estruturas básicas
+
+## String multiplas linhas
+
+<pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+DOC
+# Resultado
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+</code></pre>
+
+Se quiser identar o finalizaror, para usar `<<-`.
+
+<pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+    DOC
+# Resultado
+Esta é uma string em múltiplas linhas.
+    * item
+    * item
+    * item
+</code></pre>
+
+---
+# Estruturas básicas
+
+## Números
+
+```
+123                       # Inteiro (Fixnum)
+-123                      # Inteiro negatico (Fixnum)
+1_123                     # Inteiro (Fixnum)
+123_456_789_123_456_789   # Inteiro (Bignum)
+123.45                    # Número com ponto flutuante (Float)
+1.2e-3                    # Número com ponto flutuante (0.0012)
+0xAB                      # Número Hexadecimal (170)
+0377                      # Número Octal (255)
+0b001001                  # Número binário (9)
+```
+
+---
+# Estruturas básicas
+
+## Símbolos
+
+Os símbolos são ideais para serem usados como chave em `Hash`.
+
+```ruby
+:x, :y, :chave
+```
+
+Símbolos são alocados uma única vez: `:a.object_id` durante uma execução sempre retornara o mesmo valor. Isso não acontece com string.
+
+O método `equal?` só devolve `true` se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).
+
+```ruby
+1.equals?(1)             # => true
+:key.equals?(:key)       # => true
+"texto".equals?("texto") # => false
+```
+
+---
+# Estruturas básicas
+
+## Boleano e nulo
+
+```ruby
+true
+false
+nil
+```
+
+Se não me engano, já falei que em Ruby, TUDO É UM OBJETO.
+
+```ruby
+nil.nil?     # => true
+true.to_s    # => 'true'
+false.nil?   # => false
+```
+
+---
+# Estruturas de Controle - if
+
+## Exemplo Completo
+
+```ruby
+count = gets.chomp.to_i
+
+if count > 10
+  puts "Try again"
+elsif tries == 3
+  puts "You lose"
+else
+  puts  "Number: #{count}"
+end
+```
+
+## Exemplo Simples
+
+```ruby
+if radiation > 3000
+  puts "Danger"
+end
+```
+
+## Modificador de Sentenca
+
+```ruby
+puts "Danger, Will Robinson" if radiation > 3000
+```
+
+---
+# Estruturas de Controle - case
 
     print "Enter your grade: "
     grade = gets.chomp
@@ -157,8 +408,7 @@ Estruturas de Controle - case
      end
 
 ---
-Estruturas de Controle - while
-==================================
+# Estruturas de Controle - while
 
     while weight < 100 and numPallets <= 30
       pallet = nextPallet()
@@ -166,22 +416,19 @@ Estruturas de Controle - while
       numPallets += 1
     end
 
-Modificador de Sentenca
------------------------
+## Modificador de Sentenca
 
     square = square*square  while square < 1000
 
 ---
-Estrutura de Controle - for
-===============================
+# Estrutura de Controle - for
 
     for i in 0..5
        puts "Value is #{i}"
     end
 
 ---
-Estrutura de Controle - until
-=================================
+# Estrutura de Controle - until
 
     until weight >= 100 ||numPallets > 30
       pallet = nextPallet()
@@ -189,14 +436,12 @@ Estrutura de Controle - until
       numPallets += 1
     end
 
-Modificador de Sentenca
------------------------
+## Modificador de Sentenca
 
     square = square*square  until square >= 1000
 
 ---
-Containers - Array
-======================
+# Containers - Array
 
     a = [ 3.14159, "pie", 99 ]
     a.type   #        Array
@@ -212,8 +457,7 @@ Containers - Array
     c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 
 ---
-Containers - Hash
-=====================
+# Containers - Hash
 
     h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
     h.length        #        3
@@ -223,33 +467,31 @@ Containers - Hash
     h['cat'] = 99
     h        # => {"cow"=>"bovine", "cat"=>99, 12=>"dodecine",
     "donkey"=>"asinine", "dog"=>"canine"}
-      
+
     a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
     b = Hash[a]
     # => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
 
 ---
-Blocos e Iteradores
-=======================
+# Blocos e Iteradores
 
-Passando blocos
-----------------
-    (1..12).each { |i| puts i}  #or
+## Passando blocos
+
+    (1..12).each { |i| puts i}  # or
     [1, 2, 4].each do |i|
         puts i
     end
 
-Blocos de codigo
-----------------
+## Blocos de codigo
+
     (1..20).each{|x| puts x}
 
-Influencia do Smalltalk
-----------------
+## Influencia do Smalltalk
+
     1 to: 20 do: [:x | x printN1]
 
 ---
- Métodos de um Enumerable
-=============================
+#  Métodos de um Enumerable
 
     all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
     enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
@@ -257,8 +499,7 @@ Influencia do Smalltalk
     to_set, zip
 
 ---
-Exemplos com Enumeraveis
-============================
+# Exemplos com Enumeraveis
 
     names = %w{ Frye Leela Zoidberg }
     names.find {|name|  name.length>4}          # => "Leela"
@@ -270,8 +511,7 @@ Exemplos com Enumeraveis
        # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
 
 ---
-Mais exemplos com Enumeraveis
-=================================
+# Mais exemplos com Enumeraveis
 
     names = %w{ Frye Leela Zoidberg }
     names.map {|name| name.downcase}
@@ -282,21 +522,19 @@ Mais exemplos com Enumeraveis
     # => "Frye, Leela, Zoidberg"
 
 ---
-Invocando blocos
-====================
+# Invocando blocos
 
     def proxy_method
       puts "Calling command at: #{Time.new}"
       yield
     proxy_method { puts "hello world proxified! "}
-    #ou com paremtros
+    # ou com paremtros
     def proxy_method
        yield(Time.new)
     proxy_method {|time| puts "hello world proxified  at #{time}"}
 
 ---
-Invocando blocos II
-=======================
+# Invocando blocos II
 
     def proxy_method(&method)
       # argumento com & precisa ser o ultimo da lista
@@ -304,15 +542,14 @@ Invocando blocos II
       method.call
     end
     proxy_method { puts "hello world proxified! "}
-    #ou com paremtros
+    # ou com paremtros
     def proxy_method (&method)
        method.call(Time.new)
     end
     proxy_method {|time| puts "hello world proxified  at #{time}"}
 
 ---
-Proc x Lambda
-=================
+# Proc x Lambda
 
     fx = Proc.new {|x| x**2}
     fxy = proc {|x,y| x+y}
@@ -327,8 +564,7 @@ Proc x Lambda
     Proc.new e proc sao equivalentes
 
 ---
-Lambda “Calculus”
-=====================
+# Lambda “Calculus”
 
     def d(f)
        lambda {|a|
@@ -340,15 +576,14 @@ Lambda “Calculus”
     puts d(f)[4]
 
 ---
-Objetos em Ruby
-===================
+# Objetos em Ruby
 
     class BookInStock
       def initialize(isbn, price)
         @isbn = isbn
         @price = Float(price)
       end
-     
+
       def to_s
         "ISBN:#{@isbn}, price: #{@price}"
       end
@@ -356,85 +591,75 @@ Objetos em Ruby
     stock = BookInStock.new
     # ou
     stock = BookInStock.new (1234, 10.39)
-    #invocando metodo
+    # invocando metodo
     puts stock.to_s
 
 ---
-Variáveis e Escopo
-======================
+# Variáveis e Escopo
 
 
-Variáveis Locais
----------------- 
+## Variáveis Locais
+
       x name thx1138 _x _26
 
-Variáveis de Instancia
-----------------
+## Variáveis de Instancia
+
       @name @X  @_ @plan9
 
-Variáveis de Classe
-----------------
+## Variáveis de Classe
+
       @@total @@N @@x_pos
 
-
 ---
-Variáveis e Escopo
-======================
+# Variáveis e Escopo
 
-Variáveis Globais 
-----------------
+## Variáveis Globais
+
       $debug $CUSTOM $_ $plan9
 
-Nomes de Classe
-----------------
-      String BigDecimal
-      
+## Nomes de Classe
 
-Constants
-----------------
-      FEET_PER_MILE DEBUG`
+      String BigDecimal
+
+## Constants
+
+      FEET_PER_MILE DEBUG
 
 ---
-Atributos de instância - forma tradicional
-==============================================
+# Atributos de instância - forma tradicional
 
-    class BookInStock  
+    class BookInStock
       def isbn
         @isbn
       end
-     
+
       def isbn=(value)
         @isbn = value
       end
-     
+
       def price
         @price
       end
 
 ---
-Atributos de instância - forma declarativa
-==============================================
+# Atributos de instância - forma declarativa
 
-    class BookInStock  
+    class BookInStock
       attr_accessor :isbn
       attr_reader :price
      end
 
 ---
-Herança
-===========
+# Herança
 
-Exemplo de Heranca
-------------------
+## Exemplo de Heranca
 
     class SpecialStock < BookInStock
 
 ---
-Herança - Singleton Pattern
-===============================
+# Herança - Singleton Pattern
 
-forma tradicional
------------------
+## forma tradicional
 
     class Logger
       private_class_method :new
@@ -446,13 +671,12 @@ forma tradicional
     end
 
 ---
-módulo Singleton
-----------------
+## módulo Singleton
 
     require 'singleton'
     class Logger
       include Singleton
-      
+
       def initialize
         @log = File.open("log.txt", "a")
       end
@@ -468,8 +692,7 @@ módulo Singleton
        end
 
 ---
-Eigenclass
-=============================
+# Eigenclass
 
     stock =  BookInStock.new
     class << stock
@@ -479,13 +702,12 @@ Eigenclass
     end
 
 ---
-Criando um Enumerable (I)
-=============================
+# Criando um Enumerable (I)
 
 \* Basta implementar o metodo each.
 
     class Node
-      include Enumerable 
+      include Enumerable
       attr_accessor :next, :previous, :v
      def initialize(v = {})
         @v = v
@@ -495,8 +717,7 @@ Criando um Enumerable (I)
       end
 
 ---
-Criando um Enumerable (II)
-==============================
+# Criando um Enumerable (II)
 
      def <<(node)
         node.next = self.next
@@ -512,8 +733,7 @@ Criando um Enumerable (II)
      end
 
 ---
-Criando um Enumerable (III)
-===============================
+# Criando um Enumerable (III)
 
     def each
         node = self.next
@@ -524,8 +744,7 @@ Criando um Enumerable (III)
       end
 
 ---
-Mais sobre metodos
-===============================
+# Mais sobre metodos
 Lista de parâmetros:
 
       def myNewMethod(arg1, arg2, arg3)  # 3 arguments
@@ -536,13 +755,12 @@ Lista de parâmetros:
         # Code for the method would go here
       end
 
-      def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  #defaults
+      def coolDude(arg1="Miles", arg2="Coltrane", arg3="Roach")  # defaults
         "#{arg1}, #{arg2}, #{arg3}."
       end
 
 ---
-Truques com parâmetros
-===============================
+# Truques com parâmetros
 Aridade não definida
 
       def varargs(arg1, *rest)
@@ -560,11 +778,10 @@ Aridade não definida
       varargs (1, :a => 1)
 
 ---
-Array para argumentos
-===============================
+# Array para argumentos
 Expandindo array para parâmetros
 
-      def five(a, b, c, d, e) 
+      def five(a, b, c, d, e)
         "I was passed #{a} #{b} #{c} #{d} #{e}"
       end
       five(1, 2, 3, 4, 5 )         #  "I was passed 1 2 3 4 5"
@@ -572,8 +789,7 @@ Expandindo array para parâmetros
       five(*(10..14).to_a)         #  "I was passed 10 11 12 13 14"
 
 ---
-Proc para bloco
-===============================
+# Proc para bloco
 Convertendo proc para bloco
 
       print "(t)imes or (p)lus: "
@@ -589,8 +805,7 @@ Convertendo proc para bloco
       puts((1..10).collect(&calc).join(", "))
 
 ---
-Exceptions, Catch and Throw
-===============================
+# Exceptions, Catch and Throw
 
       opFile = File.open(opName, "w")
       while data = socket.read(512)
@@ -598,8 +813,7 @@ Exceptions, Catch and Throw
       end
 
 ---
-Exceptions
-===============================
+# Exceptions
 
       opFile = File.open(opName, "w")
       begin
@@ -616,22 +830,20 @@ Exceptions
         raise
       end
 ---
-Catching exception
-===============================
+# Catching exception
 Nomeando a exceção
 
        begin
         eval string
       rescue SyntaxError, NameError => boom
-        #OLHA! sem usar o $!
+        # OLHA! sem usar o $!
         print "String doesn't compile: " + boom
       rescue StandardError => bang
         print "Error running script: " + bang
       end
 
 ---
-Ensure
-===============================
+# Ensure
 Garante que um bloco é chamado
 
       f = File.open("testfile")
@@ -642,12 +854,11 @@ Garante que um bloco é chamado
       ensure
         f.close unless f.nil?
       end
-      
+
 ---
-Rescuing a Method
-===============================
+# Rescuing a Method
 Begin Rescue
-      
+
       def some_method
         begin
           danger_danger
@@ -658,17 +869,16 @@ Begin Rescue
       end
 
 Better code
-      
+
       def some_method
         danger_danger
         true # good response
       rescue Error
         false # error response
       end
-      
+
 ---
-Raise Exceptions
-===============================
+# Raise Exceptions
 Formas típicas de se lançar uma exceção
 
       # sem conversa
@@ -683,10 +893,9 @@ Formas típicas de se lançar uma exceção
 
       # passando o stackTrace via Kernel::caller
       raise ArgumentError, "Name too big", caller
-      
+
 ---
-Especializando Exceções
-===============================
+# Especializando Exceções
 Declaração
 
       class RetryException < RuntimeError
@@ -705,10 +914,9 @@ Como lançar
         end
         # .. normal processing
       end
-      
+
 ---
-Especializando Exceções II
-===============================
+# Especializando Exceções II
 Tratanto a exceção
 
       begin
@@ -718,10 +926,9 @@ Tratanto a exceção
         retry if detail.okToRetry
         raise
       end
-      
+
 ---
-Catch e Throw
-===============================
+# Catch e Throw
 Desvio incondicional com labels
 
       def promptAndGet(prompt)
@@ -738,19 +945,17 @@ Desvio incondicional com labels
         # ..
         # process information
       end
-      
+
 ---
-Módulos
-===============================
+# Módulos
 Uso
 
-###Criar namespace (evitar conflito de nomes)
-###Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
-    
+### Criar namespace (evitar conflito de nomes)
+### Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
+
 ---
-Módulos II
-===============================
-##Declaração
+# Módulos II
+## Declaração
 
       module Trig
         PI = 3.141592654
@@ -762,34 +967,32 @@ Módulos II
         end
       end
 
-##Uso
-      
+## Uso
+
       require "./trig"
       puts Trig.sin(Trig::PI / 3.0)
-    
+
 ---
-Mixins
-===============================
+# Mixins
 Applying mixin
 
       # BigInteger estende Number
       class BigInteger < Number
-       
+
         # Adiciona métodos de instância de Stringify
         include Stringify
-       
+
         # Adiciona métodos de classe de Math
         extend Math
-       
+
         # Adiciona um constructor com um parâmetro
         def initialize(value)
           @value = value
         end
       end
-      
+
 ---
-Mixins II
-===============================
+# Mixins II
 Applying mixin
 
       # Cria um novo objeto
@@ -807,10 +1010,9 @@ Applying mixin
 
       # Adiciona os métodos de módulo para a instância desse objeto somente
       bigint2.extend CurrencyFormatter
-      
+
 ---
-ERB
-===============================
+# ERB
 
 - Sistema de Template padrão do Ruby
 - Uma classe como outra qualquer
@@ -818,9 +1020,8 @@ ERB
 
 
 ---
-Dojo
-===============================
-##Escrever um programa em Ruby que:
-  
+# Dojo
+## Escrever um programa em Ruby que:
+
 - 1 - Calcule os valores da sequência abaixo
 - 2 - Calcule os valores que maximizam o tamanho da sequência

@@ -4,7 +4,7 @@ html {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	line-height: 1.3;
+	line-height: 1.6;
 	font-size: 20px;
 }
 
@@ -34,9 +34,9 @@ body {
 }
 
 code {
-  font-size: 19px;
-  line-height: 20px;
-  font-family: "Courier New", monospace;
+	font-size: 19px;
+	line-height: 20px;
+	font-family: "Courier New", monospace;
 }
 
 .impress-enabled .step {
@@ -66,31 +66,34 @@ em {
 	font-style: italic;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
+	color: #c33;
 	font-weight: normal;
+	letter-spacing: .1em;
+	margin-bottom: 10px;
+}
+
+.capa {
+	color: #c33;
+	font-size: 3em;
+	text-transform: uppercase;
+	text-shadow: -4px -4px 10px rgba(100,100,100,0.9);
 }
 
 h1 {
-/* 	font-size: 120px;
-	margin: 20px 0;
-	line-height: 130px;
-}
-
-h2 {
- */	
- 	font-weight: 300;
-	letter-spacing: .1em;
-	text-transform: uppercase;
-	line-height: 72px;
-	margin: 10px 0;
+	font-size: 1.6em;
+	font-weight: 300;
 }
 
 h2{
- 	font-weight: 320;
- 	font-style: italic;
-	letter-spacing: .1em;
-	line-height: 72px;
-	margin: 10px 0;
+	font-size: 1.4em;
+	font-weight: 320;
+	font-style: italic;
+}
+
+h3 {
+	font-size: 1.1em;
+	font-weight: 350;
 }
 
 .light {
@@ -136,8 +139,9 @@ a:hover {
 
 p {
 	font-weight: 400;
-	line-height: 60px;
-	text-align: center;
+	margin: 20px 0;
+	text-align: left;
+	text-indent: 0;
 }
 
 ol {
@@ -149,8 +153,6 @@ ul {
 }
 
 li {
-	margin: 10px 0;
-	line-height: 50px;
 	list-style: none;
 }
 
