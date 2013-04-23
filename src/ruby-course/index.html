@@ -43,8 +43,6 @@
 <li>  Tratamento de Exceções</li>
 <li>  Módulos</li>
 <li>  Pacotes básicos</li>
-<li>  ERB (templates em ruby)</li>
-<li>  Dojo</li>
 </ul>
 
 <p>* Não necessariamente nessa ordem.</p>
@@ -1095,24 +1093,73 @@ bigint2.extend CurrencyFormatter
 </code></pre></div>
       <div class='step' >
     
-<h1>ERB</h1>
+<h1>Pacotes Básicos</h1>
+
+<h2>Struct e OpenStruct</h2>
+<pre><code class='prettyprint ruby'>$users = []
+
+User = Struct.new(:username, :email) do
+  def save
+    $users << self
+  end
+end
+
+tino = User.new('tino', 'tino@mailinator.com')
+tino.save
+
+p $users
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>Test</h2>
+</div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>File, Dir e FileUtils</h2>
+</div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>ERB</h2>
 
 <ul>
 <li>Sistema de Template padrão do Ruby</li>
 <li>Uma classe como outra qualquer</li>
 <li>Via linha de comando é possível parsear um arquivo erb</li>
 </ul>
+<pre><code class='prettyprint ruby'>require 'erb'
+
+template = ERB.new('1 + 1 = <%= 1 + 1 %>')
+template.result # => '1 + 1 = 2'
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>JSON</h2>
 </div>
       <div class='step' >
     
-<h1>Dojos</h1>
+<h1>Pacotes Básicos</h1>
 
-<h2>Escrever um programa em Ruby que:</h2>
+<h2>YAML</h2>
+</div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
 
-<ul>
-<li>1 - Calcule os valores da sequência abaixo</li>
-<li>2 - Calcule os valores que maximizam o tamanho da sequência</li>
-</ul>
+<h2>BigDecimal</h2>
+</div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>Net::HTTP</h2>
 
       </div>
     <script src="js/impress.js"></script>

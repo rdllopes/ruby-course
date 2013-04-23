@@ -14,14 +14,12 @@
 -   Tratamento de Exceções
 -   Módulos
 -   Pacotes básicos
--   ERB (templates em ruby)
--   Dojo
 
 \* Não necessariamente nessa ordem.
 
 ---
 = data-x="1000" data-scale="2"
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 Ruby é uma linguagem de programação **interpretada**, de **tipagem dinâmica e forte**, com **gerenciamento de memória automático**, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
 
@@ -189,8 +187,8 @@ Comentários são trechos em seu código que não serão processados pelo interp
 
 ### Uma linha
 ```ruby
-# Esta linha é um comentário.
-1 + 1 # este texto a direita do sinal de # também é um comentário.
+ # Esta linha é um comentário.
+ 1 + 1 # este texto a direita do sinal de # também é um comentário.
 ```
 
 ### Múltiplas linhas
@@ -304,31 +302,31 @@ hello world
 ## String multiplas linhas
 
 <pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
-DOC
-# Resultado
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+ DOC
+ # Resultado
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
 </code></pre>
 
 Se quiser identar o finalizaror, para usar `<<-`.
 
 <pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
-    DOC
-# Resultado
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+     DOC
+ # Resultado
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
 </code></pre>
 
 \* aceita interpolação.
@@ -392,8 +390,7 @@ h
 => {:cow=>"bovine", :cat=>99, 12=>"dodecine", :donkey=>"asinine", :dog=>"canine"}
 
 a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
-b = Hash[a]
-# => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+b = Hash[a] # => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
 ```
 
 ## Ranger (Intervalos)
@@ -403,7 +400,7 @@ puts (4..9).include? 7  # => true
 ```
 
 ---
-# Variáveis e Escopo
+#Variáveis e Escopo
 
 ```ruby
 $variavel_global
@@ -643,7 +640,7 @@ metodo {|valor| puts "#{valor} dentro do metodo" }
 ```
 
 ---
-#  Métodos de um Enumerable
+# Métodos de um Enumerable
 
 ```ruby
 all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
@@ -703,7 +700,6 @@ end
 
 proxy_method { puts "hello world proxified! "}
 
-# ou com paremtros
 def proxy_method (&method)
    method.call(Time.new)
 end
@@ -716,16 +712,18 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
 ```ruby
 fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
-# calling
+
 fx.call(2) # => 4
 fxy[2,3,4] #=> 5
+
 fx = lambda {|x| x**2}
 fxy = lambda {|x,y| x+y}
-# calling
+
 fx.call(2) # => 4
 fxy.call(2,3,4) #=> exception na cara!
-Proc.new e proc sao equivalentes
 ```
+
+Proc.new e proc sao equivalentes
 
 ---
 # Lambda “Calculus”
@@ -766,6 +764,11 @@ puts stock.to_s
 
 ```ruby
 class BookInStock
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+  end
+
   def isbn
     @isbn
   end
@@ -787,6 +790,20 @@ end
 class BookInStock
   attr_accessor :isbn
   attr_reader :price
+
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+  end
+end
+```
+
+---
+# Struct
+
+```ruby
+BookInStock = Struct.new(:isbn, :price) do
+  private :price=
 end
 ```
 
@@ -1075,18 +1092,17 @@ end
 Formas típicas de se lançar uma exceção
 
 ```ruby
-# sem conversa
-raise
+ raise # sem mensagem
 
-# adicionando uma string…
-raise "Missing name" if name.nil?
+ # adicionando uma string…
+ raise "Missing name" if name.nil?
 
-if i >= myNames.size
-  raise IndexError, "#{i} >= size (#{myNames.size})"
-end
+ if i >= myNames.size
+   raise IndexError, "#{i} >= size (#{myNames.size})"
+ end
 
-# passando o stackTrace via Kernel::caller
-raise ArgumentError, "Name too big", caller
+ # passando o stackTrace via Kernel::caller
+ raise ArgumentError, "Name too big", caller
 ```
 
 ---
@@ -1192,9 +1208,7 @@ puts Trig.sin(Trig::PI / 3.0)
 Applying mixin
 
 ```ruby
-# BigInteger estende Number
 class BigInteger < Number
-
   # Adiciona métodos de instância de Stringify
   include Stringify
 
@@ -1213,34 +1227,74 @@ end
 Applying mixin
 
 ```ruby
-# Cria um novo objeto
 bigint1 = BigInteger.new(10)
 
-# Chama um método herdado da classe base
 puts bigint1.intValue   # --> 10
 
-# Chama um método de classe estendido de Math
 bigint2 = BigInteger.add(-2, 4)
 puts bigint2.intValue   # --> 2
 
-# Chama um método incluído de Stringify
 puts bigint2.stringify   # --> 'Two'
 
-# Adiciona os métodos de módulo para a instância desse objeto somente
 bigint2.extend CurrencyFormatter
 ```
 
 ---
-# ERB
+# Pacotes Básicos
+
+## BigDecimal
+
+```ruby
+require 'bigdecimal'
+
+BigDecimal.new('1.23) # => #<BigDecimal:7ffe0b052bc8,'0.123E1',18(18)>
+```
+
+---
+# Pacotes Básicos
+
+## OpenStruct
+
+```ruby
+require 'ostruct'
+```
+
+---
+# Pacotes Básicos
+
+## Test
+
+```ruby
+require 'test/unit'
+```
+
+---
+# Pacotes Básicos
+
+## ERB
 
 - Sistema de Template padrão do Ruby
 - Uma classe como outra qualquer
 - Via linha de comando é possível parsear um arquivo erb
 
+```ruby
+require 'erb'
+
+template = ERB.new('1 + 1 = <%= 1 + 1 %>')
+template.result # => '1 + 1 = 2'
+```
+
 ---
-# Dojos
+# Pacotes Básicos
 
-## Escrever um programa em Ruby que:
+## Net::HTTP
 
-- 1 - Calcule os valores da sequência abaixo
-- 2 - Calcule os valores que maximizam o tamanho da sequência
+---
+# Pacotes Básicos
+
+## JSON
+
+---
+#Pacotes Básicos
+
+## YAML
