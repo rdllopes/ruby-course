@@ -1,4 +1,6 @@
-# DojoPuzzle <http://dojopuzzles.com/>
+# DojoPuzzle
+
+<http://dojopuzzles.com/>
 
 ---
 ## FizzBuzz

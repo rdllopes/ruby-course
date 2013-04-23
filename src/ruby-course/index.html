@@ -33,23 +33,26 @@
 <h1>Sumário</h1>
 
 <ul>
-<li>  Introdução: Ruby.new</li>
-<li>  Estruturas Básicas</li>
-<li>  Bloco de código</li>
-<li>  Estruturas de Controle</li>
-<li>  Containers e Iterators</li>
-<li>  Classe, Objetos e Variáveis</li>
-<li>  Mais sobre Métodos</li>
-<li>  Tratamento de Exceções</li>
-<li>  Módulos</li>
-<li>  Pacotes básicos</li>
+<li>Introdução: Ruby.new</li>
+<li>Estruturas básicas - Números, String, ...</li>
+<li>Containers - Array, Hash e Range</li>
+<li>Variáveis</li>
+<li>Estruturas de Controle - Condicional</li>
+<li>Estrutura de Controle - Loop</li>
+<li>Bloco de código</li>
+<li>Proc x Lambda</li>
+<li>Lambda “Calculus”</li>
+<li>Enumerable</li>
+<li>Classes e Métodos</li>
+<li>Exceptions, Catch and Throw</li>
+<li>Pacotes Básicos (Test, ERB, ...)</li>
 </ul>
 
 <p>* Não necessariamente nessa ordem.</p>
 </div>
       <div class='step'  data-x="1000" data-scale="2">
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <p>Ruby é uma linguagem de programação <strong>interpretada</strong>, de <strong>tipagem dinâmica e forte</strong>, com <strong>gerenciamento de memória automático</strong>, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro &quot;Matz&quot; Matsumoto, para ser usada como linguagem de script.</p>
 
@@ -61,7 +64,7 @@
 </div>
       <div class='step' >
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <h2>Instalação</h2>
 
@@ -79,7 +82,7 @@
 </div>
       <div class='step' >
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <p>Verificar a versão de ruby instalada, digite <code class='inline prettyprint'>ruby --version</code></p>
 <pre><code class='prettyprint bash'>$ ruby --version
@@ -89,7 +92,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 </div>
       <div class='step' >
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <h2>Editores</h2>
 
@@ -104,7 +107,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 </div>
       <div class='step' >
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <p>Sobre a sintaxe:</p>
 
@@ -119,7 +122,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 </div>
       <div class='step' >
     
-<h1>Introdução:Ruby.new</h1>
+<h1>Introdução: Ruby.new</h1>
 
 <h2>Hello World!</h2>
 
@@ -197,8 +200,8 @@ hello world
 <p>Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.</p>
 
 <h3>Uma linha</h3>
-<pre><code class='prettyprint ruby'># Esta linha é um comentário.
-1 + 1 # este texto a direita do sinal de # também é um comentário.
+<pre><code class='prettyprint ruby'> # Esta linha é um comentário.
+ 1 + 1 # este texto a direita do sinal de # também é um comentário.
 </code></pre>
 <h3>Múltiplas linhas</h3>
 <pre><code class='prettyprint ruby'>=begin
@@ -300,31 +303,31 @@ hello world
 <h2>String multiplas linhas</h2>
 
 <pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
-DOC
-# Resultado
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+ DOC
+ # Resultado
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
 </code></pre>
 
 <p>Se quiser identar o finalizaror, para usar <code class='inline prettyprint'><<-</code>.</p>
 
 <pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
-    DOC
-# Resultado
-Esta é uma string em múltiplas linhas.
-    * item
-    * item
-    * item
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+     DOC
+ # Resultado
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
 </code></pre>
 
 <p>* aceita interpolação.</p>
@@ -380,8 +383,7 @@ h
 => {:cow=>"bovine", :cat=>99, 12=>"dodecine", :donkey=>"asinine", :dog=>"canine"}
 
 a = [[1, 'a'],[2, 'b'],[3, 'c'], [4, 'd']]
-b = Hash[a]
-# => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
+b = Hash[a] # => {1=>"a", 2=>"b", 3=>"c", 4=>"d"}
 </code></pre>
 <h2>Ranger (Intervalos)</h2>
 <pre><code class='prettyprint ruby'>puts (4..9).include? 7  # => true
@@ -510,8 +512,6 @@ end
     
 <h1>Estruturas de Controle</h1>
 
-<p>Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. <code class='inline prettyprint'>break</code> interrompe o fluxo para fora do bloco, <code class='inline prettyprint'>next</code> pula para a próxima iteração e <code class='inline prettyprint'>redo</code> para reiniciar o loop.</p>
-
 <h2>Loop <code class='inline prettyprint'>while</code></h2>
 <pre><code class='prettyprint ruby'>weight = num_pallets = 0
 while weight < 100 and num_pallets <= 30
@@ -527,7 +527,9 @@ puts weight, num_pallets
 </code></pre>
 <h4>Modificador de Sentenca</h4>
 <pre><code class='prettyprint ruby'>square = square*square  while square < 1000
-</code></pre></div>
+</code></pre>
+<p>* Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. <code class='inline prettyprint'>break</code> interrompe o fluxo para fora do bloco, <code class='inline prettyprint'>next</code> pula para a próxima iteração e <code class='inline prettyprint'>redo</code> para reiniciar o loop.</p>
+</div>
       <div class='step' >
     
 <h1>Estrutura de Controle</h1>
@@ -625,7 +627,6 @@ end
 
 proxy_method { puts "hello world proxified! "}
 
-# ou com paremtros
 def proxy_method (&method)
    method.call(Time.new)
 end
@@ -636,16 +637,18 @@ proxy_method {|time| puts "hello world proxified  at #{time}"}
 <h1>Proc x Lambda</h1>
 <pre><code class='prettyprint ruby'>fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
-# calling
+
 fx.call(2) # => 4
 fxy[2,3,4] #=> 5
+
 fx = lambda {|x| x**2}
 fxy = lambda {|x,y| x+y}
-# calling
+
 fx.call(2) # => 4
 fxy.call(2,3,4) #=> exception na cara!
-Proc.new e proc sao equivalentes
-</code></pre></div>
+</code></pre>
+<p>Proc.new e proc sao equivalentes</p>
+</div>
       <div class='step' >
     
 <h1>Lambda “Calculus”</h1>
@@ -680,6 +683,11 @@ puts stock.to_s
     
 <h1>Atributos de instância - forma tradicional</h1>
 <pre><code class='prettyprint ruby'>class BookInStock
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+  end
+
   def isbn
     @isbn
   end
@@ -699,6 +707,18 @@ end
 <pre><code class='prettyprint ruby'>class BookInStock
   attr_accessor :isbn
   attr_reader :price
+
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+  end
+end
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Struct</h1>
+<pre><code class='prettyprint ruby'>BookInStock = Struct.new(:isbn, :price) do
+  private :price=
 end
 </code></pre></div>
       <div class='step' >
@@ -955,18 +975,17 @@ end
 <h1>Raise Exceptions</h1>
 
 <p>Formas típicas de se lançar uma exceção</p>
-<pre><code class='prettyprint ruby'># sem conversa
-raise
+<pre><code class='prettyprint ruby'> raise # sem mensagem
 
-# adicionando uma string…
-raise "Missing name" if name.nil?
+ # adicionando uma string…
+ raise "Missing name" if name.nil?
 
-if i >= myNames.size
-  raise IndexError, "#{i} >= size (#{myNames.size})"
-end
+ if i >= myNames.size
+   raise IndexError, "#{i} >= size (#{myNames.size})"
+ end
 
-# passando o stackTrace via Kernel::caller
-raise ArgumentError, "Name too big", caller
+ # passando o stackTrace via Kernel::caller
+ raise ArgumentError, "Name too big", caller
 </code></pre></div>
       <div class='step' >
     
@@ -1055,9 +1074,7 @@ puts Trig.sin(Trig::PI / 3.0)
 <h1>Mixins</h1>
 
 <p>Applying mixin</p>
-<pre><code class='prettyprint ruby'># BigInteger estende Number
-class BigInteger < Number
-
+<pre><code class='prettyprint ruby'>class BigInteger < Number
   # Adiciona métodos de instância de Stringify
   include Stringify
 
@@ -1075,52 +1092,47 @@ end
 <h1>Mixins II</h1>
 
 <p>Applying mixin</p>
-<pre><code class='prettyprint ruby'># Cria um novo objeto
-bigint1 = BigInteger.new(10)
+<pre><code class='prettyprint ruby'>bigint1 = BigInteger.new(10)
 
-# Chama um método herdado da classe base
 puts bigint1.intValue   # --> 10
 
-# Chama um método de classe estendido de Math
 bigint2 = BigInteger.add(-2, 4)
 puts bigint2.intValue   # --> 2
 
-# Chama um método incluído de Stringify
 puts bigint2.stringify   # --> 'Two'
 
-# Adiciona os métodos de módulo para a instância desse objeto somente
 bigint2.extend CurrencyFormatter
 </code></pre></div>
       <div class='step' >
     
 <h1>Pacotes Básicos</h1>
 
-<h2>Struct e OpenStruct</h2>
-<pre><code class='prettyprint ruby'>$users = []
+<h2>BigDecimal</h2>
+<pre><code class='prettyprint ruby'>require 'bigdecimal'
 
-User = Struct.new(:username, :email) do
-  def save
-    $users << self
-  end
-end
+BigDecimal.new('1.23) # => #<BigDecimal:7ffe0b052bc8,'0.123E1',18(18)>
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
 
-tino = User.new('tino', 'tino@mailinator.com')
-tino.save
-
-p $users
+<h2>OpenStruct</h2>
+<pre><code class='prettyprint ruby'>require 'ostruct'
 </code></pre></div>
       <div class='step' >
     
 <h1>Pacotes Básicos</h1>
 
 <h2>Test</h2>
-</div>
-      <div class='step' >
-    
-<h1>Pacotes Básicos</h1>
+<pre><code class='prettyprint ruby'>require "test/unit"
 
-<h2>File, Dir e FileUtils</h2>
-</div>
+class TesteFoo  < Test::Unit::TestCase
+
+  def test_eFoo_foo
+    assert_same(1, 0, "Que pena")
+  end
+end
+</code></pre></div>
       <div class='step' >
     
 <h1>Pacotes Básicos</h1>
@@ -1141,6 +1153,12 @@ template.result # => '1 + 1 = 2'
     
 <h1>Pacotes Básicos</h1>
 
+<h2>Net::HTTP</h2>
+</div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
 <h2>JSON</h2>
 </div>
       <div class='step' >
@@ -1148,18 +1166,6 @@ template.result # => '1 + 1 = 2'
 <h1>Pacotes Básicos</h1>
 
 <h2>YAML</h2>
-</div>
-      <div class='step' >
-    
-<h1>Pacotes Básicos</h1>
-
-<h2>BigDecimal</h2>
-</div>
-      <div class='step' >
-    
-<h1>Pacotes Básicos</h1>
-
-<h2>Net::HTTP</h2>
 
       </div>
     <script src="js/impress.js"></script>

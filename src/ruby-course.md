@@ -4,16 +4,19 @@
 ---
 # Sumário
 
--   Introdução: Ruby.new
--   Estruturas Básicas
--   Bloco de código
--   Estruturas de Controle
--   Containers e Iterators
--   Classe, Objetos e Variáveis
--   Mais sobre Métodos
--   Tratamento de Exceções
--   Módulos
--   Pacotes básicos
+- Introdução: Ruby.new
+- Estruturas básicas - Números, String, ...
+- Containers - Array, Hash e Range
+- Variáveis
+- Estruturas de Controle - Condicional
+- Estrutura de Controle - Loop
+- Bloco de código
+- Proc x Lambda
+- Lambda “Calculus”
+- Enumerable
+- Classes e Métodos
+- Exceptions, Catch and Throw
+- Pacotes Básicos (Test, ERB, ...)
 
 \* Não necessariamente nessa ordem.
 
@@ -30,7 +33,7 @@ Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, se
 fonte: [Wikipedia - http://bit.ly/wiki-ruby](http://bit.ly/wiki-ruby)
 
 ---
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 ## Instalação
 
@@ -53,7 +56,7 @@ $ brew install ruby
 \* Linux e Mac normalmente já vem com uma instalação de Ruby.
 
 ---
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 Verificar a versão de ruby instalada, digite `ruby --version`
 
@@ -65,7 +68,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 \* `ruby -v` também imprime a versão do ruby, porém ativa o modo *verbose* e permite executar scripts.
 
 ---
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 ## Editores
 
@@ -77,7 +80,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 * [Aptana](http://www.aptana.com/)
 
 ---
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 Sobre a sintaxe:
 
@@ -90,7 +93,7 @@ Sobre a sintaxe:
 
 
 ---
-# Introdução:Ruby.new
+# Introdução: Ruby.new
 
 ## Hello World!
 
@@ -400,7 +403,7 @@ puts (4..9).include? 7  # => true
 ```
 
 ---
-#Variáveis e Escopo
+# Variáveis e Escopo
 
 ```ruby
 $variavel_global
@@ -552,8 +555,6 @@ end
 ---
 # Estruturas de Controle
 
-Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. `break` interrompe o fluxo para fora do bloco, `next` pula para a próxima iteração e `redo` para reiniciar o loop.
-
 ## Loop `while`
 
 ```ruby
@@ -575,6 +576,8 @@ puts weight, num_pallets
 ```ruby
 square = square*square  while square < 1000
 ```
+
+\* Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. `break` interrompe o fluxo para fora do bloco, `next` pula para a próxima iteração e `redo` para reiniciar o loop.
 
 ---
 # Estrutura de Controle
@@ -1265,7 +1268,14 @@ require 'ostruct'
 ## Test
 
 ```ruby
-require 'test/unit'
+require "test/unit"
+
+class TesteFoo  < Test::Unit::TestCase
+
+  def test_eFoo_foo
+    assert_same(1, 0, "Que pena")
+  end
+end
 ```
 
 ---
