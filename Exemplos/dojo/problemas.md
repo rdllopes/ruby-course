@@ -173,3 +173,40 @@ isbn,title,price
 b = books.find {|book| book.title == Kong}
 b.price # => 30.99
 ```
+
+---
+## Criar uma página HTML usando template
+
+Considerando o problema de *Importar lista de livros*, vamos criar uma página HTML basedo em um template que irá usar os livros importados de um arquivo CSV.
+
+<h1>Livros disponível para venda</h1>
+
+<p>Segue abaixo nosso catálogo de livros</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>ISBN</th>
+            <th>Preço</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>2345</td>
+            <td>Kong</td>
+            <td>30,99</td>
+        </tr>
+        <tr>
+            <td>3456</td>
+            <td>Superman</td>
+            <td>31,99</td>
+        </tr>
+        <tr>
+            <td>1234</td>
+            <td>Titanic</td>
+            <td>25,99</td>
+        </tr>
+    </tbody>
+</table>

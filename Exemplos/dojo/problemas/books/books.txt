@@ -2,3 +2,5 @@ isbn,title,price
 1234,Titanic,25.99
 2345,Kong,30.99
 3456,Superman,31.99
+4567,Batman,32.99
+5678,Spiderman,34.99
