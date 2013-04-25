@@ -155,3 +155,21 @@ Seu desafio é fazer um programa que leia o valor total a ser pago e o valor efe
 Deve-se considerar que há:
 cédulas de R$100,00, R$50,00, R$10,00, R$5,00 e R$1,00;
 moedas de R$0,50, R$0,10, R$0,05 e R$0,01.
+
+---
+## Importar lista de livros
+
+Dado o arquivo CSV, com um catalogo de livros, o objetivo é ler este arquivo CSV e carregar as informações em uma lista, que posse ser buscável. Dar a opção de carregar o arquivo, adicionando um fator de conversão.
+
+<pre>
+isbn,title,price
+1234,Titanic,25.99
+2345,Kong,30.99
+3456,Superman,31.99
+</pre>
+
+
+```ruby
+b = books.find {|book| book.title == Kong}
+b.price # => 30.99
+```
