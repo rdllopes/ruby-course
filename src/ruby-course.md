@@ -1,7 +1,11 @@
+= data-scale="30"
+
 <h1 class='capa'>Curso de Introdução a programação com Ruby</h1>
 <http://bit.ly/cursorubyabril> - <https://github.com/abril/ruby-course>
 
 ---
+= data-x="0" data-scale="2"
+
 # Sumário
 
 - Introdução: Ruby.new
@@ -33,6 +37,8 @@ Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, se
 fonte: [Wikipedia - http://bit.ly/wiki-ruby](http://bit.ly/wiki-ruby)
 
 ---
+= data-x="800" data-scale="2"
+
 # Introdução: Ruby.new
 
 ## Instalação
@@ -1299,12 +1305,62 @@ template.result # => '1 + 1 = 2'
 
 ## Net::HTTP
 
+	require "net/http"
+	require "uri"
+	require 'methodize'
+	
+	def get_page (string)
+	  uri = URI.parse(string)
+	  response = Net::HTTP.get_response(uri)
+	  response.body
+	end
+
+
 ---
 # Pacotes Básicos
 
 ## JSON
 
+	require "net/http"
+	require "uri"
+	require 'json'
+	require 'methodize'
+	
+	def get_page (string)
+	  uri = URI.parse(string)
+	  response = Net::HTTP.get_response(uri)
+	  json = JSON.parse(response.body)
+	  json.extend(Methodize)
+	end
+
 ---
 #Pacotes Básicos
 
 ## YAML
+
+### Arquivo yaml
+
+	simple symbol: !ruby/symbol Simple 
+	shortcut syntax: !ruby/sym Simple 
+	symbols in seqs: 
+	  - !ruby/symbol ValOne 
+	  - !ruby/symbol ValTwo 
+	  - !ruby/symbol ValThree 
+	symbols in maps: 
+	  - !ruby/symbol MapKey: !ruby/symbol MapValue 
+
+---
+#Pacotes Básicos
+
+## YAML
+
+### Ruby code
+
+	require "yaml"
+	
+	config = YAML.load_file("config.yml") # From file
+	p config
+
+### Result
+
+	{"simple symbol"=>:Simple, "shortcut syntax"=>:Simple, "symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], "symbols in maps"=>[{:MapKey=>:MapValue}]}

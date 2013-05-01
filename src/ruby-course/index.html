@@ -22,13 +22,13 @@
   <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
   </div>
     <div id="impress">
-    <div class='step' >
+    <div class='step'  data-scale="30">
     
 <h1 class='capa'>Curso de Introdução a programação com Ruby</h1>
 
 <p><a href="http://bit.ly/cursorubyabril">http://bit.ly/cursorubyabril</a> - <a href="https://github.com/abril/ruby-course">https://github.com/abril/ruby-course</a></p>
 </div>
-      <div class='step' >
+      <div class='step'  data-x="0" data-scale="2">
     
 <h1>Sumário</h1>
 
@@ -62,7 +62,7 @@
 
 <p>fonte: <a href="http://bit.ly/wiki-ruby">Wikipedia - http://bit.ly/wiki-ruby</a></p>
 </div>
-      <div class='step' >
+      <div class='step'  data-x="800" data-scale="2">
     
 <h1>Introdução: Ruby.new</h1>
 
@@ -1154,19 +1154,64 @@ template.result # => '1 + 1 = 2'
 <h1>Pacotes Básicos</h1>
 
 <h2>Net::HTTP</h2>
-</div>
+<pre><code class='prettyprint '>require "net/http"
+require "uri"
+require 'methodize'
+
+def get_page (string)
+  uri = URI.parse(string)
+  response = Net::HTTP.get_response(uri)
+  response.body
+end
+</code></pre></div>
       <div class='step' >
     
 <h1>Pacotes Básicos</h1>
 
 <h2>JSON</h2>
-</div>
+<pre><code class='prettyprint '>require "net/http"
+require "uri"
+require 'json'
+require 'methodize'
+
+def get_page (string)
+  uri = URI.parse(string)
+  response = Net::HTTP.get_response(uri)
+  json = JSON.parse(response.body)
+  json.extend(Methodize)
+end
+</code></pre></div>
       <div class='step' >
     
 <h1>Pacotes Básicos</h1>
 
 <h2>YAML</h2>
 
+<h3>Arquivo yaml</h3>
+<pre><code class='prettyprint '>simple symbol: !ruby/symbol Simple 
+shortcut syntax: !ruby/sym Simple 
+symbols in seqs: 
+  - !ruby/symbol ValOne 
+  - !ruby/symbol ValTwo 
+  - !ruby/symbol ValThree 
+symbols in maps: 
+  - !ruby/symbol MapKey: !ruby/symbol MapValue 
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Pacotes Básicos</h1>
+
+<h2>YAML</h2>
+
+<h3>Ruby code</h3>
+<pre><code class='prettyprint '>require "yaml"
+
+config = YAML.load_file("config.yml") # From file
+p config
+</code></pre>
+<h3>Result</h3>
+<pre><code class='prettyprint '>{"simple symbol"=>:Simple, "shortcut syntax"=>:Simple, "symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], "symbols in maps"=>[{:MapKey=>:MapValue}]}
+</code></pre>
       </div>
     <script src="js/impress.js"></script>
     <script>impress().init();</script>
