@@ -5,6 +5,7 @@
 \usepackage{booktabs}
 \usepackage{listings}
 \usepackage{dcolumn}
+\usepackage{hyperref}
 \lstloadlanguages{Ruby}
 \lstdefinelanguage{Smalltalk}{ 
   morekeywords={true,false,self,super,nil}, 
@@ -17,12 +18,10 @@
   literate={:=}{{$\gets$}}1{^}{{$\uparrow$}}1 
 }
 
-% template
-
 \author{ 
     \\ Rodrigo di Lorenzo Lopes \\  \texttt{rodrigo.lorenzo@abril.com.br}
 	\and 
-    \\ Eduardo Nicola F. Zagari \\ \texttt{zagari@abril.com.br}
+    \\ Celestino Ferreira Gomes \\ \texttt{contato@tinogomes.com}
 }
 \title{Curso: Ruby Básico}
 
@@ -33,13 +32,24 @@
 
 \section{Introducao: Ruby.new}
 
-Ideia do Curso
+\subsection{Ideia do Curso}
+
 \begin{itemize}
   \item Apresentar a linguagem
   \item Técnicas de metaprogramação
   \item Problemas e desafios
 \end{itemize}
 
+\subsection{Sobre Ruby}
+Ruby é uma linguagem de programação \em{interpretada}, de \em{tipagem dinâmica} e \em{forte}, com \em{gerenciamento de memória automático}, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
+
+Matz queria uma linguagem de script que fosse mais poderosa do que Perl, e mais orientada a objetos do que Python. Ruby é primariamente, uma linguagem \em{orientada a objetos}, mas suporta outros paradigmas de programação, como \em{funcional}, \em{imperativa}  e \em{reflexiva}.
+
+Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.
+
+fonte: \href{http://bit.ly/wiki-ruby}{Wikipedia - http://bit.ly/wiki-ruby}
+
+\subsection{Ruby.new}
 
 \begin{itemize}
 \item Linguagem para humanos
@@ -54,17 +64,15 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 
 \end{itemize}
 
-\subsection{\#\#O que faz o código a seguir?}
+\subsection{O que faz o código a seguir?}
 \begin{lstlisting}[language=java]
    exit unless "restaurante".include? "aura"
-   [‘toasty', ’cheese', ’wine'].each 
+   ['toasty', 'cheese', 'wine'].each 
         { |food| print food.capitalize }
 \end{lstlisting}
 
----
 
-
-\section{\#\#Estruturas básicas}
+\section{Estruturas básicas}
 
 \begin{itemize}
   \item Variáveis 
@@ -83,7 +91,6 @@ x, y, taxa_do_lixo2
  
 \end{itemize}
 
-\section{\#\#Estruturas basicas}
 \begin{itemize}
   \item Symbols
 % * Symbols
@@ -107,7 +114,7 @@ retornara o mesmo valor. Isso nao acontece com string. O método equal? so
 devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma
 classe com valores iguais).
 
-\section{\#\#Metodos (mensagens)}
+\subsection{Métodos (mensagens)}
 \begin{lstlisting}[language=ruby]
 i = 1        
 texto = "um texto"; puts texto
@@ -127,7 +134,7 @@ end
 Lembre-se ... voce pode redefinir um método
 Quase tudo e objeto
 
-\section{\#\#Estruturas de Controle - if}
+\subsection{Estruturas de Controle - if}
  
        
 \subsection {Exemplo Completo}
@@ -152,7 +159,7 @@ end
 puts "Danger, Will Robinson" if radiation > 3000
 \end{lstlisting}
 
-\section{\#\#Estruturas de Controle - case} 
+\subsection{Estruturas de Controle - case} 
 \begin{lstlisting}[language=ruby]
 print "Enter your grade: "
 grade = gets.chomp
@@ -168,7 +175,7 @@ when "C", "D"
 \end{lstlisting}
 
 
-\section{\#\#Estruturas de Controle - while}
+\subsection{Estruturas de Controle - while}
 \begin{lstlisting}[language=ruby]
 while weight < 100 and numPallets <= 30
   pallet = nextPallet()
@@ -182,13 +189,14 @@ end
 square = square*square  while square < 1000
 \end{lstlisting}
 
-\section{\#\#Estrutura de Controle -  for}
+\subsection{Estrutura de Controle -  for}
 \begin{lstlisting}[language=ruby]
 for i in 0..5
    puts "Value is #{i}"
 end
 \end{lstlisting}
-\section{\#\#Estrutura de Controle -  until} 
+
+\subsection{Estrutura de Controle -  until} 
 \begin{lstlisting}[language=ruby]
 until weight >= 100 ||numPallets > 30
   pallet = nextPallet()
@@ -202,20 +210,22 @@ end
 square = square*square  until square >= 1000
 \end{lstlisting}
 
-\section{\#\#Desafio - FizzBuzz}  
+\subsection{Desafio - FizzBuzz}  
 Escreva um programa que imprima o número de 1 a 100.
 Mas, para múltiplos de três, imprima  ``Fizz'' no lugar do
 número e para múltiplos de cinco imprima ``Buzz''. Para
 números que são múltiplos de ambos três e cinco
 imprima ``FizzBuzz''.
+ 
+\url{http://www.rubyquiz.com/quiz126.html}
 
-http://www.rubyquiz.com/quiz126.html
-
-\section{\#\#Solução FizzBuzz}
+\subsection{Solução FizzBuzz}
 
 \lstinputlisting[language=ruby]{../Exemplos/1-very_basic/fizzbuzz.rb}
 
-\section{\#\#Containers - Array}
+\section{Containers}
+
+\subsection{Array}
 \begin{lstlisting}[language=ruby]
 a = [ 3.14159, "pie", 99 ]
 a.type   #        Array
@@ -232,7 +242,7 @@ c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 \end{lstlisting}
 
 
-\section{\#\#Containers - Hash}
+\subsection{Hash}
 \begin{lstlisting}[language=ruby]
 h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
 h.length        #        3
@@ -249,7 +259,7 @@ b = Hash[a]
 \end{lstlisting}
 
 
-\section{\#\#Blocos e Iteradores}
+\subsection{Blocos e Iteradores}
 
 Passando blocos
 \begin{lstlisting}[language=ruby]
@@ -259,17 +269,17 @@ Passando blocos
 end
 \end{lstlisting}
 
-Blocos de codigo
+Blocos de código
 \begin{lstlisting}[language=ruby]
 (1..20).each{|x| puts x}
 \end{lstlisting}
 
-Influencia do Smalltalk:
+Influência do Smalltalk:
 \begin{lstlisting}[language=smalltalk]
    1 to: 20 do: [:x | x printN1]
 \end{lstlisting}
 
-\section{\#\# Métodos de um Enumerable}
+\subsection{ Métodos de um Enumerable}
 \begin{lstlisting}  
 all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
@@ -277,7 +287,7 @@ map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
 to_set, zip
 \end{lstlisting}
  
-\section{\#\#Exemplos com Enumeraveis}
+\subsection{Exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.find {|name|  name.length>4}          # => "Leela"
@@ -289,7 +299,7 @@ names.group_by {|name|  name.length}
    # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
 \end{lstlisting}
 
-\section{\#\#Mais exemplos com Enumeraveis}
+\subsection{Mais exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.map {|name| name.downcase}
@@ -301,7 +311,9 @@ names.join ", "
 \end{lstlisting}
 
 
-\section{\#\#Invocando blocos}
+\section{Blocos}
+
+\subsection{yield}
 \begin{lstlisting}[language=ruby]
 def proxy_method
   puts "Calling command at: #{Time.new}"
@@ -313,8 +325,7 @@ def proxy_method
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
-
-\section{\#\#Invocando blocos II}
+\subsection{call}
 \begin{lstlisting}[language=ruby]
 def proxy_method(&method)
   # argumento com & precisa ser o ultimo da lista
@@ -327,7 +338,7 @@ def proxy_method (&method)
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
-\section{\#\#Proc x Lambda}
+\subsection{Proc x Lambda}
 \begin{lstlisting}[language=ruby]
 fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
@@ -343,7 +354,7 @@ Proc.new e proc sao equivalentes
 \end{lstlisting}
 
 
-\section{\#\#Lambda ``Calculus''}
+\subsection{Lambda ``Calculus''}
 
 \begin{lstlisting}[language=ruby, caption="Derivada em Ruby"]
 def d(f)
@@ -356,7 +367,7 @@ f = lambda {|x| x**2}
 puts d(f)[4]
 \end{lstlisting}
 
-\section{\#\#Objetos em Ruby}
+\section{Objetos em Ruby}
 \begin{lstlisting}[language=ruby]
 class BookInStock
   def initialize(isbn, price)
@@ -376,7 +387,7 @@ puts stock.to_s
 \end{lstlisting}
 
 
-\section{\#\#Variaveis e Escopo}
+\subsection{Variaveis e Escopo}
 
 \begin{tabular}{ l | c | r }
 Variáveis Locais & \verb|x name thx1138 _x _26| \\
@@ -387,7 +398,7 @@ Nomes de Classe & \verb|String BigDecimal| \\
 Constants & \verb|FEET_PER_MILE DEBUG|
 \end{tabular}
 
-\section{\#\#Atributos de instância - forma tradicional}
+\subsection{Atributos de instância - forma tradicional}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   def isbn
@@ -403,7 +414,7 @@ class BookInStock
   end
 \end{lstlisting}
 
-\section{\#\#Atributos de instância - forma declarativa}
+\subsection{Atributos de instância - forma declarativa}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   attr_accessor :isbn
@@ -411,15 +422,15 @@ class BookInStock
  end
 \end{lstlisting}
 
-\section{\#\#Herança}
-\subsection{Exemplo de Heranca}
+\subsection{Herança}
+\subsubsection{Exemplo de Heranca}
 \begin{lstlisting}[language=ruby]
 class SpecialStock < BookInStock
 \end{lstlisting}
 
-\section{\#\#Herança - Singleton Pattern}
+\subsection{Herança - Singleton Pattern}
 
-\subsection{forma tradicional}
+\subsubsection{forma tradicional}
 \begin{lstlisting}[language=ruby]
 class Logger
   private_class_method :new
@@ -431,7 +442,7 @@ class Logger
 end
 \end{lstlisting}
 
-\subsection{módulo Singleton}
+\subsubsection{módulo Singleton}
 \begin{lstlisting}[language=ruby]
 require 'singleton'
 class Logger
@@ -454,7 +465,7 @@ class << stock
    end
 \end{lstlisting}
 
-\section{\#\#Criando um Enumerable (I)}
+\subsection{Criando um Enumerable}
   *  Basta implementar o metodo each. 
 \begin{lstlisting}[language=ruby]
 class Node
@@ -468,7 +479,6 @@ class Node
   end
 \end{lstlisting}
 
-\section{\#\#Criando um Enumerable (II)}
 \begin{lstlisting}[language=ruby]
 linked_list.rb (continuacao)
  def <<(node)
@@ -485,7 +495,6 @@ linked_list.rb (continuacao)
  end
 \end{lstlisting}
 
-\section{\#\#Criando um Enumerable (III)}
 \begin{lstlisting}[language=ruby]
   def each
     node = self.next
@@ -496,5 +505,426 @@ linked_list.rb (continuacao)
   end
 
 \end{lstlisting}
+
+
+
+\section{Mais sobre métodos}
+
+\subsection{Lista de parâmetros}
+
+\begin{lstlisting}[language=ruby]
+def my_new_method               # No arguments
+  # Code for the method would go here
+end
+
+def my_other_new_method(arg1, arg2, arg3)  # 3 arguments
+  # Code for the method would go here
+end
+
+def cool_dude(arg1="Miles", arg2="Coltrane", arg3="Roach")  # defaults
+  "#{arg1}, #{arg2}, #{arg3}."
+end
+\end{lstlisting}
+
+\subsection{Truques com parâmetros}
+
+Aridade não definida
+
+\begin{lstlisting}[language=ruby]
+def varargs(arg1, *rest)
+  "Got #{arg1} and #{rest.join(', ')}"
+
+varargs("one")  # "Got one and "
+varargs("one", "two") # "Got one and two"
+varargs "one", "two", "three" # "Got one and two, three"
+
+def varargs(arg1, hash)
+ puts "#{arg1} - #{hash}"
+end
+
+varargs (1, :a => 1)
+end
+\end{lstlisting}
+
+\subsection{Array para argumentos}
+
+Expandindo array para parâmetros
+
+\begin{lstlisting}[language=ruby]
+def five(a, b, c, d, e)
+  "I was passed #{a} #{b} #{c} #{d} #{e}"
+end
+
+five(1, 2, 3, 4, 5 )         #  "I was passed 1 2 3 4 5"
+five(1, 2, 3, *['a', 'b'])  # "I was passed 1 2 3 a b"
+five(*(10..14).to_a)         #  "I was passed 10 11 12 13 14"
+\end{lstlisting}
+
+\subsection{Proc para bloco}
+
+Convertendo proc para bloco
+
+\begin{lstlisting}[language=ruby]
+print "(t)imes or (p)lus: "
+times = gets.chomp
+print "number: "
+number = gets.to_i
+
+if times =~ /^t/
+  calc = proc { |n| n*number }
+else
+  calc = proc { |n| n+number }
+end
+
+puts((1..10).collect(&calc).join(", "))
+\end{lstlisting}
+
+\section{Exceptions, Catch and Throw}
+
+\begin{lstlisting}[language=ruby]
+opFile = File.open(opName, "w")
+
+while data = socket.read(512)
+  opFile.write(data)
+end
+\end{lstlisting}
+
+\subsection{Exceptions}
+
+\begin{lstlisting}[language=ruby]
+opFile = File.open(opName, "w")
+begin
+  # Exceptions raised by this code will
+  # be caught by the following rescue clause
+  while data = socket.read(512)
+    opFile.write(data)
+  end
+
+rescue SystemCallError
+  $stderr.print "IO failed: " + $!
+  opFile.close
+  File.delete(opName)
+  raise
+end
+\end{lstlisting}
+
+\subsection{Catching exception}
+
+Nomeando a exceção
+
+\begin{lstlisting}[language=ruby]
+
+begin
+  eval string
+rescue SyntaxError, NameError => boom
+  # OLHA! sem usar o $!
+  print "String doesn't compile: " + boom
+rescue StandardError => bang
+  print "Error running script: " + bang
+end
+\end{lstlisting}
+
+\subsection{Ensure}
+
+Garante que um bloco é chamado
+
+\begin{lstlisting}[language=ruby]
+
+f = File.open("testfile")
+begin
+  # .. process
+rescue
+  # .. handle error
+ensure
+  f.close unless f.nil?
+end
+\end{lstlisting}
+
+\subsection{Rescuing a Method}
+
+Begin Rescue
+
+\begin{lstlisting}[language=ruby]
+
+def some_method
+  begin
+    danger_danger
+    true # good return
+  rescue Error
+    false # error return
+  end
+end
+\end{lstlisting}
+
+Better code
+
+\begin{lstlisting}[language=ruby]
+
+def some_method
+  danger_danger
+  true # good response
+rescue Error
+  false # error response
+end
+\end{lstlisting}
+
+\subsection{Raise Exceptions}
+
+Formas típicas de se lançar uma exceção
+
+\begin{lstlisting}[language=ruby]
+
+ raise # sem mensagem
+
+ # adicionando uma string...
+ raise "Missing name" if name.nil?
+
+ if i >= myNames.size
+   raise IndexError, "#{i} >= size (#{myNames.size})"
+ end
+
+ # passando o stackTrace via Kernel::caller
+ raise ArgumentError, "Name too big", caller
+\end{lstlisting}
+
+\subsection{Especializando Exceções}
+
+Declaração
+
+\begin{lstlisting}[language=ruby]
+
+class RetryException < RuntimeError
+  attr :okToRetry
+
+  def initialize(okToRetry)
+    @okToRetry = okToRetry
+  end
+end
+\end{lstlisting}
+
+Como lançar
+
+\begin{lstlisting}[language=ruby]
+
+def readData(socket)
+  data = socket.read(512)
+  if data.nil?
+    raise RetryException.new(true), "transient read error"
+  end
+  # .. normal processing
+end
+\end{lstlisting}
+
+\subsection{Especializando Exceções II}
+
+Tratanto a exceção
+
+\begin{lstlisting}[language=ruby]
+
+begin
+  stuff = readData(socket)
+  # .. process stuff
+rescue RetryException => detail
+  retry if detail.okToRetry
+  raise
+end
+\end{lstlisting}
+
+\subsection{Catch e Throw}
+
+Desvio incondicional com labels
+
+\begin{lstlisting}[language=ruby]
+
+def promptAndGet(prompt)
+  print prompt
+  res = readline.chomp
+  throw :quitRequested if res == "!"
+  return res
+end
+
+catch :quitRequested do
+  name = promptAndGet("Name: ")
+  age  = promptAndGet("Age:  ")
+  sex  = promptAndGet("Sex:  ")
+  # ..
+  # process information
+end
+\end{lstlisting}
+
+\section{Módulos}
+Uso
+
+\begin{enumerate}
+  \item Criar namespace (evitar conflito de nomes)
+  \item Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
+\end{enumerate}
+
+\subsection{Declaração}
+
+\begin{lstlisting}[language=ruby]
+
+module Trig
+  PI = 3.141592654
+  def Trig.sin(x)
+   # ..
+  end
+  def Trig.cos(x)
+   # ..
+  end
+end
+\end{lstlisting}
+
+\subsubsection{Uso}
+
+\begin{lstlisting}[language=ruby]
+
+require "./trig"
+puts Trig.sin(Trig::PI / 3.0)
+\end{lstlisting}
+
+\subsection{Mixins}
+
+Applying mixin
+
+\begin{lstlisting}[language=ruby]
+
+class BigInteger < Number
+  # Adiciona metodos de instancia de Stringify
+  include Stringify
+
+  # Adiciona metodos de classe de Math
+  extend Math
+
+  # Adiciona um constructor com um parametro
+  def initialize(value)
+    @value = value
+  end
+end
+\end{lstlisting}
+
+\subsection{Applying mixin}
+
+\begin{lstlisting}[language=ruby]
+
+bigint1 = BigInteger.new(10)
+
+puts bigint1.intValue   # --> 10
+
+bigint2 = BigInteger.add(-2, 4)
+puts bigint2.intValue   # --> 2
+
+puts bigint2.stringify   # --> 'Two'
+
+bigint2.extend CurrencyFormatter
+\end{lstlisting}
+
+\section{Pacotes Básicos}
+
+\subsection{BigDecimal}
+
+\begin{lstlisting}[language=ruby]
+
+require 'bigdecimal'
+
+BigDecimal.new('1.23) # => #<BigDecimal:7ffe0b052bc8,'0.123E1',18(18)>
+\end{lstlisting}
+
+\subsection{OpenStruct}
+
+\begin{lstlisting}[language=ruby]
+require 'ostruct'
+\end{lstlisting}
+
+\subsection{Test}
+
+\begin{lstlisting}[language=ruby]
+
+require "test/unit"
+
+class TesteFoo  < Test::Unit::TestCase
+
+  def test_eFoo_foo
+    assert_same(1, 0, "Que pena")
+  end
+end
+\end{lstlisting}
+
+\subsection{ERB}
+
+\begin{itemize}
+  \item Sistema de Template padrão do Ruby
+  \item Uma classe como outra qualquer
+  \item Via linha de comando é possível parsear um arquivo erb
+\end{itemize}
+
+\begin{lstlisting}[language=ruby]
+require 'erb'
+
+template = ERB.new('1 + 1 = <%= 1 + 1 %>')
+template.result # => '1 + 1 = 2'
+\end{lstlisting}
+
+\subsection{Net::HTTP}
+
+\begin{lstlisting}[language=ruby]
+	require "net/http"
+	require "uri"
+	require 'methodize'
+	
+	def get_page (string)
+	  uri = URI.parse(string)
+	  response = Net::HTTP.get_response(uri)
+	  response.body
+	end
+\end{lstlisting}
+
+\subsection{JSON}
+
+\begin{lstlisting}[language=ruby]
+	require "net/http"
+	require "uri"
+	require 'json'
+	require 'methodize'
+	
+	def get_page (string)
+	  uri = URI.parse(string)
+	  response = Net::HTTP.get_response(uri)
+	  json = JSON.parse(response.body)
+	  json.extend(Methodize)
+	end
+\end{lstlisting}
+
+\subsection{YAML}
+
+\subsubsection{Arquivo yaml}
+
+\begin{verbatim}
+	simple symbol: !ruby/symbol Simple 
+	shortcut syntax: !ruby/sym Simple 
+	symbols in seqs: 
+	  - !ruby/symbol ValOne 
+	  - !ruby/symbol ValTwo 
+	  - !ruby/symbol ValThree 
+	symbols in maps: 
+	  - !ruby/symbol MapKey: !ruby/symbol MapValue 
+\end{verbatim}
+
+\subsubsection{Ruby code}
+
+\begin{lstlisting}[language=ruby]
+	require "yaml"
+	
+	config = YAML.load_file("config.yml") # From file
+	p config
+\end{lstlisting}
+
+\subsubsection{Result}
+
+\begin{verbatim}
+{"simple symbol"=>:Simple, "shortcut syntax"=>:Simple, 
+"symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], 
+"symbols in maps"=>[{:MapKey=>:MapValue}]}
+\end{verbatim}
 
 \end{document}
