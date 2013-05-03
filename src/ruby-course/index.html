@@ -118,6 +118,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 <li>Deve-se usar letras_minúsculas para nomes de variáveis e métodos. <code class='inline prettyprint'>nome_completo</code></li>
 <li>Deve-se usar LETRAS_MAIÚSCULAS para nome de CONSTANTES. <code class='inline prettyprint'>MAX_ATTENDEES = 100</code></li>
 <li>Deve-se usar <em>CamelCase</em> para nome de Classes. <code class='inline prettyprint'>NotificationMailer</code></li>
+<li>Métodos podem receber um sinal de <code class='inline prettyprint'>!</code> ou <code class='inline prettyprint'>?</code> no fim do nome. Depois eu explico, ok?</li>
 </ul>
 </div>
       <div class='step'  data-x="4200" data-y="1500" data-z="1500">
@@ -127,20 +128,20 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 <h2>Hello World!</h2>
 
 <h3>via arquivo</h3>
-<pre><code class='prettyprint bash'>$ echo 'puts "hello world"' > hello_word.rb
-$ ruby hello_word.rb
-hello world
+<pre><code class='prettyprint bash'> $ echo 'puts "hello world"' > hello_word.rb
+ $ ruby hello_word.rb
+ hello world
 </code></pre>
 <h3><em>one-liner</em></h3>
-<pre><code class='prettyprint bash'>$ ruby -e 'puts "hello world"'
-hello world
+<pre><code class='prettyprint bash'> $ ruby -e 'puts "hello world"'
+ hello world
 </code></pre>
 <h3><em>Interactive Ruby</em> (IRB)</h3>
-<pre><code class='prettyprint bash'>$ irb
->> puts 'hello world'
-hello world
-=> nil
->>
+<pre><code class='prettyprint bash'> $ irb
+ >> puts 'hello world'
+ hello world
+ => nil
+ >>
 </code></pre></div>
       <div class='step'  data-x="4900" data-y="1500" data-z="100">
     
@@ -157,22 +158,22 @@ hello world
 <h1>Estruturas básicas</h1>
 
 <p>Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um objeto.</p>
-<pre><code class='prettyprint javascript'>>> 1.class
-=> Fixnum
->> "texto".class
-=> String
->> :simbolo.class
-=> Symbol
->> true.class
-=> TrueClass
->> false.class
-=> FalseClass
->> nil.class
-=> NilClass
->> Object.class
-=> Class
->> Class.class
-=> Class
+<pre><code class='prettyprint javascript'> >> 1.class
+ => Fixnum
+ >> "texto".class
+ => String
+ >> :simbolo.class
+ => Symbol
+ >> true.class
+ => TrueClass
+ >> false.class
+ => FalseClass
+ >> nil.class
+ => NilClass
+ >> Object.class
+ => Class
+ >> Class.class
+ => Class
 </code></pre></div>
       <div class='step'  data-x="6600" data-y="3000" data-scale="10">
     
@@ -193,20 +194,14 @@ hello world
 </code></pre></div>
       <div class='step'  data-x="6600" data-y="3000" data-scale="10">
     
-<h1>Estruturas básicas</h1>
-
-<h2>Comentários</h2>
+<h1>Estruturas básicas - Comentários</h1>
 
 <p>Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.</p>
-</div>
-      <div class='step'  data-x="3200" data-rotate="150">
-    
+
 <h3>Uma linha</h3>
 <pre><code class='prettyprint ruby'> # Esta linha é um comentário.
  1 + 1 # este texto a direita do sinal de # também é um comentário.
-</code></pre></div>
-      <div class='step'  data-x="3200" data-rotate="-150">
-    
+</code></pre>
 <h3>Múltiplas linhas</h3>
 <pre><code class='prettyprint ruby'>=begin
 O texto envolvido por =begin e =end é comentário.
@@ -228,7 +223,7 @@ na exterma esquerda do seu código, ou seja, na coluna
 0377                      # Número Octal (255)
 0b001001                  # Número binário (9)
 </code></pre>
-<h2>Ponto Flutuantes</h2>
+<h2>Pontos Flutuantes</h2>
 <pre><code class='prettyprint ruby'>123.45                    # Número com ponto flutuante (Float)
 1.2e-3                    # Número com ponto flutuante (0.0012)
 </code></pre></div>
@@ -242,7 +237,7 @@ na exterma esquerda do seu código, ou seja, na coluna
  10 - 3  # => 7          subtração
  10 * 3  # => 30         multiplicação
  10 / 3  # => 3          divisão
- 10 ** 3 # => 1000       potênciação
+ 10 ** 3 # => 1000       potenciação
  10 % 3  # => 1          módulo
 
  # Operações com Números com ponto flutuante
@@ -250,7 +245,7 @@ na exterma esquerda do seu código, ou seja, na coluna
  10 - 3.0  # => 7.0      subtração
  10 * 3.0  # => 30.0     multiplicação
  10 / 3.0  # => 3.33333  divisão
- 10 ** 3.0 # => 1000.0   potênciação
+ 10 ** 3.0 # => 1000.0   potenciação
  10 % 3.0  # => 1.0      módulo
 </code></pre></div>
       <div class='step' >
@@ -266,60 +261,41 @@ na exterma esquerda do seu código, ou seja, na coluna
  4.round(0)  # => 4        retorna o número arredondanto
  4.round(2)  # => 4.0      retorna o número de ponto flutuante para precisão > 0
  -32.abs     # => 32       retorna o valor absoluto (sem o sinal de negativo)
+ 1.zero?     # false       é zero?
 </code></pre>
-<p>Loops</p>
+<h2>Loops</h2>
 <pre><code class='prettyprint ruby'> >> 5.times {|num| print num, ","}
  1,2,3,4,5,
  => nil
 
- >> 5.upto(8) {|num| print num, "," }
+ >> 5.upto(8) {|num| print num, ","}
  5,6,7,8,
  => 5
 
- >> 5.downto(3) {|num| print ","}
+ >> 5.downto(3) {|num| print num, ","}
  5,4,3,
  => 5
+
+ >> 1.step(10, 3) {|num| print num, ","}
+ 1,4,7,10,
+ => 1
 </code></pre></div>
       <div class='step' >
     
-<h1>Estruturas básicas</h1>
+<h1>Estruturas básicas - Strings</h1>
 
-<h2>String <code class='inline prettyprint'>'single quotes'</code></h2>
-<pre><code class='prettyprint ruby'>>> puts 'texto'
-texto
->> puts 'texto'.length
-5
->> puts 'texto'.upcase
-TEXTO
->> puts 'tex'.+('to')
-texto
->> puts 'tex' + 'to' # syntax sugar
-texto
->> puts 'tex' << 'to'
-texto
->> String.new << 'texto'
-texto
->> 'tex%s' % 'to'
-texto
+<p>Existem dois tipos de construção. <code class='inline prettyprint'>'Sem'</code> e <code class='inline prettyprint'>"com interpolação"</code>.</p>
+
+<h2><code class='inline prettyprint'>'single quotes'</code></h2>
+<pre><code class='prettyprint ruby'> print 'texto'        # texto
+ print 'texto #{1+1}' # texto #{1 + 1}
+ print 'texto \' \\'  # texto ' \
 </code></pre>
-<p>Para usar os caracteres <code class='inline prettyprint'>'</code> ou <code class='inline prettyprint'>\</code>, você pode usar sequência de <em>escape</em> <code class='inline prettyprint'>\'</code> e <code class='inline prettyprint'>\\</code>.</p>
-<pre><code class='prettyprint ruby'>>> puts 'texto \' \\'
-texto ' \
-</code></pre></div>
-      <div class='step'  data-x="-1200">
-    
-<h1>Estruturas básicas</h1>
-
-<h2>String <code class='inline prettyprint'>"double quotes"</code></h2>
-
-<p>Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.</p>
-<pre><code class='prettyprint ruby'>>> puts "o resultado de 1 + 1 é #{ 1 + 1 }."
-o resultado de 1 + 1 é 2.
->> puts 'o resultado de 1 + 1 é #{ 1 + 1 }.'
-o resultado de 1 + 1 é #{ 1 + 1 }.
+<h2><code class='inline prettyprint'>"double quotes"</code></h2>
+<pre><code class='prettyprint ruby'> print "texto"         # texto
+ print "texto #{1+1}"  # texto 2 - retorna o to_s do objeto
+ print "texto \" \\"   # texto " \
 </code></pre>
-<p>O valor da expressão a ser interpolada, será o resultado do método <code class='inline prettyprint'>to_s</code> do objeto.</p>
-
 <p>Sequências de <em>escape</em></p>
 
 <div style='float:right;width:60%'>
@@ -336,8 +312,6 @@ hello world
 </div>
 
 <ul>
-<li><code class='inline prettyprint'>\"</code> – double quote</li>
-<li><code class='inline prettyprint'>\\</code> – single backslash</li>
 <li><code class='inline prettyprint'>\a</code> – bell/alert</li>
 <li><code class='inline prettyprint'>\b</code> – backspace</li>
 <li><code class='inline prettyprint'>\r</code> – carriage return</li>
@@ -348,45 +322,60 @@ hello world
 </div>
       <div class='step'  data-x="1200">
     
-<h1>Estruturas básicas</h1>
+<h1>Estruturas básicas - String</h1>
 
-<h2>String multiplas linhas</h2>
-
-<pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
+<h2>Múltiplas linhas</h2>
+<pre><code class='prettyprint ruby'> >> puts <&lt;DOC
+ Abaixo você verá o resultado das expressões.
+     1 + 2 = #{1+2}
+     1 * 2 = #{1*2}
  DOC
  # Resultado
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
+ Abaixo você verá o resultado das expressões.
+     1 + 2 = 3
+     1 * 2 = 2
 </code></pre>
-
-<p>Se quiser identar o finalizaror, para usar <code class='inline prettyprint'><<-</code>.</p>
-
-<pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
-     DOC
+<p>Se quiser identar o finalizador, para usar <code class='inline prettyprint'><<-</code>.</p>
+<pre><code class='prettyprint ruby'> >> puts <&lt;-DOC
+ Abaixo você verá o resultado das expressões.
+    1 + 2 = #{1+2}
+    1 * 2 = #{1*2}
+    DOC
  # Resultado
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
-</code></pre>
+ Abaixo você verá o resultado das expressões.
+    1 + 2 = 3
+    1 * 2 = 2
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas - String</h1>
 
-<p>* aceita interpolação.</p>
-</div>
+<h2>Exemplos</h2>
+<pre><code class='prettyprint ruby'> print 'tex'.+('to')           # texto
+ print 'tex' + 'to'            # texto   -- syntax sugar
+ print 'tex' << 'to'           # texto
+ print String.new << 'texto'   # texto
+ print 'tex%s' % 'to'          # texto
+ print 'te'.concat('xto')      # texto
+ print 'Ho!' * 3               # Ho! Ho! Ho!
+
+ "abc" <=> "bcd"               # -1 - comparação - deprecated, usar casecmp
+ "abc".casecmp("bcd")
+</code></pre>
+<h2>Alguns métodos</h2>
+<pre><code class='prettyprint ruby'> texto = 'hello world'
+
+ texto.length            # 5      -- texto.size
+ texto.split(" ")        # ["hello", "world"]
+ texto.upcase            # "HELLO WORLD"
+ texto                   # "hello world"
+ texto.upcase!           # "HELLO WORLD"
+ texto                   # "HELLO WORLD"
+ texto.capitalize        # "Hello world"
+</code></pre></div>
       <div class='step'  data-x="-1200">
     
-<h1>Estruturas básicas</h1>
-
-<h2>Símbolos</h2>
+<h1>Estruturas básicas - Símbolos</h1>
 
 <p>Os símbolos são ideais para serem usados como chave em <code class='inline prettyprint'>Hash</code>.</p>
 <pre><code class='prettyprint ruby'>:x, :y, :chave

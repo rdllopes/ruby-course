@@ -100,6 +100,7 @@ Sobre a sintaxe:
 * Deve-se usar letras_minúsculas para nomes de variáveis e métodos. `nome_completo`
 * Deve-se usar LETRAS_MAIÚSCULAS para nome de CONSTANTES. `MAX_ATTENDEES = 100`
 * Deve-se usar *CamelCase* para nome de Classes. `NotificationMailer`
+* Métodos podem receber um sinal de `!` ou `?` no fim do nome. Depois eu explico, ok?
 
 
 ---
@@ -112,26 +113,26 @@ Sobre a sintaxe:
 ### via arquivo
 
 ```bash
-$ echo 'puts "hello world"' > hello_word.rb
-$ ruby hello_word.rb
-hello world
+ $ echo 'puts "hello world"' > hello_word.rb
+ $ ruby hello_word.rb
+ hello world
 ```
 
 ### *one-liner*
 
 ```bash
-$ ruby -e 'puts "hello world"'
-hello world
+ $ ruby -e 'puts "hello world"'
+ hello world
 ```
 
 ### *Interactive Ruby* (IRB)
 
 ```bash
-$ irb
->> puts 'hello world'
-hello world
-=> nil
->>
+ $ irb
+ >> puts 'hello world'
+ hello world
+ => nil
+ >>
 ```
 
 ---
@@ -159,22 +160,22 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um objeto.
 
 ```javascript
->> 1.class
-=> Fixnum
->> "texto".class
-=> String
->> :simbolo.class
-=> Symbol
->> true.class
-=> TrueClass
->> false.class
-=> FalseClass
->> nil.class
-=> NilClass
->> Object.class
-=> Class
->> Class.class
-=> Class
+ >> 1.class
+ => Fixnum
+ >> "texto".class
+ => String
+ >> :simbolo.class
+ => Symbol
+ >> true.class
+ => TrueClass
+ >> false.class
+ => FalseClass
+ >> nil.class
+ => NilClass
+ >> Object.class
+ => Class
+ >> Class.class
+ => Class
 ```
 
 ---
@@ -201,23 +202,15 @@ Já falei que em Ruby, TUDO é objeto?
 ---
 = data-x="6600" data-y="3000" data-scale="10"
 
-# Estruturas básicas
-
-## Comentários
+# Estruturas básicas - Comentários
 
 Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.
-
----
-= data-x="3200" data-rotate="150"
 
 ### Uma linha
 ```ruby
  # Esta linha é um comentário.
  1 + 1 # este texto a direita do sinal de # também é um comentário.
 ```
----
-= data-x="3200" data-rotate="-150"
-
 ### Múltiplas linhas
 
 ```ruby
@@ -244,7 +237,7 @@ na exterma esquerda do seu código, ou seja, na coluna
 0b001001                  # Número binário (9)
 ```
 
-## Ponto Flutuantes
+## Pontos Flutuantes
 
 ```ruby
 123.45                    # Número com ponto flutuante (Float)
@@ -263,7 +256,7 @@ na exterma esquerda do seu código, ou seja, na coluna
  10 - 3  # => 7          subtração
  10 * 3  # => 30         multiplicação
  10 / 3  # => 3          divisão
- 10 ** 3 # => 1000       potênciação
+ 10 ** 3 # => 1000       potenciação
  10 % 3  # => 1          módulo
 
  # Operações com Números com ponto flutuante
@@ -271,7 +264,7 @@ na exterma esquerda do seu código, ou seja, na coluna
  10 - 3.0  # => 7.0      subtração
  10 * 3.0  # => 30.0     multiplicação
  10 / 3.0  # => 3.33333  divisão
- 10 ** 3.0 # => 1000.0   potênciação
+ 10 ** 3.0 # => 1000.0   potenciação
  10 % 3.0  # => 1.0      módulo
 ```
 
@@ -289,73 +282,49 @@ na exterma esquerda do seu código, ou seja, na coluna
  4.round(0)  # => 4        retorna o número arredondanto
  4.round(2)  # => 4.0      retorna o número de ponto flutuante para precisão > 0
  -32.abs     # => 32       retorna o valor absoluto (sem o sinal de negativo)
+ 1.zero?     # false       é zero?
 ```
 
-Loops
+## Loops
 
 ```ruby
  >> 5.times {|num| print num, ","}
  1,2,3,4,5,
  => nil
 
- >> 5.upto(8) {|num| print num, "," }
+ >> 5.upto(8) {|num| print num, ","}
  5,6,7,8,
  => 5
 
- >> 5.downto(3) {|num| print ","}
+ >> 5.downto(3) {|num| print num, ","}
  5,4,3,
  => 5
-```
 
-
----
-# Estruturas básicas
-
-## String `'single quotes'`
-
-```ruby
->> puts 'texto'
-texto
->> puts 'texto'.length
-5
->> puts 'texto'.upcase
-TEXTO
->> puts 'tex'.+('to')
-texto
->> puts 'tex' + 'to' # syntax sugar
-texto
->> puts 'tex' << 'to'
-texto
->> String.new << 'texto'
-texto
->> 'tex%s' % 'to'
-texto
-```
-
-Para usar os caracteres `'` ou `\`, você pode usar sequência de *escape* `\'` e `\\`.
-
-```ruby
->> puts 'texto \' \\'
-texto ' \
+ >> 1.step(10, 3) {|num| print num, ","}
+ 1,4,7,10,
+ => 1
 ```
 
 ---
-= data-x="-1200"
+# Estruturas básicas - Strings
 
-# Estruturas básicas
+Existem dois tipos de construção. `'Sem'` e `"com interpolação"`.
 
-## String `"double quotes"`
-
-Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.
+## `'single quotes'`
 
 ```ruby
->> puts "o resultado de 1 + 1 é #{ 1 + 1 }."
-o resultado de 1 + 1 é 2.
->> puts 'o resultado de 1 + 1 é #{ 1 + 1 }.'
-o resultado de 1 + 1 é #{ 1 + 1 }.
+ print 'texto'        # texto
+ print 'texto #{1+1}' # texto #{1 + 1}
+ print 'texto \' \\'  # texto ' \
 ```
 
-O valor da expressão a ser interpolada, será o resultado do método `to_s` do objeto.
+## `"double quotes"`
+
+```ruby
+ print "texto"         # texto
+ print "texto #{1+1}"  # texto 2 - retorna o to_s do objeto
+ print "texto \" \\"   # texto " \
+```
 
 Sequências de *escape*
 
@@ -372,8 +341,6 @@ hello world
 </code></pre>
 </div>
 
-* `\"` – double quote
-* `\\` – single backslash
 * `\a` – bell/alert
 * `\b` – backspace
 * `\r` – carriage return
@@ -384,46 +351,72 @@ hello world
 ---
 = data-x="1200"
 
-# Estruturas básicas
+# Estruturas básicas - String
 
-## String multiplas linhas
+## Múltiplas linhas
 
-<pre class='prettyprint'><code class='language-ruby'>>> puts <&lt;DOC
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
+```ruby
+ >> puts <&lt;DOC
+ Abaixo você verá o resultado das expressões.
+     1 + 2 = #{1+2}
+     1 * 2 = #{1*2}
  DOC
  # Resultado
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
-</code></pre>
+ Abaixo você verá o resultado das expressões.
+     1 + 2 = 3
+     1 * 2 = 2
+```
 
-Se quiser identar o finalizaror, para usar `<<-`.
+Se quiser identar o finalizador, para usar `<<-`.
 
-<pre class='prettyprint'><code class='language-ruby'>>> puts <<-DOC
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
-     DOC
+```ruby
+ >> puts <&lt;-DOC
+ Abaixo você verá o resultado das expressões.
+    1 + 2 = #{1+2}
+    1 * 2 = #{1*2}
+    DOC
  # Resultado
- Esta é uma string em múltiplas linhas.
-     * item
-     * item
-     * item
-</code></pre>
+ Abaixo você verá o resultado das expressões.
+    1 + 2 = 3
+    1 * 2 = 2
+```
 
-\* aceita interpolação.
+---
+# Estruturas básicas - String
+
+## Exemplos
+
+```ruby
+ print 'tex'.+('to')           # texto
+ print 'tex' + 'to'            # texto   -- syntax sugar
+ print 'tex' << 'to'           # texto
+ print String.new << 'texto'   # texto
+ print 'tex%s' % 'to'          # texto
+ print 'te'.concat('xto')      # texto
+ print 'Ho!' * 3               # Ho! Ho! Ho!
+
+ "abc" <=> "bcd"               # -1 - comparação - deprecated, usar casecmp
+ "abc".casecmp("bcd")
+```
+
+## Alguns métodos
+
+```ruby
+ texto = 'hello world'
+
+ texto.length            # 5      -- texto.size
+ texto.split(" ")        # ["hello", "world"]
+ texto.upcase            # "HELLO WORLD"
+ texto                   # "hello world"
+ texto.upcase!           # "HELLO WORLD"
+ texto                   # "HELLO WORLD"
+ texto.capitalize        # "Hello world"
+```
 
 ---
 = data-x="-1200"
 
-# Estruturas básicas
-
-## Símbolos
+# Estruturas básicas - Símbolos
 
 Os símbolos são ideais para serem usados como chave em `Hash`.
 
