@@ -167,7 +167,6 @@ Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um 
 => Class
 ```
 
-
 ---
 # Estruturas básicas
 
@@ -212,11 +211,9 @@ na exterma esquerda do seu código, ou seja, na coluna
 ```
 
 ---
-# Estruturas básicas
+# Estruturas básicas - Números
 
-## Números
-
-### Inteiros
+## Inteiros
 
 ```ruby
 123                       # Inteiro (Fixnum)
@@ -228,11 +225,68 @@ na exterma esquerda do seu código, ou seja, na coluna
 0b001001                  # Número binário (9)
 ```
 
-### Flutuantes
+## Ponto Flutuantes
+
 ```ruby
 123.45                    # Número com ponto flutuante (Float)
 1.2e-3                    # Número com ponto flutuante (0.0012)
 ```
+
+---
+# Estruturas básicas - Números
+
+## Operações
+
+```ruby
+ # Operações com Inteiro
+ 10 + 3  # => 13         soma
+ 10 - 3  # => 7          subtração
+ 10 * 3  # => 30         multiplicação
+ 10 / 3  # => 3          divisão
+ 10 ** 3 # => 1000       potênciação
+ 10 % 3  # => 1          módulo
+
+ # Operações com Números com ponto flutuante
+ 10 + 3.0  # => 13.0     soma
+ 10 - 3.0  # => 7.0      subtração
+ 10 * 3.0  # => 30.0     multiplicação
+ 10 / 3.0  # => 3.33333  divisão
+ 10 ** 3.0 # => 1000.0   potênciação
+ 10 % 3.0  # => 1.0      módulo
+```
+
+---
+# Estruturas básicas - Números
+
+## Métodos
+
+```ruby
+ 65.chr      # => "A"      retorna o caracter representado
+ 43.even?    # => false    é par?
+ 31.odd?     # => true     é impar?
+ 32.next     # => 33       retorna o próximo número - 32.succ
+ 1.pred      # => 0        retorna o número anterior
+ 4.round(0)  # => 4        retorna o número arredondanto
+ 4.round(2)  # => 4.0      retorna o número de ponto flutuante para precisão > 0
+ -32.abs     # => 32       retorna o valor absoluto (sem o sinal de negativo)
+```
+
+Loops
+
+```ruby
+ >> 5.times {|num| print num, ","}
+ 1,2,3,4,5,
+ => nil
+
+ >> 5.upto(8) {|num| print num, "," }
+ 5,6,7,8,
+ => 5
+
+ >> 5.downto(3) {|num| print ","}
+ 5,4,3,
+ => 5
+```
+
 
 ---
 # Estruturas básicas
@@ -1308,7 +1362,7 @@ template.result # => '1 + 1 = 2'
 	require "net/http"
 	require "uri"
 	require 'methodize'
-	
+
 	def get_page (string)
 	  uri = URI.parse(string)
 	  response = Net::HTTP.get_response(uri)
@@ -1325,7 +1379,7 @@ template.result # => '1 + 1 = 2'
 	require "uri"
 	require 'json'
 	require 'methodize'
-	
+
 	def get_page (string)
 	  uri = URI.parse(string)
 	  response = Net::HTTP.get_response(uri)
@@ -1340,14 +1394,14 @@ template.result # => '1 + 1 = 2'
 
 ### Arquivo yaml
 
-	simple symbol: !ruby/symbol Simple 
-	shortcut syntax: !ruby/sym Simple 
-	symbols in seqs: 
-	  - !ruby/symbol ValOne 
-	  - !ruby/symbol ValTwo 
-	  - !ruby/symbol ValThree 
-	symbols in maps: 
-	  - !ruby/symbol MapKey: !ruby/symbol MapValue 
+	simple symbol: !ruby/symbol Simple
+	shortcut syntax: !ruby/sym Simple
+	symbols in seqs:
+	  - !ruby/symbol ValOne
+	  - !ruby/symbol ValTwo
+	  - !ruby/symbol ValThree
+	symbols in maps:
+	  - !ruby/symbol MapKey: !ruby/symbol MapValue
 
 ---
 #Pacotes Básicos
@@ -1357,7 +1411,7 @@ template.result # => '1 + 1 = 2'
 ### Ruby code
 
 	require "yaml"
-	
+
 	config = YAML.load_file("config.yml") # From file
 	p config
 

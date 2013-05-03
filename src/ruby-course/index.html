@@ -213,11 +213,9 @@ na exterma esquerda do seu código, ou seja, na coluna
 </code></pre></div>
       <div class='step' >
     
-<h1>Estruturas básicas</h1>
+<h1>Estruturas básicas - Números</h1>
 
-<h2>Números</h2>
-
-<h3>Inteiros</h3>
+<h2>Inteiros</h2>
 <pre><code class='prettyprint ruby'>123                       # Inteiro (Fixnum)
 -123                      # Inteiro negatico (Fixnum)
 1_123                     # Inteiro (Fixnum)
@@ -226,9 +224,57 @@ na exterma esquerda do seu código, ou seja, na coluna
 0377                      # Número Octal (255)
 0b001001                  # Número binário (9)
 </code></pre>
-<h3>Flutuantes</h3>
+<h2>Ponto Flutuantes</h2>
 <pre><code class='prettyprint ruby'>123.45                    # Número com ponto flutuante (Float)
 1.2e-3                    # Número com ponto flutuante (0.0012)
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas - Números</h1>
+
+<h2>Operações</h2>
+<pre><code class='prettyprint ruby'> # Operações com Inteiro
+ 10 + 3  # => 13         soma
+ 10 - 3  # => 7          subtração
+ 10 * 3  # => 30         multiplicação
+ 10 / 3  # => 3          divisão
+ 10 ** 3 # => 1000       potênciação
+ 10 % 3  # => 1          módulo
+
+ # Operações com Números com ponto flutuante
+ 10 + 3.0  # => 13.0     soma
+ 10 - 3.0  # => 7.0      subtração
+ 10 * 3.0  # => 30.0     multiplicação
+ 10 / 3.0  # => 3.33333  divisão
+ 10 ** 3.0 # => 1000.0   potênciação
+ 10 % 3.0  # => 1.0      módulo
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Estruturas básicas - Números</h1>
+
+<h2>Métodos</h2>
+<pre><code class='prettyprint ruby'> 65.chr      # => "A"      retorna o caracter representado
+ 43.even?    # => false    é par?
+ 31.odd?     # => true     é impar?
+ 32.next     # => 33       retorna o próximo número - 32.succ
+ 1.pred      # => 0        retorna o número anterior
+ 4.round(0)  # => 4        retorna o número arredondanto
+ 4.round(2)  # => 4.0      retorna o número de ponto flutuante para precisão > 0
+ -32.abs     # => 32       retorna o valor absoluto (sem o sinal de negativo)
+</code></pre>
+<p>Loops</p>
+<pre><code class='prettyprint ruby'> >> 5.times {|num| print num, ","}
+ 1,2,3,4,5,
+ => nil
+
+ >> 5.upto(8) {|num| print num, "," }
+ 5,6,7,8,
+ => 5
+
+ >> 5.downto(3) {|num| print ","}
+ 5,4,3,
+ => 5
 </code></pre></div>
       <div class='step' >
     
@@ -1188,14 +1234,14 @@ end
 <h2>YAML</h2>
 
 <h3>Arquivo yaml</h3>
-<pre><code class='prettyprint '>simple symbol: !ruby/symbol Simple 
-shortcut syntax: !ruby/sym Simple 
-symbols in seqs: 
-  - !ruby/symbol ValOne 
-  - !ruby/symbol ValTwo 
-  - !ruby/symbol ValThree 
-symbols in maps: 
-  - !ruby/symbol MapKey: !ruby/symbol MapValue 
+<pre><code class='prettyprint '>simple symbol: !ruby/symbol Simple
+shortcut syntax: !ruby/sym Simple
+symbols in seqs:
+  - !ruby/symbol ValOne
+  - !ruby/symbol ValTwo
+  - !ruby/symbol ValThree
+symbols in maps:
+  - !ruby/symbol MapKey: !ruby/symbol MapValue
 </code></pre></div>
       <div class='step' >
     
