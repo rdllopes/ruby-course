@@ -4,8 +4,47 @@
 \usepackage[portuges]{babel}
 \usepackage{booktabs}
 \usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+\usepackage{bashful}
 \usepackage{dcolumn}
 \usepackage{hyperref}
+\usepackage[stable]{footmisc}
+
+\lstset{%
+    	extendedchars=true,
+    	inputencoding=utf8/latin1,
+        literate=%
+        {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ú}{{\'{u}}}1        
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1 
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+}
+
 \lstloadlanguages{Ruby}
 \lstdefinelanguage{Smalltalk}{ 
   morekeywords={true,false,self,super,nil}, 
@@ -14,9 +53,32 @@
   morestring=[d]', 
   style=SmalltalkStyle 
 } 
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  numbers=none,  
+  basicstyle=\small\sffamily,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{yellow!20},
+  % linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
+
+\lstdefinestyle{BashOutputStyle}{
+  basicstyle=\small\ttfamily,
+  numbers=none,
+  frame=tblr,
+  columns=fullflexible,
+  backgroundcolor=\color{blue!10},
+  % linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
+
 \lstdefinestyle{SmalltalkStyle}{ 
   literate={:=}{{$\gets$}}1{^}{{$\uparrow$}}1 
 }
+
+\newcommand*{\Package}[1]{\texttt{#1}}%
 
 \author{ 
     \\ Rodrigo di Lorenzo Lopes \\  \texttt{rodrigo.lorenzo@abril.com.br}
@@ -41,19 +103,70 @@
 \end{itemize}
 
 \subsection{Sobre Ruby}
-Ruby é uma linguagem de programação \em{interpretada}, de \em{tipagem dinâmica} e \em{forte}, com \em{gerenciamento de memória automático}, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
+Ruby é uma linguagem de programação \em{interpretada}, de \em{tipagem dinâmica} e \em{forte}, com \em{gerenciamento de memória automático},
+ originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
 
-Matz queria uma linguagem de script que fosse mais poderosa do que Perl, e mais orientada a objetos do que Python. Ruby é primariamente, uma linguagem \em{orientada a objetos}, mas suporta outros paradigmas de programação, como \em{funcional}, \em{imperativa}  e \em{reflexiva}.
+Matz queria uma linguagem de script que fosse mais poderosa do que Perl, e mais orientada a objetos do que Python.
+Ruby é primariamente, uma linguagem \em{orientada a objetos}, mas suporta outros paradigmas de programação,
+como \em{funcional}, \em{imperativa}  e \em{reflexiva}.
 
 Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.
 
 fonte: \href{http://bit.ly/wiki-ruby}{Wikipedia - http://bit.ly/wiki-ruby}
 
-\subsection{Ruby.new}
+\subsection{Inslatação}
+Antes de prosseguir com o curso, vejamos como instalar o interpretador da linguagem. Ruby é hoje portado para os principais sistemas operacionais:
+
+\subsubsection{Windows}
+
+Baixar o executável de instalação em \url{http://rubyinstaller.org/downloads/}
+
+\subsubsection{Linux (Debian / Ubuntu)}
+
+\begin{lstlisting}[style=BashInputStyle]
+$ [sudo] apt-get install ruby1.9.1
+\end{lstlisting}
+
+\subsubsection{Mac (via Homebrew)\footnote{Linux e Mac normalmente já vem com uma instalação de Ruby.}}
+
+\begin{lstlisting}[style=BashInputStyle]
+$ brew install ruby
+\end{lstlisting}
+
+Podemos verificar a versão já instalada do Ruby que está no \Package{PATH}.
+
+Verificar a versão de ruby instalada, digite  \Package{ruby --version}.
+
+\begin{lstlisting}[style=BashInputStyle]
+$ ruby --version
+\end{lstlisting}
+
+Você receberá uma mensagem como essa:
+\begin{lstlisting}[style=BashOutputStyle]
+ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
+\end{lstlisting}
+
+\Package{ruby -v} também imprime a versão do ruby, porém ativa o modo \em{verbose} e permite executar scripts.
+
+O código-fonte ruby é um arquivo de texto como qualquer outro. Você pode utilizar seu editor de texto favorito, mas aqui a lista dos principais editores e IDEs
+disponíveis para a linguagem: 
 
 \begin{itemize}
-\item Linguagem para humanos
-\item Compare:
+  \item \href{http://www.sublimetext.com/2}{Sublime Text 2}
+\item \href{http://www.vim.org/}{Vim}
+\item \href{http://www.gnu.org/software/emacs/}{Emacs}
+\item \href{https://github.com/textmate/textmate/}{TextMate 2 (Mac)}
+\item \href{https://netbeans.org/downloads/6.9.1/index.html}{Netbeans 6.9.1}
+\item \href{http://www.aptana.com/}{Aptana}
+\end{itemize}
+
+ 
+
+\subsection{Ruby.new}
+
+Ao longo desse curso, veremos comos os paradigmas de programação são aplicados em Ruby. Por enquanto, para exemplificar o pardigma orienta-a-objetos,
+observe o exemplo:
+
 \begin{lstlisting}[language=ruby]
 5.times { print "Ola!" }
 \end{lstlisting}
@@ -62,24 +175,281 @@ fonte: \href{http://bit.ly/wiki-ruby}{Wikipedia - http://bit.ly/wiki-ruby}
 for (int i=0; i <10; i++) { printf("Ola!");}
 \end{lstlisting}
 
-\end{itemize}
+A consistência de ``tudo ser objeto''\cite{abadi_theory_1996} parte dos príncipios de legibilidade e expressividade (acima por exemplo da eficiência em tempo de execução). É quase possível entender o código sem mesmo conhecer a linguagem. 
+Veja o exemplo abaixo:
 
-\subsection{O que faz o código a seguir?}
 \begin{lstlisting}[language=java]
    exit unless "restaurante".include? "aura"
    ['toasty', 'cheese', 'wine'].each 
         { |food| print food.capitalize }
 \end{lstlisting}
 
+\subsection{Sobre a sintaxe}
+
+Algumas itens sobre a sintaxe são apenas conveções. Embora, pode-se utilizar uma conveção arbitrária para nomes de classes e métodos, é importante manter
+a consistência com os programas da linguagem.
+ 
+\begin{itemize}
+  \item  Espaços, tabulações e blocos de comentários serão ignorados pelo interpretador.
+  \item  Ponto-e-vírgula e nova linha é considerado um novo comando. Porém, se for encontrado um operador, como `+', `-', ou o sinal de `\', indica que a 
+próxima linha é continuação do comando atual.
+  \item  Os identificadores são nomes de variáveis, constantes e métodos e é \em{case-sensitive}, ou seja, `DNS' e `Dns` são duas constantes diferentes.
+  \item  Deve-se usar letras\_minúsculas para nomes de variáveis e métodos. `nome\_completo'
+  \item  Deve-se usar LETRAS\_MAIÚSCULAS para nome de CONSTANTES. `MAX\_ATTENDEES = 100'
+  \item  Deve-se usar \em{CamelCase} para nome de Classes. `NotificationMailer'
+\end{itemize}
+
+\subsection {Running Ruby}
+
+Vamos criar uma arquivo Hello World! do Ruby.
+
+\begin{lstlisting}[style=BashInputStyle]
+$ echo 'puts "hello world"' > hello_word.rb
+$ ruby hello_word.rb
+\end{lstlisting}
+
+A saída será: 
+
+\begin{lstlisting}[style=BashOutputStyle]
+hello world
+\end{lstlisting}
+
+Como ocorre com interpretadores como Perl, é possível passar o script por argumento na linha de comando:
+
+\begin{lstlisting}[style=BashInputStyle]
+$ ruby -e 'puts "hello world"'
+\end{lstlisting}
+
+A saída será a mesma:
+
+\begin{lstlisting}[style=BashOutputStyle]
+hello world
+\end{lstlisting}
+
+O ruby tem ainda um shell interativo (IRB) que pode ser usado para realizar testes:
+
+
+\begin{lstlisting}[style=BashInputStyle]
+$ irb
+>> puts 'hello world'
+hello world
+=> nil
+>>
+\end{lstlisting}
 
 \section{Estruturas básicas}
+
+Nessa sessão veremos as estruturas básicas da linguagem: estruturas de controle e objetos básicos que são instanciados pelo próprio interpretador. Em Ruby, 
+tudo que pode ser atribuído a uma variável é um objeto e todo objeto tem uma classe. Numa linguagem orientada a objetos, a forma básica de interagir com 
+objetos é por meio de mensagens. Cada objeto ``entende'' um certo conjunto de mensagens definidos em métodos. A executação de um método se dá no envio da mensagem 
+com o nome do método para o objeto. Em particular, toda classe ``entende" todos os métodos da classe Object. Veremos tudo isso em detalhes. Mas tomemos agora 
+o método class e object. Esse método devolve a classe que o objeto pertence (ou qual classe foi utilizada para instanciar o objeto). Veja:
+ 
+
+\begin{lstlisting}[language=ruby]
+>> 1.class
+=> Fixnum
+>> "texto".class
+=> String
+>> :simbolo.class
+=> Symbol
+>> true.class
+=> TrueClass
+>> false.class
+=> FalseClass
+>> nil.class
+=> NilClass
+>> Object.class
+=> Class
+>> Class.class
+=> Class
+\end{lstlisting}
+
+
+Já falei que em Ruby, TUDO é objeto?
+
+\begin{lstlisting}[language=ruby]
+>> 1.methods.count
+=> 130
+> 1.methods.sort
+=> [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, :<<, :<=, :<=>, :==, :===,
+:=~, :>, :>=, :>>, :[], :^, :__id__, :__send__, :abs, :abs2, :angle, :arg, :between?,
+:ceil, :chr, :class, :clone, :coerce, :conj, :conjugate, ...]
+>> 'texto'.methods.count
+=> 162
+>> 'texto'.methods.sort
+=> [:!, :!=, :!~, :%, :*, :+, :<, :<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :[], :[]=,
+:__id__, :__send__, :ascii_only?, :between?, :bytes, :bytesize, :byteslice, ...]
+\end{lstlisting}
+
+\subsection{Comentários}
+
+Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.
+
+\subsubsection{Uma linha}
+\begin{lstlisting}[language=ruby]
+ # Esta linha eh um comentario.
+ 1 + 1 # este texto a direita do sinal de # tambem eh um comentario.
+\end{lstlisting}
+
+\subsubsection{Múltiplas linhas}
+
+\begin{lstlisting}[language=ruby]
+=begin
+O texto envolvido por =begin e =end é comentário.
+Mas para isto funcionar, o =begin e =end devem estar
+na exterma esquerda do seu código, ou seja, na coluna
+0 (zero).
+=end
+\end{lstlisting}
+
+\subsection{Números}
+
+\subsubsection{Inteiros}
+
+\begin{lstlisting}[language=ruby]
+123                       # Inteiro (Fixnum)
+-123                      # Inteiro negatico (Fixnum)
+1_123                     # Inteiro (Fixnum)
+123_456_789_123_456_789   # Inteiro (Bignum)
+0xAB                      # Número Hexadecimal (170)
+0377                      # Número Octal (255)
+0b001001                  # Número binário (9)
+\end{lstlisting}
+
+\subsubsection{Pontos Flutuantes}
+
+\begin{lstlisting}[language=ruby]
+123.45                    # Número com ponto flutuante (Float)
+1.2e-3                    # Número com ponto flutuante (0.0012)
+\end{lstlisting}
+
+\subsubsection{String 'single quotes'}
+
+\begin{lstlisting}[language=ruby]
+>> puts 'texto'
+texto
+>> puts 'texto'.length
+5
+>> puts 'texto'.upcase
+TEXTO
+>> puts 'tex'.+('to')
+texto
+>> puts 'tex' + 'to' # syntax sugar
+texto
+>> puts 'tex' << 'to'
+texto
+>> String.new << 'texto'
+texto
+>> 'tex%s' % 'to'
+texto
+\end{lstlisting}
+
+Para usar os caracteres '\'' ou '\\', você pode usar sequência de \em{escape}  '\\\'' e '\\\\'.
+
+\begin{lstlisting}[language=ruby]
+>> puts 'texto \' \\'
+texto ' \
+\end{lstlisting}
+
+\subsubsection{String 'double quotes'}
+
+Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.
+
+\begin{lstlisting}[language=ruby]
+>> puts "o resultado de 1 + 1 é #{ 1 + 1 }."
+o resultado de 1 + 1 é 2.
+>> puts 'o resultado de 1 + 1 é #{ 1 + 1 }.'
+o resultado de 1 + 1 é #{ 1 + 1 }.
+\end{lstlisting}
+
+O valor da expressão a ser interpolada, será o resultado do método 'to\_s' do objeto.
+
+\subsubsection{Sequências de \em{escape}}
+
+\begin{lstlisting}[language=ruby]
+>> puts "      world\rhello"
+hello world
+>> puts "\thello \b\sworld"
+    hello world
+>> puts '\thello \b\sworld'
+\thello \b\sworld
+\end{lstlisting}
+
+\begin{itemize}
+  \item  '\textbackslash"' – double quote
+  \item  '\textbackslash\textbackslash' – single backslash
+  \item  '\textbackslash{}a' – bell/alert
+  \item  '\textbackslash{}b' – backspace
+  \item  '\textbackslash{}r' – carriage return
+  \item  '\textbackslash{}n' – newline
+  \item  '\textbackslash{}s' – space
+  \item  '\textbackslash{}t' – tab
+\end{itemize}
+
+
+\subsubsection{String multiplas linhas}
+
+\begin{lstlisting}[language=ruby]
+>>> puts <DOC
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+ DOC
+\end{lstlisting}
+
+Resultado:
+\begin{lstlisting}[style=BashOutputStyle]
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+\end{lstlisting}
+
+Se quiser identar o finalizaror, para usar '<<-'.
+
+\begin{lstlisting}[style=BashOutputStyle]
+>>> puts <<-DOC
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item
+     DOC
+\end{lstlisting}
+
+Resultado:
+ \begin{lstlisting}[style=BashOutputStyle]
+ Esta é uma string em múltiplas linhas.
+     * item
+     * item
+     * item 
+ \end{lstlisting}
+
+\subsection{Símbolos}
+
+Os símbolos são ideais para serem usados como chave em 'Hash'.
+
+\begin{lstlisting}[language=ruby]
+:x, :y, :chave
+\end{lstlisting}
+
+Símbolos são alocados uma única vez: ':a.object\_id' durante uma execução sempre retornara o mesmo valor. Isso não acontece com string.
+
+O método 'equal?' só devolve 'true' se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).
+
+\begin{lstlisting}[language=ruby]
+1.equals?(1)             # => true
+:key.equals?(:key)       # => true
+"texto".equals?("texto") # => false
+\end{lstlisting}
 
 \begin{itemize}
   \item Variáveis 
 \begin{lstlisting}[language=ruby]
 x, y, taxa_do_lixo2
 \end{lstlisting} 
-   \item{Numeros}
+   \item{Números}
 \begin{lstlisting}[language=ruby]
 1, -1.2, 6.03e-23    
 \end{lstlisting}
@@ -926,5 +1296,9 @@ template.result # => '1 + 1 = 2'
 "symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], 
 "symbols in maps"=>[{:MapKey=>:MapValue}]}
 \end{verbatim}
+
+
+\bibliography{bibliografia}
+\bibliographystyle{plain}
 
 \end{document}
