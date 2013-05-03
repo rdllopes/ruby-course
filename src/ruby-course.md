@@ -1,10 +1,10 @@
-= data-scale="30"
+= data-scale="10"
 
 <h1 class='capa'>Curso de Introdução a programação com Ruby</h1>
 <http://bit.ly/cursorubyabril> - <https://github.com/abril/ruby-course>
 
 ---
-= data-x="0" data-scale="2"
+= data-x="-1200"
 
 # Sumário
 
@@ -25,7 +25,7 @@
 \* Não necessariamente nessa ordem.
 
 ---
-= data-x="1000" data-scale="2"
+= data-x="1200"
 # Introdução: Ruby.new
 
 Ruby é uma linguagem de programação **interpretada**, de **tipagem dinâmica e forte**, com **gerenciamento de memória automático**, originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
@@ -37,7 +37,7 @@ Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, se
 fonte: [Wikipedia - http://bit.ly/wiki-ruby](http://bit.ly/wiki-ruby)
 
 ---
-= data-x="800" data-scale="2"
+= data-x="2200" data-y="500"
 
 # Introdução: Ruby.new
 
@@ -62,6 +62,8 @@ $ brew install ruby
 \* Linux e Mac normalmente já vem com uma instalação de Ruby.
 
 ---
+= data-x="2200" data-y="-500"
+
 # Introdução: Ruby.new
 
 Verificar a versão de ruby instalada, digite `ruby --version`
@@ -74,6 +76,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 \* `ruby -v` também imprime a versão do ruby, porém ativa o modo *verbose* e permite executar scripts.
 
 ---
+= data-x="3200" data-rotate="150"
 # Introdução: Ruby.new
 
 ## Editores
@@ -86,6 +89,7 @@ ruby 1.9.3p374 (2013-01-15 revision 38858) [x86_64-darwin10.8.0]
 * [Aptana](http://www.aptana.com/)
 
 ---
+= data-x="6200" data-scale="3"
 # Introdução: Ruby.new
 
 Sobre a sintaxe:
@@ -99,6 +103,8 @@ Sobre a sintaxe:
 
 
 ---
+= data-x="4200" data-y="1500" data-z="1500"
+
 # Introdução: Ruby.new
 
 ## Hello World!
@@ -129,6 +135,8 @@ hello world
 ```
 
 ---
+= data-x="4900" data-y="1500" data-z="100"
+
 # Introdução: Ruby.new
 
 ### Compare este laço:
@@ -144,6 +152,8 @@ for (int i=0; i <10; i++) { printf("Ola!");}
 ```
 
 ---
+= data-x="5600" data-y="1500" data-z="-1500"
+
 # Estruturas básicas
 
 Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um objeto.
@@ -169,6 +179,8 @@ Exceto para bloco de código, que será visto mais a frente, tudo em Ruby é um 
 
 
 ---
+= data-x="6600" data-y="3000" data-scale="10"
+
 # Estruturas básicas
 
 Já falei que em Ruby, TUDO é objeto?
@@ -188,17 +200,24 @@ Já falei que em Ruby, TUDO é objeto?
 ```
 
 ---
+= data-x="6600" data-y="3000" data-scale="10"
+
 # Estruturas básicas
 
 ## Comentários
 
 Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.
 
+---
+= data-x="3200" data-rotate="150"
+
 ### Uma linha
 ```ruby
  # Esta linha é um comentário.
  1 + 1 # este texto a direita do sinal de # também é um comentário.
 ```
+---
+= data-x="3200" data-rotate="-150"
 
 ### Múltiplas linhas
 
@@ -213,11 +232,10 @@ na exterma esquerda do seu código, ou seja, na coluna
 
 ---
 # Estruturas básicas
-
+---
 ## Números
-
+---
 ### Inteiros
-
 ```ruby
 123                       # Inteiro (Fixnum)
 -123                      # Inteiro negatico (Fixnum)
@@ -227,7 +245,7 @@ na exterma esquerda do seu código, ou seja, na coluna
 0377                      # Número Octal (255)
 0b001001                  # Número binário (9)
 ```
-
+---
 ### Flutuantes
 ```ruby
 123.45                    # Número com ponto flutuante (Float)
@@ -235,6 +253,8 @@ na exterma esquerda do seu código, ou seja, na coluna
 ```
 
 ---
+= data-x="6600" data-y="3000" data-scale="10"
+
 # Estruturas básicas
 
 ## String `'single quotes'`
@@ -266,6 +286,8 @@ texto ' \
 ```
 
 ---
+= data-x="-1200"
+
 # Estruturas básicas
 
 ## String `"double quotes"`
@@ -306,6 +328,8 @@ hello world
 * `\t` – tab
 
 ---
+= data-x="1200"
+
 # Estruturas básicas
 
 ## String multiplas linhas
@@ -341,6 +365,8 @@ Se quiser identar o finalizaror, para usar `<<-`.
 \* aceita interpolação.
 
 ---
+= data-x="-1200"
+
 # Estruturas básicas
 
 ## Símbolos
@@ -362,6 +388,8 @@ O método `equal?` só devolve `true` se dois objetos são de fato o mesmo objet
 ```
 
 ---
+= data-x="1200"
+
 # Containers
 
 ## Array (Lista)
@@ -384,6 +412,8 @@ c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 \* Os valores em um `Array` é apenas uma referência para a instância do objeto em memória
 
 ---
+= data-x="-1200"
+
 # Containers
 
 ## Hash (Dicionário) - é uma lista não ordenada, mas com chave e valor
@@ -409,6 +439,8 @@ puts (4..9).include? 7  # => true
 ```
 
 ---
+= data-x="5600" data-y="1500" data-z="-1500"
+
 # Variáveis e Escopo
 
 ```ruby
@@ -424,6 +456,8 @@ variavel_local
 ```
 
 ---
+= data-x="3200" data-rotate="10"
+
 # Pseudo variáveis
 
 ```ruby
@@ -436,6 +470,8 @@ __LINE__ # número da linha atual do script em execução
 ```
 
 ---
+= data-x="3200" data-rotate="20"
+
 # Variáveis pré definidas
 
 ```ruby
@@ -450,6 +486,8 @@ $[numero] # retorna o grupo referente a ùltima expressão regular executada
 \* Esta é uma lista reduzida.
 
 ---
+= data-x="3200" data-rotate="30"
+
 # Constantes pré definitas
 
 ```ruby
@@ -463,6 +501,8 @@ ENV     # Um hash com todas as variáveis de ambiente do seu sistema.
 \* Esta é uma lista reduzida.
 
 ---
+= data-x="5600" data-y="1500" data-z="-1500"
+
 # Expressão regular
 
 Expressão regular pode ser declarada entre `/` ou usando o operador `%r`
@@ -477,11 +517,15 @@ Após a declaração do padrão, pode-se aplicar modificadores, após `/`, e sã
 ```ruby
 /pattern/i
 ```
+---
+= data-x="6000" data-y="4000" data-scale="2"
+
+# Estruturas de Controle
+## Condicional `if`
 
 ---
-# Estruturas de Controle
+= data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2"
 
-## Condicional `if`
 
 ### Exemplo Completo
 
@@ -496,6 +540,8 @@ else
   puts  "Number: #{count}"
 end
 ```
+---
+= data-x="6400" data-y="4600" data-z="-200" data-rotate-x="-80" data-rotate-y="20" data-scale="2"
 
 ### Exemplo Simples
 
@@ -504,18 +550,21 @@ if radiation > 3000
   puts "Danger"
 end
 ```
+---
+= data-x="6800" data-y="4900" data-z="-300" data-rotate-x="-120" data-rotate-y="30" data-scale="2"
 
 ### Modificador de Sentenca
 
 ```ruby
 puts "Danger, Will Robinson" if radiation > 3000
 ```
-
 ---
+= data-x="6000" data-y="4000" data-scale="2"
 # Estruturas de Controle
-
 ## Condicional `unless`
 
+---
+= data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2"
 É o inverso do condicional `if`. Então, ao invés de usar:
 
 ```ruby
@@ -523,7 +572,8 @@ if not 'abc'.include? grau
   puts 'você está de recuperação'
 end
 ```
-
+---
+= data-x="6400" data-y="4600" data-z="-200" data-rotate-x="-80" data-rotate-y="20" data-scale="2"
 use...
 
 ```ruby
@@ -531,6 +581,8 @@ unless 'abc'.include? grau
   puts 'você está de recuperação'
 end
 ```
+---
+= data-x="6800" data-y="4900" data-z="-300" data-rotate-x="-120" data-rotate-y="30" data-scale="2"
 
 ### Modificador de Sentenca
 
@@ -539,9 +591,12 @@ puts 'você está de recuperação' unless 'abc'.include? grau
 ```
 
 ---
+= data-x="6000" data-y="4000" data-scale="2"
 # Estruturas de Controle
-
 ### Condicional `case`
+
+---
+= data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2"
 
 ```ruby
 print "Enter your grade: "
@@ -559,9 +614,13 @@ case grade
 end
 ```
 ---
-# Estruturas de Controle
+= data-x="6000" data-y="4000" data-scale="2"
 
+# Estruturas de Controle
 ## Loop `while`
+
+---
+= data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2"
 
 ```ruby
 weight = num_pallets = 0
@@ -576,12 +635,15 @@ end
 
 puts weight, num_pallets
 ```
-
+---
+= data-x="6400" data-y="4600" data-z="-200" data-rotate-x="-80" data-rotate-y="20" data-scale="2"
 #### Modificador de Sentenca
 
 ```ruby
 square = square*square  while square < 1000
 ```
+---
+= data-x="3200" data-rotate="150"
 
 \* Nas estruturas de controle que serão vistas a seguir, em todas existe a possibilidade de quebrar o fluxo do bloco a ser executado. `break` interrompe o fluxo para fora do bloco, `next` pula para a próxima iteração e `redo` para reiniciar o loop.
 
@@ -1363,4 +1425,4 @@ template.result # => '1 + 1 = 2'
 
 ### Result
 
-	{"simple symbol"=>:Simple, "shortcut syntax"=>:Simple, "symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], "symbols in maps"=>[{:MapKey=>:MapValue}]}
+	{"simple symbol"=>:Simple, "shortcut syntax"=>:Simple,<br/>"symbols in seqs"=>[:ValOne, :ValTwo, :ValThree], "symbols in maps"=>[{:MapKey=>:MapValue}]}
