@@ -1,5 +1,5 @@
-\documentclass[serif,mathserif]{article}
-\usepackage[utf8x]{inputenc}
+\documentclass[serif,mathserif]{book}
+\usepackage[utf8]{inputenc}
 \usepackage{comment}
 \usepackage[portuges]{babel}
 \usepackage{booktabs}
@@ -11,7 +11,14 @@
 \usepackage{hyperref}
 \usepackage[stable]{footmisc}
 
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+
 \lstset{%
+        frame=tb,
     	extendedchars=true,
     	inputencoding=utf8/latin1,
         literate=%
@@ -79,6 +86,7 @@
 }
 
 \newcommand*{\Package}[1]{\texttt{#1}}%
+\renewcommand*\lstlistingname{Listagem}
 
 \author{ 
     \\ Rodrigo di Lorenzo Lopes \\  \texttt{rodrigo.lorenzo@abril.com.br}
@@ -88,21 +96,28 @@
 \title{Curso: Ruby Básico}
 
 \begin{document}
+\renewcommand*{\toclevel@chapter}{-1}
+
 \maketitle
  
 \tableofcontents
 
-\section{Introducao: Ruby.new}
+\chapter{Introducao: Ruby.new}
 
-\subsection{Ideia do Curso}
+\section{Ideia do Curso}
+Fizemos esse curso com foco no profissional que já sabe programar em alguma linguagem e compreende
+os princípios de desenvolvimento de algoritmos. Para esses profissionais, cursos básicos de linguagens de computação
+são sempre entendiantes e lentos. Emprega-se muito tempo com coisas triviais enquanto que coisas mais interessantes
+são deixadas de lado. O profissional acaba tendo que aprender o que realmente importa por conta própria.
 
-\begin{itemize}
-  \item Apresentar a linguagem
-  \item Técnicas de metaprogramação
-  \item Problemas e desafios
-\end{itemize}
+É fato que o aprendizado é um fenômeno pessoal, mas acreditamos que nossa função é expor ao aluno os 
+detalhes da linguagem que a torna interessante. Esse curso tem essa ambição e iremos propor desafios 
+que consideramos interessantes para dinâmicas como Dojo e para quem queira resolve-los sozinho.
 
-\subsection{Sobre Ruby}
+Em cada capítulo, tentaremos apresentar o conceito da linguagem e propor problemas ou desafios em que esses conceitos
+possam  ser aplicados. 
+
+\section{Sobre Ruby}
 Ruby é uma linguagem de programação \em{interpretada}, de \em{tipagem dinâmica} e \em{forte}, com \em{gerenciamento de memória automático},
  originalmente planejada e desenvolvida no Japão em 1995, por Yukihiro "Matz" Matsumoto, para ser usada como linguagem de script.
 
@@ -112,22 +127,24 @@ como \em{funcional}, \em{imperativa}  e \em{reflexiva}.
 
 Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.
 
-fonte: \href{http://bit.ly/wiki-ruby}{Wikipedia - http://bit.ly/wiki-ruby}
+fonte: \href{http://en.wikipedia.org/wiki/Ruby_(programming_language)}{Wikipedia - http://en.wikipedia.org/wiki/Ruby_(programming_language)}
 
-\subsection{Inslatação}
-Antes de prosseguir com o curso, vejamos como instalar o interpretador da linguagem. Ruby é hoje portado para os principais sistemas operacionais:
+\section{Inslatação}
+Antes de prosseguir com o curso, vejamos como instalar o interpretador da linguagem. Iremos utilizar o MRI, o interpretador
+Ruby do Matz mas o leitor pode se aventurar por outros interpretadores. O MRI é hoje portado para os 
+principais sistemas operacionais e de fácil instalação.
 
-\subsubsection{Windows}
+\subsection{Windows}
 
 Baixar o executável de instalação em \url{http://rubyinstaller.org/downloads/}
 
-\subsubsection{Linux (Debian / Ubuntu)}
+\subsection{Linux (Debian / Ubuntu)}
 
 \begin{lstlisting}[style=BashInputStyle]
 $ [sudo] apt-get install ruby1.9.1
 \end{lstlisting}
 
-\subsubsection{Mac (via Homebrew)\footnote{Linux e Mac normalmente já vem com uma instalação de Ruby.}}
+\subsection{Mac (via Homebrew)\footnote{Linux e Mac normalmente já vem com uma instalação de Ruby.}}
 
 \begin{lstlisting}[style=BashInputStyle]
 $ brew install ruby
@@ -152,7 +169,7 @@ O código-fonte ruby é um arquivo de texto como qualquer outro. Você pode util
 disponíveis para a linguagem: 
 
 \begin{itemize}
-  \item \href{http://www.sublimetext.com/2}{Sublime Text 2}
+\item \href{http://www.sublimetext.com/2}{Sublime Text 2}
 \item \href{http://www.vim.org/}{Vim}
 \item \href{http://www.gnu.org/software/emacs/}{Emacs}
 \item \href{https://github.com/textmate/textmate/}{TextMate 2 (Mac)}
@@ -162,21 +179,24 @@ disponíveis para a linguagem:
 
  
 
-\subsection{Ruby.new}
+\section{Ruby.new}
 
 Ao longo desse curso, veremos comos os paradigmas de programação são aplicados em Ruby. Por enquanto, para exemplificar o pardigma orienta-a-objetos,
 observe o exemplo:
 
+Laço em Ruby
 \begin{lstlisting}[language=ruby]
 5.times { print "Ola!" }
 \end{lstlisting}
 
+Laço em Java
 \begin{lstlisting}[language=java]
 for (int i=0; i <10; i++) { printf("Ola!");}
 \end{lstlisting}
 
-A consistência de ``tudo ser objeto''\cite{abadi_theory_1996} parte dos príncipios de legibilidade e expressividade (acima por exemplo da eficiência em tempo de execução). É quase possível entender o código sem mesmo conhecer a linguagem. 
-Veja o exemplo abaixo:
+A consistência de ``tudo ser objeto''\cite{abadi_theory_1996} parte dos príncipios de legibilidade e expressividade 
+(acima por exemplo da eficiência em tempo de execução). É quase possível entender o código sem mesmo conhecer a linguagem. 
+Veja outro exemplo:
 
 \begin{lstlisting}[language=java]
    exit unless "restaurante".include? "aura"
@@ -184,14 +204,16 @@ Veja o exemplo abaixo:
         { |food| print food.capitalize }
 \end{lstlisting}
 
-\subsection{Sobre a sintaxe}
+\section{Sobre a sintaxe}
 
-Algumas itens sobre a sintaxe são apenas conveções. Embora, pode-se utilizar uma conveção arbitrária para nomes de classes e métodos, é importante manter
-a consistência com os programas da linguagem.
+Algumas itens sobre a sintaxe são apenas conveções. Embora, pode-se utilizar um identificador arbitrário para classes 
+e métodos, é importante manter a consistência com os programas da linguagem.
+ 
+Um identificador em Ruby é uma sequência de caracteres que segue o padrão \verbatim{[a-zA-Z_][a-zA-Z0-9_]*}.
  
 \begin{itemize}
   \item  Espaços, tabulações e blocos de comentários serão ignorados pelo interpretador.
-  \item  Ponto-e-vírgula e nova linha é considerado um novo comando. Porém, se for encontrado um operador, como `+', `-', ou o sinal de `\', indica que a 
+  \item  Ponto-e-vírgula e nova linha é considerado um novo comando. Porém, se for encontrado um operador, como `+', `-', ou o sinal de `\textbackslash', indica que a 
 próxima linha é continuação do comando atual.
   \item  Os identificadores são nomes de variáveis, constantes e métodos e é \em{case-sensitive}, ou seja, `DNS' e `Dns` são duas constantes diferentes.
   \item  Deve-se usar letras\_minúsculas para nomes de variáveis e métodos. `nome\_completo'
@@ -199,7 +221,7 @@ próxima linha é continuação do comando atual.
   \item  Deve-se usar \em{CamelCase} para nome de Classes. `NotificationMailer'
 \end{itemize}
 
-\subsection {Running Ruby}
+\section {Running Ruby}
 
 Vamos criar uma arquivo Hello World! do Ruby.
 
@@ -237,12 +259,18 @@ hello world
 >>
 \end{lstlisting}
 
-\section{Estruturas básicas}
+\chapter{Estruturas básicas}
 
-Nessa sessão veremos as estruturas básicas da linguagem: estruturas de controle e objetos básicos que são instanciados pelo próprio interpretador. Em Ruby, 
-tudo que pode ser atribuído a uma variável é um objeto e todo objeto tem uma classe. Numa linguagem orientada a objetos, a forma básica de interagir com 
-objetos é por meio de mensagens. Cada objeto ``entende'' um certo conjunto de mensagens definidos em métodos. A executação de um método se dá no envio da mensagem 
-com o nome do método para o objeto. Em particular, toda classe ``entende" todos os métodos da classe Object. Veremos tudo isso em detalhes. Mas tomemos agora 
+Nessa sessão veremos as estruturas básicas da linguagem: declarações, comentários, estruturas de controle e literais. 
+
+Em Ruby, tudo que pode ser atribuído a uma variável é um objeto e todo objeto tem uma classe. Então todas as literais 
+(números, expressões regulares, strings) também são objetos.
+
+É bom lembrar que numa linguagem orientada a objetos, a forma básica de interagir com 
+objetos é por meio de mensagens. Cada objeto ``entende'' um certo conjunto de mensagens definidos em métodos.
+ A executação de um método se dá no envio da mensagem 
+com o nome do método para o objeto. Em particular, toda classe ``entende" todos os métodos da classe Object.
+ Veremos tudo isso em detalhes. Mas tomemos agora 
 o método class e object. Esse método devolve a classe que o objeto pertence (ou qual classe foi utilizada para instanciar o objeto). Veja:
  
 
@@ -266,33 +294,40 @@ o método class e object. Esse método devolve a classe que o objeto pertence (o
 \end{lstlisting}
 
 
-Já falei que em Ruby, TUDO é objeto?
+Já falamos que em Ruby, TUDO é objeto?
 
 \begin{lstlisting}[language=ruby]
 >> 1.methods.count
 => 130
 > 1.methods.sort
-=> [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, :<<, :<=, :<=>, :==, :===,
-:=~, :>, :>=, :>>, :[], :^, :__id__, :__send__, :abs, :abs2, :angle, :arg, :between?,
+=> [:!, :!=, :!~, :%, :&, :*, :**, :+, :+@, :-, :-@, :/, :<, 
+:<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :>>, :[], :^, 
+:__id__, :__send__, :abs, :abs2, :angle, :arg, :between?, 
 :ceil, :chr, :class, :clone, :coerce, :conj, :conjugate, ...]
 >> 'texto'.methods.count
 => 162
 >> 'texto'.methods.sort
-=> [:!, :!=, :!~, :%, :*, :+, :<, :<<, :<=, :<=>, :==, :===, :=~, :>, :>=, :[], :[]=,
-:__id__, :__send__, :ascii_only?, :between?, :bytes, :bytesize, :byteslice, ...]
+=> [:!, :!=, :!~, :%, :*, :+, :<, :<<, :<=, :<=>, :==, :===,
+:=~, :>, :>=, :[], :[]=, :__id__, :__send__, :ascii_only?, 
+:between?, :bytes, :bytesize, :byteslice, ...]
 \end{lstlisting}
 
-\subsection{Comentários}
+\section{Comentários}
 
-Comentários são trechos em seu código que não serão processados pelo interpretador. Serve para documentar seu código.
+A forma mais comum de comentário em Ruby é o comentário de uma linha. Os comentários encontrados no 
+código-fonte do interpretador Ruby do Matz (MRI, do inglês Matz's Ruby Interpreter) são da forma de   
+múltiplos comentários de uma linha ao invés de comentários de múltiplas linhas.
 
-\subsubsection{Uma linha}
+Como guia de estilo recomendamos que você utilize a primeira forma (comentários de uma linha), porque
+é visualmente mais fácil identificá-los, mas caso queira ser do contra, utilize a segunda forma.
+
+\subsection{Uma linha}
 \begin{lstlisting}[language=ruby]
- # Esta linha eh um comentario.
- 1 + 1 # este texto a direita do sinal de # tambem eh um comentario.
+ # Esta linha é um comentário.
+ 1 + 1 # este texto a direita do sinal de tambem é um comentário.
 \end{lstlisting}
 
-\subsubsection{Múltiplas linhas}
+\subsection{Múltiplas linhas}
 
 \begin{lstlisting}[language=ruby]
 =begin
@@ -303,9 +338,9 @@ na exterma esquerda do seu código, ou seja, na coluna
 =end
 \end{lstlisting}
 
-\subsection{Números}
+\section{Números}
 
-\subsubsection{Inteiros}
+\subsection{Inteiros}
 
 \begin{lstlisting}[language=ruby]
 123                       # Inteiro (Fixnum)
@@ -317,16 +352,18 @@ na exterma esquerda do seu código, ou seja, na coluna
 0b001001                  # Número binário (9)
 \end{lstlisting}
 
-\subsubsection{Pontos Flutuantes}
+\subsection{Pontos Flutuantes}
 
 \begin{lstlisting}[language=ruby]
 123.45                    # Número com ponto flutuante (Float)
 1.2e-3                    # Número com ponto flutuante (0.0012)
 \end{lstlisting}
 
-\subsubsection{String 'single quotes'}
+\section{String} 
 
-\begin{lstlisting}[language=ruby]
+\subsection{String 'single quotes'}
+
+\begin{lstlisting}[language=ruby] 
 >> puts 'texto'
 texto
 >> puts 'texto'.length
@@ -345,14 +382,14 @@ texto
 texto
 \end{lstlisting}
 
-Para usar os caracteres '\'' ou '\\', você pode usar sequência de \em{escape}  '\\\'' e '\\\\'.
+Para usar os caracteres '\'' ou '\textbackslash', você pode usar sequência de \em{escape}  '\textbackslash\'' e '\textbackslash\textbackslash'.
 
 \begin{lstlisting}[language=ruby]
->> puts 'texto \' \\'
+>> puts 'texto \' \\' 
 texto ' \
 \end{lstlisting}
 
-\subsubsection{String 'double quotes'}
+\subsection{String 'double quotes'}
 
 Existe uma diferença entre construir strings com aspas simples e aspas duplas. Strings montadas com aspas duplas, aceitam interpolação de conteúdo para construir a string final.
 
@@ -365,7 +402,7 @@ o resultado de 1 + 1 é #{ 1 + 1 }.
 
 O valor da expressão a ser interpolada, será o resultado do método 'to\_s' do objeto.
 
-\subsubsection{Sequências de \em{escape}}
+\subsection{Sequências de \em{escape}}
 
 \begin{lstlisting}[language=ruby]
 >> puts "      world\rhello"
@@ -388,7 +425,7 @@ hello world
 \end{itemize}
 
 
-\subsubsection{String multiplas linhas}
+\subsection{String multiplas linhas}
 
 \begin{lstlisting}[language=ruby]
 >>> puts <DOC
@@ -426,7 +463,7 @@ Resultado:
      * item 
  \end{lstlisting}
 
-\subsection{Símbolos}
+\section{Símbolos}
 
 Os símbolos são ideais para serem usados como chave em 'Hash'.
 
@@ -434,7 +471,9 @@ Os símbolos são ideais para serem usados como chave em 'Hash'.
 :x, :y, :chave
 \end{lstlisting}
 
-Símbolos são alocados uma única vez: ':a.object\_id' durante uma execução sempre retornara o mesmo valor. Isso não acontece com string.
+Símbolos são alocados uma única vez: ':a.object\_id' durante uma execução sempre retornara o mesmo valor.
+
+Isso não acontece com string.
 
 O método 'equal?' só devolve 'true' se dois objetos são de fato o mesmo objeto (e instâncias da mesma classe com valores iguais).
 
@@ -444,47 +483,12 @@ O método 'equal?' só devolve 'true' se dois objetos são de fato o mesmo objet
 "texto".equals?("texto") # => false
 \end{lstlisting}
 
-\begin{itemize}
-  \item Variáveis 
-\begin{lstlisting}[language=ruby]
-x, y, taxa_do_lixo2
-\end{lstlisting} 
-   \item{Números}
-\begin{lstlisting}[language=ruby]
-1, -1.2, 6.03e-23    
-\end{lstlisting}
-	\item {String}
-\begin{lstlisting}[language=ruby]
-"alguma coisa assim"
-%q(veremos outras formas de declarar strings)
-\end{lstlisting}
- 
-\end{itemize}
+\section{Statement}
+Ruby é uma linguagem imperativa. Todas as declarações são nada mais que comandos. Todos os comandos devolvem um
+valor. O resultado de uma atribuição por exemplo é o valor da atribuição. O Resultado de uma ``declaração'' de classe
+é o objeto da classe. 
 
-\begin{itemize}
-  \item Symbols
-% * Symbols
-\begin{lstlisting}[language=ruby]
-:x, :y, :isso_parece_uma_string
-\end{lstlisting}
-
-  \item Constantes 
-\begin{lstlisting}[language=ruby]  
-EmpireStateBuilding, NEA, PI
-\end{lstlisting}
-
-  \item Objetos especiais 
-\begin{lstlisting}[language=ruby]
-true, false, nil
-\end{lstlisting}
-\end{itemize}
-
-Símbolos são alocados uma única vez: :a.object\_id durante uma execução sempre
-retornara o mesmo valor. Isso nao acontece com string. O método equal? so
-devolve true se dois objetos são de fato o mesmo objeto (e instâncias da mesma
-classe com valores iguais).
-
-\subsection{Métodos (mensagens)}
+\section{Métodos (mensagens)}
 \begin{lstlisting}[language=ruby]
 i = 1        
 texto = "um texto"; puts texto
@@ -504,10 +508,13 @@ end
 Lembre-se ... voce pode redefinir um método
 Quase tudo e objeto
 
-\subsection{Estruturas de Controle - if}
+
+
+\section{Estruturas de controle}
+\subsection{if}
  
-       
-\subsection {Exemplo Completo}
+Exemplo Completo
+
 \begin{lstlisting}[language=ruby]
 if count > 10
   puts "Try again"
@@ -517,19 +524,21 @@ elsif tries == 3
 end
 \end{lstlisting}
 
-\subsection {Exemplo Simples}
+Exemplo Simples
+
 \begin{lstlisting}[language=ruby]
 if radiation > 3000
   puts "Danger"
 end
 \end{lstlisting}
 
-\subsection {Modificador de Sentenca}
+Modificador de Sentença
+
 \begin{lstlisting}[language=ruby]
 puts "Danger, Will Robinson" if radiation > 3000
 \end{lstlisting}
 
-\subsection{Estruturas de Controle - case} 
+\subsection{case} 
 \begin{lstlisting}[language=ruby]
 print "Enter your grade: "
 grade = gets.chomp
@@ -545,7 +554,7 @@ when "C", "D"
 \end{lstlisting}
 
 
-\subsection{Estruturas de Controle - while}
+\subsection{while}
 \begin{lstlisting}[language=ruby]
 while weight < 100 and numPallets <= 30
   pallet = nextPallet()
@@ -554,19 +563,21 @@ while weight < 100 and numPallets <= 30
 end
 \end{lstlisting}
  
-\subsection {Modificador de Sentenca}
+Modificador de Sentença
+
+
 \begin{lstlisting}[language=ruby]
 square = square*square  while square < 1000
 \end{lstlisting}
 
-\subsection{Estrutura de Controle -  for}
+\subsection{for}
 \begin{lstlisting}[language=ruby]
 for i in 0..5
    puts "Value is #{i}"
 end
 \end{lstlisting}
 
-\subsection{Estrutura de Controle -  until} 
+\subsection{until} 
 \begin{lstlisting}[language=ruby]
 until weight >= 100 ||numPallets > 30
   pallet = nextPallet()
@@ -575,12 +586,13 @@ until weight >= 100 ||numPallets > 30
 end
 \end{lstlisting}
 
-\subsection {Modificador de Sentenca}
+Modificador de Sentença
+
 \begin{lstlisting}[language=ruby]
 square = square*square  until square >= 1000
 \end{lstlisting}
 
-\subsection{Desafio - FizzBuzz}  
+\section{Desafio - FizzBuzz}  
 Escreva um programa que imprima o número de 1 a 100.
 Mas, para múltiplos de três, imprima  ``Fizz'' no lugar do
 número e para múltiplos de cinco imprima ``Buzz''. Para
@@ -589,13 +601,39 @@ imprima ``FizzBuzz''.
  
 \url{http://www.rubyquiz.com/quiz126.html}
 
-\subsection{Solução FizzBuzz}
+\section{Solução FizzBuzz}
 
 \lstinputlisting[language=ruby]{../Exemplos/1-very_basic/fizzbuzz.rb}
 
-\section{Containers}
+\chapter{Containers}
 
-\subsection{Array}
+Até agora, os conceitos apresentados são bem comuns em outras linguagens de comunicação. Containers também são
+conceitos bastante comuns mas tomemos a linguagem Java. Não existe em Java literais específicos para 
+listas. Embora a linhagem tenha array(vetores), uma lista mesma é um objeto sem nenhuma particularidade e
+deve ser manipulado como tal.
+
+Para tornar essa discussão mais pálpavel, qual seria a forma mais simples de criar uma lista com os os números de 
+1 a 5? A forma mais elementar seria:
+\begin{lstlisting}[language=Java]
+List<Integer> list = new ArrayList();
+list.add(1);
+list.add(2);
+list.add(3);
+list.add(4);
+list.add(5)
+\end{lstlisting}
+
+Mas, podemos fazer isso de uma forma mais compacta:
+\begin{lstlisting}[language=Java]
+List<Integer> list = Arrays.asList(new Integer[]{1,2,3,4,5});
+\end{lstlisting}
+Isso só ocorre porque a linguagem dispõe de uma forma ``confortável'' de inicializar vetores.
+
+Em Ruby, vetores e hash possuem literais próprios e açúcares sintáticos que facilitam sua manipulação. Além disso,
+os container fornecem uma alternativa elegante às estruturas de laço (como em Smalltalk) que é mais compatível com o 
+paradigma orientado a objetos. Isso faz com que essas classes mereçam um capítulo a parte.
+
+\section{Array}
 \begin{lstlisting}[language=ruby]
 a = [ 3.14159, "pie", 99 ]
 a.type   #        Array
@@ -612,7 +650,7 @@ c = %w{a b c d e }  #  =>  ["a", "b", "c", "d"]
 \end{lstlisting}
 
 
-\subsection{Hash}
+\section{Hash}
 \begin{lstlisting}[language=ruby]
 h = {'dog' => 'canine', 'cat' => 'feline', 'donkey' => 'asinine'}
 h.length        #        3
@@ -629,7 +667,7 @@ b = Hash[a]
 \end{lstlisting}
 
 
-\subsection{Blocos e Iteradores}
+\section{Blocos e Iteradores}
 
 Passando blocos
 \begin{lstlisting}[language=ruby]
@@ -649,7 +687,7 @@ Influência do Smalltalk:
    1 to: 20 do: [:x | x printN1]
 \end{lstlisting}
 
-\subsection{ Métodos de um Enumerable}
+\section{ Métodos de um Enumerable}
 \begin{lstlisting}  
 all?, any?, collect, detect, each_cons, each_slice, each_with_index, entries,
 enum_cons, enum_slice, enum_with_index, find, find_all, grep, include?, inject,
@@ -657,7 +695,7 @@ map, max, member?, min, partition, reject, select, sort, sort_by, to_a,
 to_set, zip
 \end{lstlisting}
  
-\subsection{Exemplos com Enumeraveis}
+\section{Exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.find {|name|  name.length>4}          # => "Leela"
@@ -669,7 +707,7 @@ names.group_by {|name|  name.length}
    # =>  {4=>["Frye"], 5=>["Leela"], 8=>["Zoidberg"]}
 \end{lstlisting}
 
-\subsection{Mais exemplos com Enumeraveis}
+\section{Mais exemplos com Enumeraveis}
 \begin{lstlisting}[language=ruby]
 names = %w{ Frye Leela Zoidberg }
 names.map {|name| name.downcase}
@@ -681,21 +719,21 @@ names.join ", "
 \end{lstlisting}
 
 
-\section{Blocos}
+\chapter{Blocos}
 
-\subsection{yield}
+\section{yield}
 \begin{lstlisting}[language=ruby]
 def proxy_method
   puts "Calling command at: #{Time.new}"
   yield
-proxy_method { puts "hello world proxified! "}
+proxy_method { puts "hello world proxified!"}
 #ou com paremtros
 def proxy_method
    yield(Time.new)
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
-\subsection{call}
+\section{call}
 \begin{lstlisting}[language=ruby]
 def proxy_method(&method)
   # argumento com & precisa ser o ultimo da lista
@@ -708,7 +746,7 @@ def proxy_method (&method)
 proxy_method {|time| puts "hello world proxified  at #{time}"}
 \end{lstlisting}
 
-\subsection{Proc x Lambda}
+\section{Proc x Lambda}
 \begin{lstlisting}[language=ruby]
 fx = Proc.new {|x| x**2}
 fxy = proc {|x,y| x+y}
@@ -724,7 +762,7 @@ Proc.new e proc sao equivalentes
 \end{lstlisting}
 
 
-\subsection{Lambda ``Calculus''}
+\section{Lambda ``Calculus''}
 
 \begin{lstlisting}[language=ruby, caption="Derivada em Ruby"]
 def d(f)
@@ -737,7 +775,7 @@ f = lambda {|x| x**2}
 puts d(f)[4]
 \end{lstlisting}
 
-\section{Objetos em Ruby}
+\chapter{Objetos em Ruby}
 \begin{lstlisting}[language=ruby]
 class BookInStock
   def initialize(isbn, price)
@@ -757,7 +795,7 @@ puts stock.to_s
 \end{lstlisting}
 
 
-\subsection{Variaveis e Escopo}
+\section{Variaveis e Escopo}
 
 \begin{tabular}{ l | c | r }
 Variáveis Locais & \verb|x name thx1138 _x _26| \\
@@ -768,7 +806,7 @@ Nomes de Classe & \verb|String BigDecimal| \\
 Constants & \verb|FEET_PER_MILE DEBUG|
 \end{tabular}
 
-\subsection{Atributos de instância - forma tradicional}
+\section{Atributos de instância - forma tradicional}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   def isbn
@@ -784,7 +822,7 @@ class BookInStock
   end
 \end{lstlisting}
 
-\subsection{Atributos de instância - forma declarativa}
+\section{Atributos de instância - forma declarativa}
 \begin{lstlisting}[language=ruby]
 class BookInStock  
   attr_accessor :isbn
@@ -792,15 +830,15 @@ class BookInStock
  end
 \end{lstlisting}
 
-\subsection{Herança}
-\subsubsection{Exemplo de Heranca}
+\section{Herança}
+\subsection{Exemplo de Heranca}
 \begin{lstlisting}[language=ruby]
 class SpecialStock < BookInStock
 \end{lstlisting}
 
-\subsection{Herança - Singleton Pattern}
+\section{Herança - Singleton Pattern}
 
-\subsubsection{forma tradicional}
+\subsection{forma tradicional}
 \begin{lstlisting}[language=ruby]
 class Logger
   private_class_method :new
@@ -812,7 +850,7 @@ class Logger
 end
 \end{lstlisting}
 
-\subsubsection{módulo Singleton}
+\subsection{módulo Singleton}
 \begin{lstlisting}[language=ruby]
 require 'singleton'
 class Logger
@@ -835,7 +873,7 @@ class << stock
    end
 \end{lstlisting}
 
-\subsection{Criando um Enumerable}
+\section{Criando um Enumerable}
   *  Basta implementar o metodo each. 
 \begin{lstlisting}[language=ruby]
 class Node
@@ -878,9 +916,9 @@ linked_list.rb (continuacao)
 
 
 
-\section{Mais sobre métodos}
+\chapter{Mais sobre métodos}
 
-\subsection{Lista de parâmetros}
+\section{Lista de parâmetros}
 
 \begin{lstlisting}[language=ruby]
 def my_new_method               # No arguments
@@ -896,7 +934,7 @@ def cool_dude(arg1="Miles", arg2="Coltrane", arg3="Roach")  # defaults
 end
 \end{lstlisting}
 
-\subsection{Truques com parâmetros}
+\section{Truques com parâmetros}
 
 Aridade não definida
 
@@ -916,7 +954,7 @@ varargs (1, :a => 1)
 end
 \end{lstlisting}
 
-\subsection{Array para argumentos}
+\section{Array para argumentos}
 
 Expandindo array para parâmetros
 
@@ -930,7 +968,7 @@ five(1, 2, 3, *['a', 'b'])  # "I was passed 1 2 3 a b"
 five(*(10..14).to_a)         #  "I was passed 10 11 12 13 14"
 \end{lstlisting}
 
-\subsection{Proc para bloco}
+\section{Proc para bloco}
 
 Convertendo proc para bloco
 
@@ -949,7 +987,7 @@ end
 puts((1..10).collect(&calc).join(", "))
 \end{lstlisting}
 
-\section{Exceptions, Catch and Throw}
+\chapter{Exceptions, Catch and Throw}
 
 \begin{lstlisting}[language=ruby]
 opFile = File.open(opName, "w")
@@ -959,7 +997,7 @@ while data = socket.read(512)
 end
 \end{lstlisting}
 
-\subsection{Exceptions}
+\section{Exceptions}
 
 \begin{lstlisting}[language=ruby]
 opFile = File.open(opName, "w")
@@ -978,7 +1016,7 @@ rescue SystemCallError
 end
 \end{lstlisting}
 
-\subsection{Catching exception}
+\section{Catching exception}
 
 Nomeando a exceção
 
@@ -994,7 +1032,7 @@ rescue StandardError => bang
 end
 \end{lstlisting}
 
-\subsection{Ensure}
+\section{Ensure}
 
 Garante que um bloco é chamado
 
@@ -1010,7 +1048,7 @@ ensure
 end
 \end{lstlisting}
 
-\subsection{Rescuing a Method}
+\section{Rescuing a Method}
 
 Begin Rescue
 
@@ -1038,7 +1076,7 @@ rescue Error
 end
 \end{lstlisting}
 
-\subsection{Raise Exceptions}
+\section{Raise Exceptions}
 
 Formas típicas de se lançar uma exceção
 
@@ -1057,7 +1095,7 @@ Formas típicas de se lançar uma exceção
  raise ArgumentError, "Name too big", caller
 \end{lstlisting}
 
-\subsection{Especializando Exceções}
+\section{Especializando Exceções}
 
 Declaração
 
@@ -1085,7 +1123,7 @@ def readData(socket)
 end
 \end{lstlisting}
 
-\subsection{Especializando Exceções II}
+\section{Especializando Exceções II}
 
 Tratanto a exceção
 
@@ -1100,7 +1138,7 @@ rescue RetryException => detail
 end
 \end{lstlisting}
 
-\subsection{Catch e Throw}
+\section{Catch e Throw}
 
 Desvio incondicional com labels
 
@@ -1122,7 +1160,7 @@ catch :quitRequested do
 end
 \end{lstlisting}
 
-\section{Módulos}
+\chapter{Módulos}
 Uso
 
 \begin{enumerate}
@@ -1130,7 +1168,7 @@ Uso
   \item Mixin (permitir herança de traços – como se fosse uma cópia do conteúdo do módulo no local incluído)
 \end{enumerate}
 
-\subsection{Declaração}
+\section{Declaração}
 
 \begin{lstlisting}[language=ruby]
 
@@ -1145,7 +1183,7 @@ module Trig
 end
 \end{lstlisting}
 
-\subsubsection{Uso}
+\subsection{Uso}
 
 \begin{lstlisting}[language=ruby]
 
@@ -1153,7 +1191,7 @@ require "./trig"
 puts Trig.sin(Trig::PI / 3.0)
 \end{lstlisting}
 
-\subsection{Mixins}
+\section{Mixins}
 
 Applying mixin
 
@@ -1173,7 +1211,7 @@ class BigInteger < Number
 end
 \end{lstlisting}
 
-\subsection{Applying mixin}
+\section{Applying mixin}
 
 \begin{lstlisting}[language=ruby]
 
@@ -1189,9 +1227,9 @@ puts bigint2.stringify   # --> 'Two'
 bigint2.extend CurrencyFormatter
 \end{lstlisting}
 
-\section{Pacotes Básicos}
+\chapter{Pacotes Básicos}
 
-\subsection{BigDecimal}
+\section{BigDecimal}
 
 \begin{lstlisting}[language=ruby]
 
@@ -1200,13 +1238,13 @@ require 'bigdecimal'
 BigDecimal.new('1.23) # => #<BigDecimal:7ffe0b052bc8,'0.123E1',18(18)>
 \end{lstlisting}
 
-\subsection{OpenStruct}
+\section{OpenStruct}
 
 \begin{lstlisting}[language=ruby]
 require 'ostruct'
 \end{lstlisting}
 
-\subsection{Test}
+\section{Test}
 
 \begin{lstlisting}[language=ruby]
 
@@ -1220,7 +1258,7 @@ class TesteFoo  < Test::Unit::TestCase
 end
 \end{lstlisting}
 
-\subsection{ERB}
+\section{ERB}
 
 \begin{itemize}
   \item Sistema de Template padrão do Ruby
@@ -1235,7 +1273,7 @@ template = ERB.new('1 + 1 = <%= 1 + 1 %>')
 template.result # => '1 + 1 = 2'
 \end{lstlisting}
 
-\subsection{Net::HTTP}
+\section{Net::HTTP}
 
 \begin{lstlisting}[language=ruby]
 	require "net/http"
@@ -1249,7 +1287,7 @@ template.result # => '1 + 1 = 2'
 	end
 \end{lstlisting}
 
-\subsection{JSON}
+\section{JSON}
 
 \begin{lstlisting}[language=ruby]
 	require "net/http"
@@ -1265,9 +1303,9 @@ template.result # => '1 + 1 = 2'
 	end
 \end{lstlisting}
 
-\subsection{YAML}
+\section{YAML}
 
-\subsubsection{Arquivo yaml}
+\subsection{Arquivo yaml}
 
 \begin{verbatim}
 	simple symbol: !ruby/symbol Simple 
@@ -1280,7 +1318,7 @@ template.result # => '1 + 1 = 2'
 	  - !ruby/symbol MapKey: !ruby/symbol MapValue 
 \end{verbatim}
 
-\subsubsection{Ruby code}
+\subsection{Ruby code}
 
 \begin{lstlisting}[language=ruby]
 	require "yaml"
@@ -1289,7 +1327,7 @@ template.result # => '1 + 1 = 2'
 	p config
 \end{lstlisting}
 
-\subsubsection{Result}
+\subsection{Result}
 
 \begin{verbatim}
 {"simple symbol"=>:Simple, "shortcut syntax"=>:Simple, 
