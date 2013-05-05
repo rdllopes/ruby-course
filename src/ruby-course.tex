@@ -127,17 +127,17 @@ como \em{funcional}, \em{imperativa}  e \em{reflexiva}.
 
 Foi inspirada principalmente por Python, Perl, Smalltalk, Eiffel, Ada e Lisp, sendo muito similar em vários aspectos a Python.
 
-fonte: \href{http://en.wikipedia.org/wiki/Ruby_(programming_language)}{Wikipedia - http://en.wikipedia.org/wiki/Ruby_(programming_language)}
-
-\section{Inslatação}
+fonte: \href{http://en.wikipedia.org/wiki/Ruby_(programming_language)}{Wikipedia - http://en.wikipedia.org/wiki/Ruby\_(programming\_language)}
+ 
+\section{Instalação}
 Antes de prosseguir com o curso, vejamos como instalar o interpretador da linguagem. Iremos utilizar o MRI, o interpretador
 Ruby do Matz mas o leitor pode se aventurar por outros interpretadores. O MRI é hoje portado para os 
 principais sistemas operacionais e de fácil instalação.
-
+ 
 \subsection{Windows}
 
 Baixar o executável de instalação em \url{http://rubyinstaller.org/downloads/}
-
+ 
 \subsection{Linux (Debian / Ubuntu)}
 
 \begin{lstlisting}[style=BashInputStyle]
@@ -209,7 +209,7 @@ Veja outro exemplo:
 Algumas itens sobre a sintaxe são apenas conveções. Embora, pode-se utilizar um identificador arbitrário para classes 
 e métodos, é importante manter a consistência com os programas da linguagem.
  
-Um identificador em Ruby é uma sequência de caracteres que segue o padrão \verbatim{[a-zA-Z_][a-zA-Z0-9_]*}.
+Um identificador em Ruby é uma sequência de caracteres que segue o padrão \verb|[a-zA-Z_][a-zA-Z0-9_]*|.
  
 \begin{itemize}
   \item  Espaços, tabulações e blocos de comentários serão ignorados pelo interpretador.
@@ -220,8 +220,8 @@ próxima linha é continuação do comando atual.
   \item  Deve-se usar LETRAS\_MAIÚSCULAS para nome de CONSTANTES. `MAX\_ATTENDEES = 100'
   \item  Deve-se usar \em{CamelCase} para nome de Classes. `NotificationMailer'
 \end{itemize}
-
-\section {Running Ruby}
+ 
+\section {Running Ruby} 
 
 Vamos criar uma arquivo Hello World! do Ruby.
 
@@ -612,7 +612,7 @@ conceitos bastante comuns mas tomemos a linguagem Java. Não existe em Java lite
 listas. Embora a linhagem tenha array(vetores), uma lista mesma é um objeto sem nenhuma particularidade e
 deve ser manipulado como tal.
 
-Para tornar essa discussão mais pálpavel, qual seria a forma mais simples de criar uma lista com os os números de 
+Para tornar essa discussão mais pálpavel, qual seria a forma mais simples de criar uma lista com os números de 
 1 a 5? A forma mais elementar seria:
 \begin{lstlisting}[language=Java]
 List<Integer> list = new ArrayList();
@@ -629,10 +629,19 @@ List<Integer> list = Arrays.asList(new Integer[]{1,2,3,4,5});
 \end{lstlisting}
 Isso só ocorre porque a linguagem dispõe de uma forma ``confortável'' de inicializar vetores.
 
-Em Ruby, vetores e hash possuem literais próprios e açúcares sintáticos que facilitam sua manipulação. Além disso,
+Em Ruby, não apenas vetores mas tabelas de dispersão (\em{hash tables} ou \em{hashes}) possuem literais próprios e 
+açúcares sintáticos que facilitam sua manipulação. Além disso,
 os container fornecem uma alternativa elegante às estruturas de laço (como em Smalltalk) que é mais compatível com o 
 paradigma orientado a objetos. Isso faz com que essas classes mereçam um capítulo a parte.
 
+Voltando ao exemplo de criar uma lista com os números de 1 a 5, em Ruby a solução é a seguinte.
+\begin{lstlisting}[language=ruby]
+list = [1,2,3,4,5]
+\end{lstlisting}
+Embora a declaração seja muito similiar aos vetores da linguagem Java, o Array de Ruby é semanticamene 
+similar  ao ArrayList de Java, permitindo adicionar ou remover elementos sem se preocupar com a capacidade do container.
+
+   
 \section{Array}
 \begin{lstlisting}[language=ruby]
 a = [ 3.14159, "pie", 99 ]
